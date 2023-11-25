@@ -17,7 +17,7 @@
         }
 
         header {
-            background: linear-gradient(to bottom, #001f3f 0%, #003366 50%, #001f3f 100%); /* Gradient for 3D effect */
+            background: linear-gradient(to bottom, #66b3ff 0%, #99c2ff 50%, #66b3ff 100%); /* Lighter blue gradient */
             color: #fff;
             text-align: left;
             padding: 1em;
@@ -29,13 +29,23 @@
         header h2 {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 0;
+            margin-top: 0px; /* Move up by 20px */
+            margin-right: 20px; /* Adjusted right margin */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+        }
+
+        header h2 a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
 
         nav button,
         nav a {
             color: #fff;
-            background-color: #001f3f; /* Use the same gradient for the background */
+            background-color: #66b3ff; /* Lighter blue background */
             border: none;
             padding: 1em;
             border-radius: 5px;
@@ -54,7 +64,7 @@
         }
 
         footer {
-            background-color: #001f3f; /* Deep Blue */
+            background-color: #99c2ff; /* Lighter blue background */
             color: #fff;
             text-align: right;
             padding: 1em;
@@ -74,7 +84,7 @@
 
             header,
             footer {
-                background-color: #001f3f; /* Keep the same deep blue color in dark mode */
+                background: linear-gradient(to bottom, #001f3f 0%, #003366 50%, #001f3f 100%); /* Dark blue gradient */
             }
 
             nav button,
@@ -94,8 +104,8 @@
 
     <header>
         <h2>
-            <a href="https://catsu-osm.github.io" style="color: #fff; text-decoration: none;">
-                <i class="fas fa-home" style="margin-right: 15px;"></i> <!-- Home icon -->
+            <a href="https://catsu-osm.github.io" style="text-decoration: none;">
+                <i class="fas fa-home" style="margin-right: 10px;"></i> <!-- Home icon -->
             </a>
             CatSu's Projects
         </h2>
