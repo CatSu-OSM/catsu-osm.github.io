@@ -27,14 +27,9 @@
         }
 
         header h2 {
-            margin-bottom: 20px; /* You can adjust this value to control the vertical spacing */
-        }
-
-        nav {
             display: flex;
-            background: linear-gradient(to bottom, #001f3f 0%, #003366 50%, #001f3f 100%); /* Match the gradient of the header */
-            padding: 0.5em;
-            align-items: flex-end; /* Align items at the bottom */
+            align-items: center;
+            margin-bottom: 15px;
         }
 
         nav button,
@@ -43,10 +38,10 @@
             background-color: #001f3f; /* Use the same gradient for the background */
             border: none;
             padding: 1em;
-            margin: 0 0.5em -15.5px 0.5em;
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none; /* Add this line to remove underlines for links */
+            margin: 0;
         }
 
         nav button:hover,
@@ -78,7 +73,6 @@
             }
 
             header,
-            nav,
             footer {
                 background-color: #001f3f; /* Keep the same deep blue color in dark mode */
             }
@@ -99,16 +93,16 @@
 <body>
 
     <header>
-        <h2 style="display: flex; align-items: center;">
+        <h2>
             <a href="https://catsu.github.io" style="color: #fff; text-decoration: none;">
-                <i class="fas fa-home" style="margin-right: 8px;"></i> <!-- Home icon -->
+                <i class="fas fa-home" style="margin-right: 15px;"></i> <!-- Home icon -->
             </a>
             CatSu's Website
         </h2>
         <nav>
-            <a href="#projects">Projects</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <button onclick="location.href='#projects'">Projects</button>
+            <button onclick="location.href='#about'">About</button>
+            <button onclick="location.href='#contact'">Contact</button>
         </nav>
     </header>
 
