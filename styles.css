@@ -41,6 +41,10 @@ header h2 a {
     align-items: center;
 }
 
+nav {
+    padding-right: 20px; /* Adjust this value as needed to avoid the scrollbar covering the buttons */
+}
+
 nav button,
 nav a {
     color: #fff;
