@@ -115,7 +115,7 @@ footer {
         line-height: 1.2; /* Adjust line height if necessary */
     }
 
-    nav {
+    header nav {
         flex-direction: column; /* Arrange navigation buttons in a column */
         align-items: center; /* Center align navigation buttons */
     }
