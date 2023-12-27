@@ -108,3 +108,15 @@ footer {
         background-color: #005bb5;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    header h2 {
+        font-size: 16px; /* Adjust the font size as needed */
+        line-height: 1.2; /* Adjust line height if necessary */
+    }
+
+    nav {
+        flex-direction: column; /* Arrange navigation buttons in a column */
+        align-items: center; /* Center align navigation buttons */
+    }
+}
