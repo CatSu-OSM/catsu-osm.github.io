@@ -31,13 +31,13 @@ section {
     margin-top: 20px; /* Adjust this value as needed */
 }
 
-
 body {
     margin-top: 70px; /* Adjust this value based on the height of your header */
 }
 
 section {
             margin-left: 20px; /* Adjust the margin value as needed */
+            margin-top: 20px; /* Adjust this value as needed */
         }
 
 header h2 {
