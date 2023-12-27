@@ -9,7 +9,7 @@ body {
 
 /* Add this CSS to create space between header and content */
 section:first-child {
-    margin-top: 80px; /* Adjust the margin as needed */
+    margin-top: 100px; /* Adjust the margin as needed */
 }
 
 header {
