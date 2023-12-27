@@ -42,11 +42,8 @@ header h2 a {
 }
 
 nav {
+    width: calc(100% - 20px); /* Adjust the value as needed */
     box-sizing: border-box;
-}
-
-.nav-buttons-wrapper {
-    padding-right: 40px; /* Adjust the padding as needed */
 }
 
 nav button,
