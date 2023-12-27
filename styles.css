@@ -7,6 +7,11 @@ body {
     flex-direction: column;
 }
 
+/* Add this CSS to create space between header and content */
+section:first-child {
+    margin-top: 80px; /* Adjust the margin as needed */
+}
+
 header {
     background: linear-gradient(to bottom, #66b3ff 0%, #99c2ff 50%, #66b3ff 100%);
     color: #fff;
