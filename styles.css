@@ -24,8 +24,13 @@ header {
 main {
     flex-grow: 1; /* Allow main to grow and take remaining space */
     padding: 1em; /* Add padding to create space around the content */
-    margin-top: 70px; /* Adjust this value to create space between header and content */
+    }
+
+/* Add this CSS to create space between header and each section */
+section {
+    margin-top: 20px; /* Adjust this value as needed */
 }
+
 
 body {
     margin-top: 70px; /* Adjust this value based on the height of your header */
