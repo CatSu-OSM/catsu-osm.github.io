@@ -2,7 +2,6 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin-top: 70px; /* Adjust this value based on the height of your header */
     padding: 0;
     box-sizing: border-box;
     display: flex;
@@ -29,8 +28,7 @@ main {
 }
 
 section {
-    margin-left: 20px; /* Adjust the margin value as needed */
-    margin-bottom: 20px; /* Adjust the margin-bottom value as needed */
+    margin: 20px 20px 0 20px; /* Adjust the margin values as needed */
 }
 
 header h2 {
