@@ -23,11 +23,14 @@ header {
 
 main {
     flex-grow: 1; /* Allow main to grow and take remaining space */
-    padding: 70px 1em 1em 1em; /* Add padding to the top of main to account for the fixed header */
+    padding-top: 70px; /* Add padding to the top of main to account for the fixed header */
+    padding: 1em;
+    box-sizing: border-box;
 }
 
 section {
-    margin: 20px 0; /* Adjust the margin values as needed */
+    margin-left: 20px; /* Adjust the margin value as needed */
+    margin-bottom: 20px; /* Add margin at the bottom to separate sections */
 }
 
 header h2 {
