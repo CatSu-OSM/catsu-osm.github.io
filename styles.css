@@ -28,13 +28,14 @@ main {
     padding: 1em; /* Add padding to create space around the content */
 }
 
-body {
+body,
+section {
     margin-top: 70px; /* Adjust this value based on the height of your header */
 }
 
 section {
-            margin-left: 20px; /* Adjust the margin value as needed */
-        }
+    margin-left: 20px; /* Adjust the margin value as needed */
+}
 
 header h2 {
     display: flex;
