@@ -5,8 +5,9 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    margin-top: 70px; /* Adjust this value based on the height of your header */
-    margin-bottom: 0px; /* Adjust this value based on the height of your footer */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -76,16 +77,14 @@ main {
 }
 
 footer {
+    margin-top: auto;
     background-color: #99c2ff;
     color: #fff;
     text-align: right;
     padding: 1em;
     width: 100%;
     box-sizing: border-box;
-    bottom: 0;
-    left: 0;
     z-index: 1000; /* Increase the z-index to ensure it's above other content */
-    margin-top: 60px; /* Adjust this value to prevent overlapping with the content */
 }
 
 /* Dark mode styles */
