@@ -30,6 +30,7 @@ main {
 
 section {
     margin-left: 20px; /* Adjust the margin value as needed */
+    margin-bottom: 20px; /* Adjust the margin-bottom value as needed */
 }
 
 header h2 {
