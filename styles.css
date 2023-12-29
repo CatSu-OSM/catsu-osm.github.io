@@ -125,10 +125,10 @@ main a:visited {
     
     /* Adjust the color of links in dark mode */
     main a {
-    color: #4682b4; /* Adjust the color as needed */
+    color: #33ccff; /* Adjust the color as needed */
 }
     main a:visited {
-        color: #778899; /* Adjust the color as needed */
+        color: #aa80ff; /* Adjust the color as needed */
     }
 }
 
