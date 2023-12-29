@@ -121,6 +121,14 @@ main a:visited {
     nav button:hover,
     nav a:hover {
         background-color: #005bb5;
+    } 
+    
+    /* Adjust the color of links in dark mode */
+    main a {
+    color: #4682b4; /* Adjust the color as needed */
+}
+    main a:visited {
+        color: #778899; /* Adjust the color as needed */
     }
 }
 
