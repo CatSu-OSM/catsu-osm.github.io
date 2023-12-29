@@ -92,6 +92,15 @@ footer {
     margin-top: auto;
 }
 
+/* Lighten the color of links in the main content */
+main a {
+    color: #4682b4; /* Adjust the color as needed */
+}
+
+main a:visited {
+    color: #800080; /* Adjust the color as needed */
+}
+
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
     body {
