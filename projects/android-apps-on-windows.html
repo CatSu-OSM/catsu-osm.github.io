@@ -25,7 +25,12 @@
         </nav>
     </header>
 
-<main>   
+<main>
+    <section>
+        <h2>Updated May 29th, 2024</h2>
+        <p>If this guide gets too outdated, please check the main 
+            <a href="https://github.com/MustardChef/WSABuilds/releases" target="_blank">releases</a> page for the latest release for your operating system </p>
+    </section>
     <section>
         <h2>Step 1: Enable Virtualization in BIOS</h2>
         <p>If your PC does not support virtualization, you won't be able to run Android apps on your PC.</p>
@@ -50,59 +55,29 @@
     </section>
 
     <section>
-        <h2>Step 3: Open Developer Settings</h2>
-        <p>Accessing developer settings is crucial for optimizing your environment for Android app development. Follow these
-            steps:</p>
+        <h2>Step 3: Enable Developer Settings</h2>
         <ol>
             <li>Press the <strong>Windows key</strong> on your keyboard.</li>
             <li>Type <strong>"Developer settings"</strong> in the search bar.</li>
             <li>Select <strong>"Developer settings"</strong> from the search results.</li>
-            <li>In the Developer settings window, you may find options to enable USB debugging, OEM unlocking, or other
-                developer-related features. Enable these options if necessary.</li>
-            <li>Turn on <strong>Developer mode</strong>, Enable the option to <strong>Install apps from any source</strong> or a similar setting depending on your
-                Windows version.</strong>.</li>
+            <li>Turn on <strong>Developer mode</strong>.</li>
         </ol>
     </section>
 
     <section>
-        <h2>Step 4: Download Windows Subsystem for Android</h2>
+        <h2>Step 4: Download and extract Windows Subsystem for Android</h2>
         <p>Download the Windows Subsystem for Android to enable seamless integration of Android apps on your Windows PC. Follow
             these steps:</p>
         <ol>
-            <li>Visit the GitHub repository for Windows Subsystem for Android by going to <a
-                    href="https://github.com/MustardChef/WSABuilds" target="_blank">https://github.com/MustardChef/WSABuilds</a>.
+            <li>Download the correct version for your operating system here: 
+               <ul>
+                <li><a href="https://github.com/MustardChef/WSABuilds/releases/download/Windows_11_2311.40000.5.0_LTS_2/WSA_2311.40000.5.0_x64_Release-Nightly-GApps-13.0-NoAmazon.7z" target="_blank">
+                    Windows 11 x64</a></li>
+                <li><a href="https://github.com/MustardChef/WSABuilds/releases/download/Windows_10_2311.40000.5.0_LTS_2/WSA_2311.40000.5.0_x64_Release-Nightly-GApps-13.0-NoAmazon_Windows_10.7z" target="_blank">
+                    Windows 10 x64</a></li>
+               </ul> 
             </li>
-            <li>Click on the <strong>latest stable version</strong> for your operating system and architecture.</li>
-            <li>Scroll down to find the <strong>“…release-nightly-MindTheGapps-XX.X-RemovedAmazon_…”</strong> version.</li>
-            <li>Download the installation package (usually a ZIP file) to your computer.</li>
             <li>Extract the contents of the ZIP file to a folder on your computer.</li>
-        </ol>
-        <p><strong>Note:</strong> Select the latest stable version compatible with your operating system (e.g., Windows 10) and
-            architecture (e.g., 64-bit).</p>
-    </section>
-
-    <section>
-        <h2>Step 5: Extract Contents of the Downloaded File</h2>
-        <p>After downloading the Windows Subsystem for Android, extract the contents of the .7z file using a tool like 7-Zip.
-            Follow these steps:</p>
-        <ol>
-            <li>Download and install 7-Zip from <a href="https://7-zip.org" target="_blank">https://7-zip.org</a> if you
-                don't have it installed.</li>
-            <li>Open 7-Zip from your Start Menu or desktop.</li>
-            <li>Navigate to the location where you downloaded the .7z file using the 7-Zip file manager.</li>
-            <li>Click on the .7z file to select it.</li>
-            <li>Press the <strong>Extract</strong> button on the menu bar.</li>
-            <li>Choose or create a destination folder for the extraction.</li>
-            <li>Click <strong>OK</strong> to start the extraction process.</li>
-            <li>Wait for the extraction process to complete.</li>
-        </ol>
-    </section>
-
-    <section>
-        <h2>Step 6: Rename and Move the Extracted Folder</h2>
-        <p>In the folder containing the extracted files, you'll find a folder. Rename it to "WSA" and move the renamed folder to
-            the C:\ directory. Follow these steps:</p>
-        <ol>
             <li>Open the folder where you extracted the contents of the .7z file.</li>
             <li>You'll find a folder within the extracted files (e.g., the main Windows Subsystem for Android folder).</li>
             <li>Right-click on the folder to select it.</li>
@@ -112,10 +87,11 @@
             <li>Navigate to the C:\ directory (you can open File Explorer and go to "This PC" > "Local Disk (C:)").</li>
             <li>Paste the folder into the C:\ directory (Ctrl+V).</li>
         </ol>
+        
     </section>
-
+    
     <section>
-        <h2>Step 7: Run the Installation Script</h2>
+        <h2>Step 5: Run the Installation Script</h2>
         <p>In the "C:\WSA" directory, you'll find a file named "Run.bat." Double-click on it to run the installation script.
             Follow these steps:</p>
         <ol>
@@ -127,7 +103,7 @@
     </section>
 
     <section>
-        <h2>Step 8: Access Google Play Store and Log In</h2>
+        <h2>Step 6: Access Google Play Store and Log In</h2>
         <p>If Google Play Store hasn't launched already, follow these steps:</p>
         <ol>
             <li>Open <strong>Google Play Store</strong> from your Start menu.</li>
@@ -138,7 +114,7 @@
     </section>
 
     <section>
-        <h2>Step 9: Install Apps from Google Play Store</h2>
+        <h2>Step 7: Install Apps from Google Play Store</h2>
         <p>You should now be able to install apps from the Google Play Store. Have fun exploring and enhancing your Windows
             Subsystem for Android experience!</p>
     </section>
