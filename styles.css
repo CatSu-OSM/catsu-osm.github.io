@@ -24,9 +24,8 @@ header {
 main {
     flex-grow: 1; /* Allow main to grow and take remaining space */
     padding: 1em; /* Add padding to create space around the content */
-    }
+}
 
-/* Add this CSS to create space between header and each section */
 section {
     margin-top: 20px; /* Adjust this value as needed */
 }
@@ -36,16 +35,14 @@ body {
 }
 
 section {
-            margin-left: 20px; /* Adjust the margin value as needed */
-            margin-top: 20px; /* Adjust this value as needed */
-        }
+    margin-left: 20px; /* Adjust the margin value as needed */
+    margin-top: 20px; /* Adjust this value as needed */
+}
 
 header h2 {
     display: flex;
     align-items: center;
-    margin-bottom: 0;
-    margin-top: 0px;
-    margin-right: 20px;
+    margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -125,8 +122,9 @@ main a:visited {
     
     /* Adjust the color of links in dark mode */
     main a {
-    color: #0080ff; /* Adjust the color as needed */
-}
+        color: #0080ff; /* Adjust the color as needed */
+    }
+    
     main a:visited {
         color: #aa80ff; /* Adjust the color as needed */
     }
@@ -134,17 +132,28 @@ main a:visited {
 
 @media only screen and (max-width: 600px) {
     header {
+        flex-direction: column;
         padding: 0.5em; /* Adjust the padding as needed */
+        text-align: center; /* Center the text in header */
     }
 
     header h2 {
         font-size: 16px; /* Adjust the font size as needed */
-        line-height: 1; /* Adjust line height if necessary */
         margin-bottom: 5px; /* Adjust the margin as needed */
+        line-height: 1.2; /* Adjust line height if necessary */
     }
 
     header nav {
+        display: flex;
         flex-direction: column; /* Arrange navigation buttons in a column */
         align-items: center; /* Center align navigation buttons */
+        width: 100%;
+        padding: 0;
+    }
+
+    nav button,
+    nav a {
+        margin: 5px 0; /* Adjust the margin as needed */
+        width: 90%; /* Make buttons full width with some padding */
     }
 }
