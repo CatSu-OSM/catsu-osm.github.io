@@ -126,6 +126,17 @@
         <h2>Troubleshooting:</h2>
         <h5>This section covers issues I have come across, whether they were with my computer, or a friend's, the solutions are listed below</h5>
         
+        <ul>
+                <li>WSA couldn't start</li>
+        </ul>
+        
+        <p>If WSA throws this error, and says to check that virtualization is enabled in the BIOS, don't worry.</p>
+        <p>Follow these steps:</p>
+        <ol>
+            <li>Search for, and open the registry editor</li>
+            <li>Navigate to “HKLM\SYSTEM\CurrentControlSet\Services\FsDepends”</li>
+            <li>Change the value of “Start” from “3” to “0”</li>
+        </ol>
     </section>
 </main>
     
