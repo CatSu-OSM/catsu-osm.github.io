@@ -147,4 +147,15 @@ main a:visited {
         flex-direction: column; /* Arrange navigation buttons in a column */
         align-items: center; /* Center align navigation buttons */
     }
+
+    nav button,
+    nav a {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    section {
+        margin-left: 0; /* Reduce side margin on small screens */
+    }
 }
