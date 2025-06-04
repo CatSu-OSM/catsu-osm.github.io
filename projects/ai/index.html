@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenStreetMap Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 50vh; width: 100%; }
+        #ideditor { width: 100%; height: 80vh; border: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>
+            <a href="https://catsu-osm.github.io" style="text-decoration: none;">
+                <i class="fas fa-home" style="margin-right: 10px;"></i>
+            </a>
+            OSM Editor
+        </h2>
+        <nav>
+            <button onclick="location.href='https://catsu-osm.github.io/projects'">Projects</button>
+            <button onclick="location.href='https://catsu-osm.github.io/resources'">Resources</button>
+        </nav>
+    </header>
+    <main>
+        <h2>Edit and Contribute to OpenStreetMap</h2>
+        <p>Click on the map to pick a location for editing. The iD editor will load below.</p>
+        <div id="map"></div>
+        <iframe id="ideditor" allowfullscreen></iframe>
+    </main>
+    <footer>
+        <p>&copy; CatSu 2025</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
 
+        function loadEditor(lat, lon, zoom) {
+            var url = 'https://www.openstreetmap.org/edit?editor=id#map=' + zoom + '/' + lat + '/' + lon;
+            document.getElementById('ideditor').src = url;
+        }
+
+        map.on('click', function(e) {
+            var lat = e.latlng.lat.toFixed(5);
+            var lon = e.latlng.lng.toFixed(5);
+            loadEditor(lat, lon, 19);
+        });
+
+        // initial view
+        loadEditor(0, 0, 2);
+    </script>
+</body>
+</html>
