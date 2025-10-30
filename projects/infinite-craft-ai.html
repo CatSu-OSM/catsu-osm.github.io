@@ -9,268 +9,329 @@
     <!-- your site css -->
     <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css">
     <style>
-    #icv-app {
-        --icv-bg: #edf0f5;
-        --icv-panel: #ffffff;
-        --icv-panel-border: #d5d8df;
-        --icv-panel-header: #dfe7f5;
-        --icv-text: #0f172a;
-        --icv-text-muted: #6b7280;
-        --icv-badge: #edf1f5;
-        --icv-badge-text: #1f2937;
-        --icv-inv-chip-bg: #0f172a;
-        --icv-inv-chip-text: #ffffff;
-        --icv-craftable-bg: #f8fafc;
-        --icv-craftable-border: #e2e8f0;
-        --icv-row-hover: #f2f6ff;
-        --icv-row-selected: #dbeafe;
-        --icv-input-bg: #ffffff;
-        --icv-input-border: #cbd5e1;
-        --icv-pill: #0ea5e9;
-    }
-    #icv-app.icv-dark {
-        --icv-bg: #0f172a;
-        --icv-panel: #111827;
-        --icv-panel-border: #1f2937;
-        --icv-panel-header: #1f2937;
-        --icv-text: #e2e8f0;
-        --icv-text-muted: #94a3b8;
-        --icv-badge: #1f2937;
-        --icv-badge-text: #e2e8f0;
-        --icv-inv-chip-bg: #0ea5e9;
-        --icv-inv-chip-text: #0f172a;
-        --icv-craftable-bg: #0f172a;
-        --icv-craftable-border: #1f2937;
-        --icv-row-hover: #162036;
-        --icv-row-selected: #162036;
-        --icv-input-bg: #0f172a;
-        --icv-input-border: #1f2937;
-        --icv-pill: #0ea5e9;
-    }
-    .icv-shell {
-        background: var(--icv-bg);
-        border-radius: 8px;
-        padding: 0;
-    }
-    .icv-layout {
-        display: grid;
-        grid-template-columns: 280px minmax(0, 1fr);
-        gap: 1rem;
-        margin: 0 !important;
-    }
-    .icv-left {
-        background: var(--icv-panel);
-        border: 1px solid var(--icv-panel-border);
-        border-radius: 8px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        height: calc(100vh - 170px);
-        min-height: 460px;
-    }
-    .icv-left-head {
-        background: var(--icv-panel-header);
-        padding: 0.6rem 0.8rem 0.3rem;
-    }
-    .icv-left-head h2 {
-        margin: 0;
-        font-size: 1rem;
-        color: var(--icv-text);
-    }
-    .icv-left-head small {
-        display: block;
-        font-size: 0.7rem;
-        color: var(--icv-text-muted);
-        margin-top: 0.25rem;
-    }
-    .icv-search {
-        padding: 0.6rem 0.8rem;
-        background: var(--icv-panel);
-        border-bottom: 1px solid rgba(237, 240, 244, 0.08);
-    }
-    /* FIX: search input */
-    .icv-search input {
-        width: 100%;
-        display: block;
-        box-sizing: border-box;
-        padding: 0.35rem 0.4rem;
-        border: 1px solid var(--icv-input-border);
-        background: var(--icv-input-bg);
-        border-radius: 4px;
-        font-size: 0.8rem;
-        color: var(--icv-text);
-    }
-    #icv-app.icv-dark .icv-search input {
-        border: 1px solid var(--icv-input-border);
-    }
-    .icv-elements-list {
-        flex: 1;
-        overflow-y: auto;
-    }
-    .icv-element-row {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.35rem 0.6rem;
-        border-bottom: 1px solid rgba(243, 244, 246, 0.03);
-        cursor: pointer;
-    }
-    .icv-element-row:hover {
-        background: var(--icv-row-hover);
-    }
-    .icv-element-row.icv-inv {
-        background: var(--icv-row-selected);
-    }
-    .icv-el-name {
-        flex: 1;
-        font-size: 0.8rem;
-        color: var(--icv-text);
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-    .icv-badge {
-        font-size: 0.6rem;
-        background: var(--icv-badge);
-        border-radius: 999px;
-        padding: 2px 6px;
-        text-transform: uppercase;
-        letter-spacing: 0.02em;
-        color: var(--icv-badge-text);
-        white-space: nowrap;
-    }
-    .icv-badge-base {
-        background: #22c55e1a;
-        color: #22c55e;
-    }
-    .icv-inv-pill {
-        font-size: 0.6rem;
-        background: var(--icv-pill);
-        color: #fff;
-        border-radius: 999px;
-        padding: 2px 6px;
-        white-space: nowrap;
-    }
-    /* FIX: right column padding */
-    .icv-right {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        min-width: 0;
-        padding-right: 0.25rem;
-        box-sizing: border-box;
-    }
-    .icv-card {
-        background: var(--icv-panel);
-        border: 1px solid var(--icv-panel-border);
-        border-radius: 8px;
-        overflow: hidden;
-        margin: 0 !important;
-    }
-    .icv-card-header {
-        background: var(--icv-panel-header);
-        padding: 0.6rem 0.8rem;
-        font-size: 1rem;
-        color: var(--icv-text);
-    }
-    .icv-card-header-inline {
-        background: var(--icv-panel-header);
-        padding: 0.6rem 0.8rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    /* FIX: card body */
-    .icv-card-body {
-        padding: 0.6rem 0.8rem 0.8rem;
-        box-sizing: border-box;
-    }
-    .icv-empty {
-        font-size: 0.8rem;
-        color: var(--icv-text-muted);
-    }
-    .icv-inventory-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-    }
-    .icv-chip {
-        background: var(--icv-inv-chip-bg);
-        color: var(--icv-inv-chip-text);
-        padding: 2px 10px;
-        border-radius: 999px;
-        font-size: 0.67rem;
-    }
-    /* FIX: grids right edge */
-    .icv-craftable-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-        gap: 0.6rem;
-        margin-right: 0.1rem;
-    }
-    .icv-craftable-item {
-        background: var(--icv-craftable-bg);
-        border: 1px solid var(--icv-craftable-border);
-        border-radius: 6px;
-        padding: 0.4rem 0.5rem 0.5rem;
-    }
-    .icv-craftable-name {
-        font-weight: 600;
-        font-size: 0.8rem;
-        margin-bottom: 0.25rem;
-        color: var(--icv-text);
-    }
-    .icv-recipe-line {
-        font-size: 0.7rem;
-        color: var(--icv-text-muted);
-    }
-    .icv-header-actions-btn {
-        background: rgba(15, 23, 42, 0.06);
-        border: 1px solid rgba(15, 23, 42, 0.12);
-        border-radius: 999px;
-        padding: 0.25rem 0.6rem;
-        font-size: 0.7rem;
-        cursor: pointer;
-    }
-    #icv-app.icv-dark .icv-header-actions-btn {
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.12);
-        color: #e2e8f0;
-    }
-    .icv-steps-input {
-        width: 4rem;
-        padding: 0.2rem 0.35rem;
-        border-radius: 5px;
-        border: 1px solid var(--icv-input-border);
-        background: var(--icv-input-bg);
-        color: var(--icv-text);
-        font-size: 0.7rem;
-        box-sizing: border-box;
-    }
-    .icv-step-tag {
-        display: inline-block;
-        font-size: 0.6rem;
-        background: rgba(14, 165, 233, 0.14);
-        color: var(--icv-text);
-        padding: 1px 6px;
-        border-radius: 999px;
-        margin-bottom: 0.25rem;
-    }
-    @media (max-width: 900px) {
-        .icv-layout {
-            grid-template-columns: 1fr;
+        /* scoped to our app */
+        #icv-app {
+            --icv-bg: #edf0f5;
+            --icv-panel: #ffffff;
+            --icv-panel-border: #d5d8df;
+            --icv-panel-header: #dfe7f5;
+            --icv-text: #0f172a;
+            --icv-text-muted: #6b7280;
+            --icv-badge: #edf1f5;
+            --icv-badge-text: #1f2937;
+            --icv-inv-chip-bg: #0f172a;
+            --icv-inv-chip-text: #ffffff;
+            --icv-craftable-bg: #f8fafc;
+            --icv-craftable-border: #e2e8f0;
+            --icv-row-hover: #f2f6ff;
+            --icv-row-selected: #dbeafe;
+            --icv-input-bg: #ffffff;
+            --icv-input-border: #cbd5e1;
+            --icv-pill: #0ea5e9;
+            --icv-trace-good: #16a34a;
+            --icv-trace-miss: #b91c1c;
         }
-        .icv-left {
-            height: auto;
-            max-height: 320px;
-        }
-        .icv-right {
-            padding-right: 0;
-        }
-    }
-</style>
 
+        #icv-app.icv-dark {
+            --icv-bg: #0f172a;
+            --icv-panel: #111827;
+            --icv-panel-border: #1f2937;
+            --icv-panel-header: #1f2937;
+            --icv-text: #e2e8f0;
+            --icv-text-muted: #94a3b8;
+            --icv-badge: #1f2937;
+            --icv-badge-text: #e2e8f0;
+            --icv-inv-chip-bg: #0ea5e9;
+            --icv-inv-chip-text: #0f172a;
+            --icv-craftable-bg: #0f172a;
+            --icv-craftable-border: #1f2937;
+            --icv-row-hover: #162036;
+            --icv-row-selected: #162036;
+            --icv-input-bg: #0f172a;
+            --icv-input-border: #1f2937;
+            --icv-pill: #0ea5e9;
+        }
+
+        .icv-shell {
+            background: var(--icv-bg);
+            border-radius: 8px;
+            padding: 0;
+        }
+
+        .icv-layout {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            gap: 1rem;
+            margin: 0 !important;
+        }
+
+        /* left panel */
+        .icv-left {
+            background: var(--icv-panel);
+            border: 1px solid var(--icv-panel-border);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 170px);
+            min-height: 460px;
+        }
+
+        .icv-left-head {
+            background: var(--icv-panel-header);
+            padding: 0.6rem 0.8rem 0.3rem;
+        }
+
+        .icv-left-head h2 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--icv-text);
+        }
+
+        .icv-left-head small {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--icv-text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .icv-search {
+            padding: 0.6rem 0.8rem;
+            background: var(--icv-panel);
+            border-bottom: 1px solid rgba(237, 240, 244, 0.08);
+        }
+
+        .icv-search input {
+            width: 100%;
+            padding: 0.35rem 0.4rem;
+            border: 1px solid var(--icv-input-border);
+            background: var(--icv-input-bg);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--icv-text);
+        }
+
+        .icv-elements-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .icv-element-row {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.6rem;
+            border-bottom: 1px solid rgba(243, 244, 246, 0.03);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .icv-element-row:hover {
+            background: var(--icv-row-hover);
+        }
+
+        .icv-element-row.icv-inv {
+            background: var(--icv-row-selected);
+        }
+
+        .icv-el-name {
+            flex: 1;
+            font-size: 0.8rem;
+            color: var(--icv-text);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .icv-badge {
+            font-size: 0.6rem;
+            background: var(--icv-badge);
+            border-radius: 999px;
+            padding: 2px 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--icv-badge-text);
+            white-space: nowrap;
+        }
+
+        .icv-badge-base {
+            background: #22c55e1a;
+            color: #22c55e;
+        }
+
+        .icv-inv-pill {
+            font-size: 0.6rem;
+            background: var(--icv-pill);
+            color: #fff;
+            border-radius: 999px;
+            padding: 2px 6px;
+            white-space: nowrap;
+        }
+
+        /* right col */
+        .icv-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-width: 0;
+        }
+
+        .icv-card {
+            background: var(--icv-panel);
+            border: 1px solid var(--icv-panel-border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0 !important;
+        }
+
+        .icv-card-header {
+            background: var(--icv-panel-header);
+            padding: 0.6rem 0.8rem;
+            font-size: 1rem;
+            color: var(--icv-text);
+        }
+
+        .icv-card-header-inline {
+            background: var(--icv-panel-header);
+            padding: 0.6rem 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .icv-card-body {
+            padding: 0.6rem 0.8rem 0.8rem;
+        }
+
+        .icv-empty {
+            font-size: 0.8rem;
+            color: var(--icv-text-muted);
+        }
+
+        .icv-inventory-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .icv-chip {
+            background: var(--icv-inv-chip-bg);
+            color: var(--icv-inv-chip-text);
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: 0.67rem;
+        }
+
+        .icv-craftable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 0.6rem;
+        }
+
+        .icv-craftable-item {
+            background: var(--icv-craftable-bg);
+            border: 1px solid var(--icv-craftable-border);
+            border-radius: 6px;
+            padding: 0.4rem 0.5rem 0.5rem;
+        }
+
+        .icv-craftable-name {
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            color: var(--icv-text);
+        }
+
+        .icv-recipe-line {
+            font-size: 0.7rem;
+            color: var(--icv-text-muted);
+        }
+
+        .icv-header-actions-btn {
+            background: rgba(15, 23, 42, 0.06);
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            border-radius: 999px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+
+        #icv-app.icv-dark .icv-header-actions-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+            color: #e2e8f0;
+        }
+
+        .icv-steps-input {
+            width: 4rem;
+            padding: 0.2rem 0.35rem;
+            border-radius: 5px;
+            border: 1px solid var(--icv-input-border);
+            background: var(--icv-input-bg);
+            color: var(--icv-text);
+            font-size: 0.7rem;
+        }
+
+        .icv-step-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            background: rgba(14, 165, 233, 0.14);
+            color: var(--icv-text);
+            padding: 1px 6px;
+            border-radius: 999px;
+            margin-bottom: 0.25rem;
+        }
+
+        /* trace */
+        .icv-trace-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .icv-trace-step {
+            padding: 0.3rem 0.4rem;
+            border-left: 3px solid transparent;
+            background: rgba(248, 250, 252, 0.05);
+            border-radius: 4px;
+            font-size: 0.72rem;
+        }
+
+        .icv-trace-ok {
+            border-left-color: var(--icv-trace-good);
+        }
+
+        .icv-trace-miss {
+            border-left-color: var(--icv-trace-miss);
+        }
+
+        .icv-trace-small {
+            font-size: 0.65rem;
+            color: var(--icv-text-muted);
+        }
+
+        .icv-inline {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+        }
+
+        .icv-trace-title {
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .icv-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .icv-left {
+                height: auto;
+                max-height: 320px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -296,7 +357,7 @@
             <section class="icv-left">
                 <div class="icv-left-head">
                     <h2>Infinite Craft Elements</h2>
-                    <small>Click to add/remove from your inventory</small>
+                    <small>Click to add/remove from your inventory, right-click to trace</small>
                 </div>
                 <div class="icv-search">
                     <input id="icv-search-input" type="text" placeholder="Filter elements...">
@@ -327,6 +388,20 @@
                     </div>
                     <div class="icv-card-body" id="icv-almost-body">
                         <p class="icv-empty">Pick some elements first.</p>
+                    </div>
+                </div>
+
+                <!-- TRACE CARD -->
+                <div class="icv-card">
+                    <div class="icv-card-header-inline">
+                        <span>Trace Element</span>
+                        <label style="display:flex; gap:4px; align-items:center;">
+                            <input type="checkbox" id="icv-trace-bases-only">
+                            <span style="font-size:0.65rem; color:var(--icv-text-muted);">bases only</span>
+                        </label>
+                    </div>
+                    <div class="icv-card-body" id="icv-trace-body">
+                        <p class="icv-empty">Right-click an element on the left to trace it.</p>
                     </div>
                 </div>
 
@@ -362,6 +437,8 @@
     const invBody = document.getElementById("icv-inventory-body");
     const craftBody = document.getElementById("icv-craftable-body");
     const almostBody = document.getElementById("icv-almost-body");
+    const traceBody = document.getElementById("icv-trace-body");
+    const traceBasesOnly = document.getElementById("icv-trace-bases-only");
     const statusEl = document.getElementById("icv-source-status");
     const reloadBtn = document.getElementById("icv-reload");
     const darkBtn = document.getElementById("icv-dark-toggle");
@@ -370,6 +447,7 @@
     let recipes = {};
     let allNames = [];
     let inventory = new Set();
+    let currentTraceTarget = null;
 
     // DARK
     (function initDark() {
@@ -422,6 +500,8 @@
             if (ft && !name.toLowerCase().includes(ft)) continue;
             const row = document.createElement("div");
             row.className = "icv-element-row" + (inventory.has(name) ? " icv-inv" : "");
+            row.dataset.name = name;
+
             const label = document.createElement("div");
             label.className = "icv-el-name";
             label.textContent = name;
@@ -439,13 +519,27 @@
                 row.appendChild(pill);
             }
 
+            // left-click: toggle inventory
             row.addEventListener("click", () => {
-                if (inventory.has(name)) inventory.delete(name);
-                else inventory.add(name);
+                const nm = row.dataset.name;
+                if (inventory.has(nm)) inventory.delete(nm);
+                else inventory.add(nm);
                 renderInventory();
                 renderCraftables();
                 renderAlmost();
+                // if this is the thing we currently traced, re-run
+                if (currentTraceTarget === nm) {
+                    renderTraceFor(nm);
+                }
                 renderElements(searchInput.value || "");
+            });
+
+            // right-click: trace
+            row.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                const nm = row.dataset.name;
+                currentTraceTarget = nm;
+                renderTraceFor(nm);
             });
 
             listEl.appendChild(row);
@@ -512,16 +606,13 @@
 
     // compute forward reach up to maxSteps
     function computeReach(maxSteps) {
-        // level 0: current inventory
         const level0 = new Set(inventory);
         const byNameToStep = {};
-        // mark actual inventory as step 0
         for (const n of level0) byNameToStep[n] = 0;
 
         let currentSet = new Set(level0);
 
         for (let step = 1; step <= maxSteps; step++) {
-            // find all craftable from currentSet (i.e., using everything we know up to this step)
             const newly = [];
             for (const name of allNames) {
                 if (byNameToStep[name] !== undefined) continue;
@@ -567,7 +658,6 @@
         stepsInput.value = maxSteps;
 
         const reach = computeReach(maxSteps);
-        // collect those with step >=2 and <=maxSteps
         const byStep = {};
         for (const [name, step] of Object.entries(reach)) {
             if (step >= 2 && step <= maxSteps) {
@@ -601,7 +691,6 @@
                 title.textContent = el;
                 card.appendChild(title);
 
-                // show matching recipes for this step if possible
                 const opts = getRecipeOptions(el);
                 for (const opt of opts) {
                     const ok = opt.every(x => reach[x] !== undefined && reach[x] <= step - 1);
@@ -618,6 +707,111 @@
             group.appendChild(wrap);
             almostBody.appendChild(group);
         });
+    }
+
+    // TRACE LOGIC
+    function findTrace(target, startingSet, maxDepth = 20, visited = new Set()) {
+        if (startingSet.has(target)) {
+            return [{ type: "have", name: target }];
+        }
+        if (maxDepth <= 0) return null;
+
+        const opts = getRecipeOptions(target);
+        if (!opts.length) return null;
+
+        for (const opt of opts) {
+            // if all ingredients in startingSet -> done
+            if (opt.every(ing => startingSet.has(ing))) {
+                return [
+                    ...opt.map(ing => ({ type: "have", name: ing })),
+                    { type: "make", name: target, recipe: opt }
+                ];
+            }
+
+            if (visited.has(target)) continue;
+            const newVisited = new Set(visited);
+            newVisited.add(target);
+
+            let steps = [];
+            let tmpSet = new Set(startingSet);
+            let failed = false;
+            for (const ing of opt) {
+                if (!tmpSet.has(ing)) {
+                    const sub = findTrace(ing, tmpSet, maxDepth - 1, newVisited);
+                    if (!sub) {
+                        failed = true;
+                        break;
+                    }
+                    steps = steps.concat(sub);
+                    tmpSet.add(ing);
+                } else {
+                    steps.push({ type: "have", name: ing });
+                }
+            }
+            if (!failed) {
+                steps.push({ type: "make", name: target, recipe: opt });
+                return steps;
+            }
+        }
+        return null;
+    }
+
+    function renderTraceFor(target) {
+        traceBody.innerHTML = "";
+        if (!target) {
+            traceBody.innerHTML = '<p class="icv-empty">Right-click an element on the left to trace it.</p>';
+            return;
+        }
+
+        let startingSet;
+        if (traceBasesOnly.checked) {
+            startingSet = new Set(allNames.filter(n => isBase(n)));
+        } else {
+            startingSet = new Set(inventory);
+        }
+
+        const trace = findTrace(target, startingSet, 20);
+        if (!trace) {
+            traceBody.innerHTML = '<p class="icv-empty">No path found within 20 steps from current start.</p>';
+            return;
+        }
+
+        const title = document.createElement("div");
+        title.className = "icv-trace-title";
+        title.textContent = "Trace for: " + target;
+
+        const list = document.createElement("div");
+        list.className = "icv-trace-list";
+
+        const originalStart = new Set(startingSet);
+
+        trace.forEach(step => {
+            const row = document.createElement("div");
+            row.className = "icv-trace-step";
+            if (step.type === "have") {
+                const ok = originalStart.has(step.name);
+                if (ok) {
+                    row.classList.add("icv-trace-ok");
+                    row.innerHTML = `✅ Have <strong>${step.name}</strong>`;
+                } else {
+                    row.innerHTML = `➕ Need <strong>${step.name}</strong> (built earlier in trace)`;
+                }
+            } else if (step.type === "make") {
+                row.classList.add("icv-trace-ok");
+                row.innerHTML = `🛠️ <strong>${step.name}</strong> = ${step.recipe.join(" + ")}`;
+            }
+            list.appendChild(row);
+        });
+
+        const note = document.createElement("div");
+        note.className = "icv-trace-small";
+        note.textContent = traceBasesOnly.checked
+            ? "Tracing from bases only. (right-click another element to change target)"
+            : "Tracing from your current inventory. (right-click another element to change target)";
+
+        traceBody.appendChild(title);
+        traceBody.appendChild(list);
+        traceBody.appendChild(note);
     }
 
     async function loadRecipes(bust = false) {
@@ -649,6 +843,12 @@
 
     stepsInput.addEventListener("change", () => {
         renderAlmost();
+    });
+
+    traceBasesOnly.addEventListener("change", () => {
+        if (currentTraceTarget) {
+            renderTraceFor(currentTraceTarget);
+        }
     });
 
     // initial
