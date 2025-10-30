@@ -9,288 +9,268 @@
     <!-- your site css -->
     <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css">
     <style>
-        /* scoped to our app */
-        #icv-app {
-            --icv-bg: #edf0f5;
-            --icv-panel: #ffffff;
-            --icv-panel-border: #d5d8df;
-            --icv-panel-header: #dfe7f5;
-            --icv-text: #0f172a;
-            --icv-text-muted: #6b7280;
-            --icv-badge: #edf1f5;
-            --icv-badge-text: #1f2937;
-            --icv-inv-chip-bg: #0f172a;
-            --icv-inv-chip-text: #ffffff;
-            --icv-craftable-bg: #f8fafc;
-            --icv-craftable-border: #e2e8f0;
-            --icv-row-hover: #f2f6ff;
-            --icv-row-selected: #dbeafe;
-            --icv-input-bg: #ffffff;
-            --icv-input-border: #cbd5e1;
-            --icv-pill: #0ea5e9;
-        }
-
-        #icv-app.icv-dark {
-            --icv-bg: #0f172a;
-            --icv-panel: #111827;
-            --icv-panel-border: #1f2937;
-            --icv-panel-header: #1f2937;
-            --icv-text: #e2e8f0;
-            --icv-text-muted: #94a3b8;
-            --icv-badge: #1f2937;
-            --icv-badge-text: #e2e8f0;
-            --icv-inv-chip-bg: #0ea5e9;
-            --icv-inv-chip-text: #0f172a;
-            --icv-craftable-bg: #0f172a;
-            --icv-craftable-border: #1f2937;
-            --icv-row-hover: #162036;
-            --icv-row-selected: #162036;
-            --icv-input-bg: #0f172a;
-            --icv-input-border: #1f2937;
-            --icv-pill: #0ea5e9;
-        }
-
-        .icv-shell {
-            background: var(--icv-bg);
-            border-radius: 8px;
-            padding: 0;
-        }
-
+    #icv-app {
+        --icv-bg: #edf0f5;
+        --icv-panel: #ffffff;
+        --icv-panel-border: #d5d8df;
+        --icv-panel-header: #dfe7f5;
+        --icv-text: #0f172a;
+        --icv-text-muted: #6b7280;
+        --icv-badge: #edf1f5;
+        --icv-badge-text: #1f2937;
+        --icv-inv-chip-bg: #0f172a;
+        --icv-inv-chip-text: #ffffff;
+        --icv-craftable-bg: #f8fafc;
+        --icv-craftable-border: #e2e8f0;
+        --icv-row-hover: #f2f6ff;
+        --icv-row-selected: #dbeafe;
+        --icv-input-bg: #ffffff;
+        --icv-input-border: #cbd5e1;
+        --icv-pill: #0ea5e9;
+    }
+    #icv-app.icv-dark {
+        --icv-bg: #0f172a;
+        --icv-panel: #111827;
+        --icv-panel-border: #1f2937;
+        --icv-panel-header: #1f2937;
+        --icv-text: #e2e8f0;
+        --icv-text-muted: #94a3b8;
+        --icv-badge: #1f2937;
+        --icv-badge-text: #e2e8f0;
+        --icv-inv-chip-bg: #0ea5e9;
+        --icv-inv-chip-text: #0f172a;
+        --icv-craftable-bg: #0f172a;
+        --icv-craftable-border: #1f2937;
+        --icv-row-hover: #162036;
+        --icv-row-selected: #162036;
+        --icv-input-bg: #0f172a;
+        --icv-input-border: #1f2937;
+        --icv-pill: #0ea5e9;
+    }
+    .icv-shell {
+        background: var(--icv-bg);
+        border-radius: 8px;
+        padding: 0;
+    }
+    .icv-layout {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 1rem;
+        margin: 0 !important;
+    }
+    .icv-left {
+        background: var(--icv-panel);
+        border: 1px solid var(--icv-panel-border);
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 170px);
+        min-height: 460px;
+    }
+    .icv-left-head {
+        background: var(--icv-panel-header);
+        padding: 0.6rem 0.8rem 0.3rem;
+    }
+    .icv-left-head h2 {
+        margin: 0;
+        font-size: 1rem;
+        color: var(--icv-text);
+    }
+    .icv-left-head small {
+        display: block;
+        font-size: 0.7rem;
+        color: var(--icv-text-muted);
+        margin-top: 0.25rem;
+    }
+    .icv-search {
+        padding: 0.6rem 0.8rem;
+        background: var(--icv-panel);
+        border-bottom: 1px solid rgba(237, 240, 244, 0.08);
+    }
+    /* FIX: search input */
+    .icv-search input {
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+        padding: 0.35rem 0.4rem;
+        border: 1px solid var(--icv-input-border);
+        background: var(--icv-input-bg);
+        border-radius: 4px;
+        font-size: 0.8rem;
+        color: var(--icv-text);
+    }
+    #icv-app.icv-dark .icv-search input {
+        border: 1px solid var(--icv-input-border);
+    }
+    .icv-elements-list {
+        flex: 1;
+        overflow-y: auto;
+    }
+    .icv-element-row {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.6rem;
+        border-bottom: 1px solid rgba(243, 244, 246, 0.03);
+        cursor: pointer;
+    }
+    .icv-element-row:hover {
+        background: var(--icv-row-hover);
+    }
+    .icv-element-row.icv-inv {
+        background: var(--icv-row-selected);
+    }
+    .icv-el-name {
+        flex: 1;
+        font-size: 0.8rem;
+        color: var(--icv-text);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .icv-badge {
+        font-size: 0.6rem;
+        background: var(--icv-badge);
+        border-radius: 999px;
+        padding: 2px 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        color: var(--icv-badge-text);
+        white-space: nowrap;
+    }
+    .icv-badge-base {
+        background: #22c55e1a;
+        color: #22c55e;
+    }
+    .icv-inv-pill {
+        font-size: 0.6rem;
+        background: var(--icv-pill);
+        color: #fff;
+        border-radius: 999px;
+        padding: 2px 6px;
+        white-space: nowrap;
+    }
+    /* FIX: right column padding */
+    .icv-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        min-width: 0;
+        padding-right: 0.25rem;
+        box-sizing: border-box;
+    }
+    .icv-card {
+        background: var(--icv-panel);
+        border: 1px solid var(--icv-panel-border);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 0 !important;
+    }
+    .icv-card-header {
+        background: var(--icv-panel-header);
+        padding: 0.6rem 0.8rem;
+        font-size: 1rem;
+        color: var(--icv-text);
+    }
+    .icv-card-header-inline {
+        background: var(--icv-panel-header);
+        padding: 0.6rem 0.8rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    /* FIX: card body */
+    .icv-card-body {
+        padding: 0.6rem 0.8rem 0.8rem;
+        box-sizing: border-box;
+    }
+    .icv-empty {
+        font-size: 0.8rem;
+        color: var(--icv-text-muted);
+    }
+    .icv-inventory-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+    .icv-chip {
+        background: var(--icv-inv-chip-bg);
+        color: var(--icv-inv-chip-text);
+        padding: 2px 10px;
+        border-radius: 999px;
+        font-size: 0.67rem;
+    }
+    /* FIX: grids right edge */
+    .icv-craftable-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 0.6rem;
+        margin-right: 0.1rem;
+    }
+    .icv-craftable-item {
+        background: var(--icv-craftable-bg);
+        border: 1px solid var(--icv-craftable-border);
+        border-radius: 6px;
+        padding: 0.4rem 0.5rem 0.5rem;
+    }
+    .icv-craftable-name {
+        font-weight: 600;
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
+        color: var(--icv-text);
+    }
+    .icv-recipe-line {
+        font-size: 0.7rem;
+        color: var(--icv-text-muted);
+    }
+    .icv-header-actions-btn {
+        background: rgba(15, 23, 42, 0.06);
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        border-radius: 999px;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.7rem;
+        cursor: pointer;
+    }
+    #icv-app.icv-dark .icv-header-actions-btn {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.12);
+        color: #e2e8f0;
+    }
+    .icv-steps-input {
+        width: 4rem;
+        padding: 0.2rem 0.35rem;
+        border-radius: 5px;
+        border: 1px solid var(--icv-input-border);
+        background: var(--icv-input-bg);
+        color: var(--icv-text);
+        font-size: 0.7rem;
+        box-sizing: border-box;
+    }
+    .icv-step-tag {
+        display: inline-block;
+        font-size: 0.6rem;
+        background: rgba(14, 165, 233, 0.14);
+        color: var(--icv-text);
+        padding: 1px 6px;
+        border-radius: 999px;
+        margin-bottom: 0.25rem;
+    }
+    @media (max-width: 900px) {
         .icv-layout {
-            display: grid;
-            grid-template-columns: 280px minmax(0, 1fr);
-            gap: 1rem;
-            margin: 0 !important;
+            grid-template-columns: 1fr;
         }
-
-        /* left panel */
         .icv-left {
-            background: var(--icv-panel);
-            border: 1px solid var(--icv-panel-border);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 170px);
-            min-height: 460px;
+            height: auto;
+            max-height: 320px;
         }
-
-        .icv-left-head {
-            background: var(--icv-panel-header);
-            padding: 0.6rem 0.8rem 0.3rem;
-        }
-
-        .icv-left-head h2 {
-            margin: 0;
-            font-size: 1rem;
-            color: var(--icv-text);
-        }
-
-        .icv-left-head small {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--icv-text-muted);
-            margin-top: 0.25rem;
-        }
-
-        .icv-search {
-            padding: 0.6rem 0.8rem;
-            background: var(--icv-panel);
-            border-bottom: 1px solid rgba(237, 240, 244, 0.08);
-        }
-
-        .icv-search input {
-            width: 100%;
-            padding: 0.35rem 0.4rem;
-            border: 1px solid var(--icv-input-border);
-            background: var(--icv-input-bg);
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--icv-text);
-        }
-
-        .icv-elements-list {
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .icv-element-row {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.35rem 0.6rem;
-            border-bottom: 1px solid rgba(243, 244, 246, 0.03);
-            cursor: pointer;
-        }
-
-        .icv-element-row:hover {
-            background: var(--icv-row-hover);
-        }
-
-        .icv-element-row.icv-inv {
-            background: var(--icv-row-selected);
-        }
-
-        .icv-el-name {
-            flex: 1;
-            font-size: 0.8rem;
-            color: var(--icv-text);
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .icv-badge {
-            font-size: 0.6rem;
-            background: var(--icv-badge);
-            border-radius: 999px;
-            padding: 2px 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            color: var(--icv-badge-text);
-            white-space: nowrap;
-        }
-
-        .icv-badge-base {
-            background: #22c55e1a;
-            color: #22c55e;
-        }
-
-        .icv-inv-pill {
-            font-size: 0.6rem;
-            background: var(--icv-pill);
-            color: #fff;
-            border-radius: 999px;
-            padding: 2px 6px;
-            white-space: nowrap;
-        }
-
-        /* right col */
         .icv-right {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            min-width: 0;
+            padding-right: 0;
         }
+    }
+</style>
 
-        .icv-card {
-            background: var(--icv-panel);
-            border: 1px solid var(--icv-panel-border);
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 0 !important;
-        }
-
-        .icv-card-header {
-            background: var(--icv-panel-header);
-            padding: 0.6rem 0.8rem;
-            font-size: 1rem;
-            color: var(--icv-text);
-        }
-
-        .icv-card-header-inline {
-            background: var(--icv-panel-header);
-            padding: 0.6rem 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .icv-card-body {
-            padding: 0.6rem 0.8rem 0.8rem;
-        }
-
-        .icv-empty {
-            font-size: 0.8rem;
-            color: var(--icv-text-muted);
-        }
-
-        .icv-inventory-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .icv-chip {
-            background: var(--icv-inv-chip-bg);
-            color: var(--icv-inv-chip-text);
-            padding: 2px 10px;
-            border-radius: 999px;
-            font-size: 0.67rem;
-        }
-
-        .icv-craftable-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-            gap: 0.6rem;
-        }
-
-        .icv-craftable-item {
-            background: var(--icv-craftable-bg);
-            border: 1px solid var(--icv-craftable-border);
-            border-radius: 6px;
-            padding: 0.4rem 0.5rem 0.5rem;
-        }
-
-        .icv-craftable-name {
-            font-weight: 600;
-            font-size: 0.8rem;
-            margin-bottom: 0.25rem;
-            color: var(--icv-text);
-        }
-
-        .icv-recipe-line {
-            font-size: 0.7rem;
-            color: var(--icv-text-muted);
-        }
-
-        .icv-header-actions-btn {
-            background: rgba(15, 23, 42, 0.06);
-            border: 1px solid rgba(15, 23, 42, 0.12);
-            border-radius: 999px;
-            padding: 0.25rem 0.6rem;
-            font-size: 0.7rem;
-            cursor: pointer;
-        }
-
-        #icv-app.icv-dark .icv-header-actions-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.12);
-            color: #e2e8f0;
-        }
-
-        .icv-steps-input {
-            width: 4rem;
-            padding: 0.2rem 0.35rem;
-            border-radius: 5px;
-            border: 1px solid var(--icv-input-border);
-            background: var(--icv-input-bg);
-            color: var(--icv-text);
-            font-size: 0.7rem;
-        }
-
-        .icv-step-tag {
-            display: inline-block;
-            font-size: 0.6rem;
-            background: rgba(14, 165, 233, 0.14);
-            color: var(--icv-text);
-            padding: 1px 6px;
-            border-radius: 999px;
-            margin-bottom: 0.25rem;
-        }
-
-        @media (max-width: 900px) {
-            .icv-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .icv-left {
-                height: auto;
-                max-height: 320px;
-            }
-        }
-    </style>
 </head>
 
 <body>
