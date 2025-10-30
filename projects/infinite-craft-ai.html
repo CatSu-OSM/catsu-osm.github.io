@@ -8,9 +8,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css">
     <style>
-        /* override the dark look the screenshot had */
+        /* THEME VARIABLES */
+        :root {
+            --bg: #f0f2f7;
+            --panel: #ffffff;
+            --panel-border: #d5d8df;
+            --panel-header: #e6f0ff;
+            --text: #0f172a;
+            --text-muted: #6b7280;
+            --badge: #edf1f5;
+            --badge-text: #1f2937;
+            --inventory-chip-bg: #0f172a;
+            --inventory-chip-text: #ffffff;
+            --craftable-bg: #f8fafc;
+            --craftable-border: #e2e8f0;
+            --row-hover: #f2f6ff;
+            --row-selected: #dbeafe;
+            --input-bg: #ffffff;
+            --input-border: #cbd5e1;
+        }
+
+        body.dark {
+            --bg: #0f172a;
+            --panel: #111827;
+            --panel-border: #1f2937;
+            --panel-header: #1f2937;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --badge: #1f2937;
+            --badge-text: #e2e8f0;
+            --inventory-chip-bg: #0ea5e9;
+            --inventory-chip-text: #0f172a;
+            --craftable-bg: #0f172a;
+            --craftable-border: #1f2937;
+            --row-hover: #0f172a;
+            --row-selected: #0f172a;
+            --input-bg: #0f172a;
+            --input-border: #1f2937;
+        }
+
         body {
-            background: #f0f2f7;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
         }
 
@@ -24,8 +63,8 @@
 
         /* left column */
         .elements-panel {
-            background: #fff;
-            border: 1px solid #d5d8df;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
             border-radius: 8px;
             overflow: hidden;
             display: flex;
@@ -35,34 +74,37 @@
         }
 
         .panel-header {
-            background: #e6f0ff;
+            background: var(--panel-header);
             padding: 0.6rem 0.8rem 0.3rem;
         }
 
         .panel-header h2 {
             margin: 0;
             font-size: 1rem;
+            color: var(--text);
         }
 
         .panel-header small {
             display: block;
             font-size: 0.7rem;
-            color: #4b5563;
+            color: var(--text-muted);
             margin-top: 0.25rem;
         }
 
         .search-box {
             padding: 0.6rem 0.8rem;
-            background: #fff;
-            border-bottom: 1px solid #edf0f4;
+            background: var(--panel);
+            border-bottom: 1px solid rgba(237, 240, 244, 0.08);
         }
 
         .search-box input {
             width: 100%;
             padding: 0.35rem 0.4rem;
-            border: 1px solid #cbd5e1;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
             border-radius: 4px;
             font-size: 0.8rem;
+            color: var(--text);
         }
 
         .elements-list {
@@ -75,22 +117,22 @@
             align-items: center;
             gap: 0.35rem;
             padding: 0.35rem 0.6rem;
-            border-bottom: 1px solid #f3f4f6;
+            border-bottom: 1px solid rgba(243, 244, 246, 0.03);
             cursor: pointer;
         }
 
         .element-row:hover {
-            background: #f2f6ff;
+            background: var(--row-hover);
         }
 
         .element-row.in-inv {
-            background: #dbeafe;
+            background: var(--row-selected);
         }
 
         .el-name {
             flex: 1;
             font-size: 0.8rem;
-            color: #111827;
+            color: var(--text);
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -98,18 +140,18 @@
 
         .badge {
             font-size: 0.6rem;
-            background: #edf1f5;
+            background: var(--badge);
             border-radius: 999px;
             padding: 2px 6px;
             text-transform: uppercase;
             letter-spacing: 0.02em;
-            color: #1f2937;
+            color: var(--badge-text);
             white-space: nowrap;
         }
 
         .badge-base {
-            background: #dcfce7;
-            color: #166534;
+            background: #22c55e1a;
+            color: #22c55e;
         }
 
         .inventory-pill {
@@ -130,17 +172,25 @@
         }
 
         .card {
-            background: #fff;
-            border: 1px solid #d5d8df;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
             border-radius: 8px;
             overflow: hidden;
         }
 
+        .card-header-inline {
+            background: var(--panel-header);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.8rem;
+        }
+
         .card h2 {
             margin: 0;
-            background: #e6f0ff;
-            padding: 0.6rem 0.8rem;
             font-size: 1rem;
+            color: var(--text);
         }
 
         .card-body {
@@ -149,7 +199,7 @@
 
         .empty-state {
             font-size: 0.8rem;
-            color: #6b7280;
+            color: var(--text-muted);
         }
 
         .inventory-list-inline {
@@ -159,8 +209,8 @@
         }
 
         .inventory-chip {
-            background: #0f172a;
-            color: #fff;
+            background: var(--inventory-chip-bg);
+            color: var(--inventory-chip-text);
             padding: 2px 10px;
             border-radius: 999px;
             font-size: 0.67rem;
@@ -173,8 +223,8 @@
         }
 
         .craftable-item {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            background: var(--craftable-bg);
+            border: 1px solid var(--craftable-border);
             border-radius: 6px;
             padding: 0.4rem 0.5rem 0.5rem;
         }
@@ -183,15 +233,15 @@
             font-weight: 600;
             font-size: 0.8rem;
             margin-bottom: 0.25rem;
-            color: #0f172a;
+            color: var(--text);
         }
 
         .recipe-line {
             font-size: 0.7rem;
-            color: #475569;
+            color: var(--text-muted);
         }
 
-        /* keep your footer look */
+        /* footer from your site */
         footer {
             position: fixed;
             bottom: 0;
@@ -204,10 +254,33 @@
             z-index: 1000;
         }
 
+        /* dark mode toggle btn */
+        .header-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .small-btn {
+            background: rgba(15, 23, 42, 0.05);
+            border: 1px solid rgba(15, 23, 42, 0.15);
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.68rem;
+            cursor: pointer;
+        }
+
+        body.dark .small-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.12);
+            color: #e2e8f0;
+        }
+
         @media (max-width: 880px) {
             main {
                 grid-template-columns: 1fr;
             }
+
             .elements-panel {
                 height: auto;
                 max-height: 320px;
@@ -225,9 +298,10 @@
         </a>
         CatSu's Website
     </h2>
-    <nav>
+    <nav class="header-actions">
         <button onclick="location.href='https://catsu-osm.github.io/projects'">Projects</button>
         <button onclick="location.href='https://catsu-osm.github.io/resources'">Resources</button>
+        <button id="toggle-dark" class="small-btn" type="button">Dark</button>
     </nav>
 </header>
 
@@ -263,9 +337,13 @@
         </div>
 
         <div class="card">
-            <h2>Source</h2>
+            <div class="card-header-inline">
+                <h2>Source</h2>
+                <button id="reload-source" class="small-btn" type="button" title="Reload recipe JSON">Reload</button>
+            </div>
             <div class="card-body">
-                <p style="font-size:0.7rem; color:#666;">Loaded from <code>docs/infinite_craft_recipes.json</code>.</p>
+                <p style="font-size:0.7rem; color:var(--text-muted);">Loaded from <code>docs/infinite_craft_recipes.json</code>.</p>
+                <p id="source-status" style="font-size:0.7rem; color:var(--text-muted);"></p>
             </div>
         </div>
     </section>
@@ -276,11 +354,31 @@
 </footer>
 
 <script>
-    const RECIPES_URL = "../docs/infinite_craft_recipes.json"; // adjust if needed
+    // base URL
+    const BASE_RECIPES_URL = "../docs/infinite_craft_recipes.json";
 
     let recipes = {};
     let allNames = [];
     let inventory = new Set();
+
+    // DARK MODE INIT
+    (function initTheme() {
+        const saved = localStorage.getItem("catsu-theme");
+        if (saved === "dark") {
+            document.body.classList.add("dark");
+        }
+    })();
+
+    const toggleBtn = document.getElementById("toggle-dark");
+    function updateToggleLabel() {
+        toggleBtn.textContent = document.body.classList.contains("dark") ? "Light" : "Dark";
+    }
+    updateToggleLabel();
+    toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("catsu-theme", document.body.classList.contains("dark") ? "dark" : "light");
+        updateToggleLabel();
+    });
 
     function isBase(name) {
         const node = recipes[name];
@@ -420,15 +518,21 @@
         body.appendChild(grid);
     }
 
-    async function init() {
+    async function loadRecipes(bust = false) {
+        const status = document.getElementById("source-status");
         try {
-            const res = await fetch(RECIPES_URL);
+            status.textContent = "Loading…";
+            const url = bust ? (BASE_RECIPES_URL + "?t=" + Date.now()) : BASE_RECIPES_URL;
+            const res = await fetch(url, { cache: "no-store" });
             const data = await res.json();
             recipes = data || {};
             allNames = Object.keys(recipes).sort((a,b)=>a.localeCompare(b));
-            renderElements();
+            renderElements(document.getElementById("element-search").value || "");
+            renderCraftables();
+            status.textContent = "Loaded " + allNames.length + " elements.";
         } catch (e) {
             console.error(e);
+            status.textContent = "Failed to load source.";
             document.getElementById("elements-list").innerHTML =
                 '<p style="padding:0.7rem; color:#b91c1c;">Could not load docs/infinite_craft_recipes.json</p>';
         }
@@ -438,7 +542,12 @@
         renderElements(e.target.value);
     });
 
-    init();
+    document.getElementById("reload-source").addEventListener("click", () => {
+        loadRecipes(true);
+    });
+
+    // initial load
+    loadRecipes(false);
 </script>
 
 </body>
