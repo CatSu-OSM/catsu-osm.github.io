@@ -6,113 +6,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infinite Craft Visualizer – CatSu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- your site css -->
     <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css">
     <style>
-        /* THEME VARIABLES */
-        :root {
-            --bg: #f0f2f7;
-            --panel: #ffffff;
-            --panel-border: #d5d8df;
-            --panel-header: #e6f0ff;
-            --text: #0f172a;
-            --text-muted: #6b7280;
-            --badge: #edf1f5;
-            --badge-text: #1f2937;
-            --inventory-chip-bg: #0f172a;
-            --inventory-chip-text: #ffffff;
-            --craftable-bg: #f8fafc;
-            --craftable-border: #e2e8f0;
-            --row-hover: #f2f6ff;
-            --row-selected: #dbeafe;
-            --input-bg: #ffffff;
-            --input-border: #cbd5e1;
+        /* scoped to our app */
+        #icv-app {
+            /* default light tokens */
+            --icv-bg: #edf0f5;
+            --icv-panel: #ffffff;
+            --icv-panel-border: #d5d8df;
+            --icv-panel-header: #dfe7f5;
+            --icv-text: #0f172a;
+            --icv-text-muted: #6b7280;
+            --icv-badge: #edf1f5;
+            --icv-badge-text: #1f2937;
+            --icv-inv-chip-bg: #0f172a;
+            --icv-inv-chip-text: #ffffff;
+            --icv-craftable-bg: #f8fafc;
+            --icv-craftable-border: #e2e8f0;
+            --icv-row-hover: #f2f6ff;
+            --icv-row-selected: #dbeafe;
+            --icv-input-bg: #ffffff;
+            --icv-input-border: #cbd5e1;
         }
 
-        body.dark {
-            --bg: #0f172a;
-            --panel: #111827;
-            --panel-border: #1f2937;
-            --panel-header: #1f2937;
-            --text: #e2e8f0;
-            --text-muted: #94a3b8;
-            --badge: #1f2937;
-            --badge-text: #e2e8f0;
-            --inventory-chip-bg: #0ea5e9;
-            --inventory-chip-text: #0f172a;
-            --craftable-bg: #0f172a;
-            --craftable-border: #1f2937;
-            --row-hover: #0f172a;
-            --row-selected: #0f172a;
-            --input-bg: #0f172a;
-            --input-border: #1f2937;
+        #icv-app.icv-dark {
+            --icv-bg: #0f172a;
+            --icv-panel: #111827;
+            --icv-panel-border: #1f2937;
+            --icv-panel-header: #1f2937;
+            --icv-text: #e2e8f0;
+            --icv-text-muted: #94a3b8;
+            --icv-badge: #1f2937;
+            --icv-badge-text: #e2e8f0;
+            --icv-inv-chip-bg: #0ea5e9;
+            --icv-inv-chip-text: #0f172a;
+            --icv-craftable-bg: #0f172a;
+            --icv-craftable-border: #1f2937;
+            --icv-row-hover: #162036;
+            --icv-row-selected: #162036;
+            --icv-input-bg: #0f172a;
+            --icv-input-border: #1f2937;
         }
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
+        /* layout inside our shell */
+        .icv-shell {
+            background: var(--icv-bg);
+            border-radius: 8px;
+            padding: 0;
+            /* match your page width */
         }
 
-        main {
+        .icv-header-actions-btn {
+            background: rgba(15, 23, 42, 0.06);
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            border-radius: 999px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+
+        #icv-app.icv-dark .icv-header-actions-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+            color: #e2e8f0;
+        }
+
+        .icv-layout {
             display: grid;
             grid-template-columns: 280px minmax(0, 1fr);
             gap: 1rem;
-            padding: 1rem 1rem 5rem;
-            box-sizing: border-box;
+            /* we want it to ignore global section margins */
+            margin: 0 !important;
         }
 
-        /* left column */
-        .elements-panel {
-            background: var(--panel);
-            border: 1px solid var(--panel-border);
+        .icv-left {
+            background: var(--icv-panel);
+            border: 1px solid var(--icv-panel-border);
             border-radius: 8px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 150px);
+            height: calc(100vh - 170px);
             min-height: 460px;
         }
 
-        .panel-header {
-            background: var(--panel-header);
+        .icv-left-head {
+            background: var(--icv-panel-header);
             padding: 0.6rem 0.8rem 0.3rem;
         }
 
-        .panel-header h2 {
+        .icv-left-head h2 {
             margin: 0;
             font-size: 1rem;
-            color: var(--text);
+            color: var(--icv-text);
         }
 
-        .panel-header small {
+        .icv-left-head small {
             display: block;
             font-size: 0.7rem;
-            color: var(--text-muted);
+            color: var(--icv-text-muted);
             margin-top: 0.25rem;
         }
 
-        .search-box {
+        .icv-search {
             padding: 0.6rem 0.8rem;
-            background: var(--panel);
+            background: var(--icv-panel);
             border-bottom: 1px solid rgba(237, 240, 244, 0.08);
         }
 
-        .search-box input {
+        .icv-search input {
             width: 100%;
             padding: 0.35rem 0.4rem;
-            border: 1px solid var(--input-border);
-            background: var(--input-bg);
+            border: 1px solid var(--icv-input-border);
+            background: var(--icv-input-bg);
             border-radius: 4px;
             font-size: 0.8rem;
-            color: var(--text);
+            color: var(--icv-text);
         }
 
-        .elements-list {
+        .icv-elements-list {
             flex: 1;
             overflow-y: auto;
         }
 
-        .element-row {
+        .icv-element-row {
             display: flex;
             align-items: center;
             gap: 0.35rem;
@@ -121,40 +139,40 @@
             cursor: pointer;
         }
 
-        .element-row:hover {
-            background: var(--row-hover);
+        .icv-element-row:hover {
+            background: var(--icv-row-hover);
         }
 
-        .element-row.in-inv {
-            background: var(--row-selected);
+        .icv-element-row.icv-inv {
+            background: var(--icv-row-selected);
         }
 
-        .el-name {
+        .icv-el-name {
             flex: 1;
             font-size: 0.8rem;
-            color: var(--text);
+            color: var(--icv-text);
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
         }
 
-        .badge {
+        .icv-badge {
             font-size: 0.6rem;
-            background: var(--badge);
+            background: var(--icv-badge);
             border-radius: 999px;
             padding: 2px 6px;
             text-transform: uppercase;
             letter-spacing: 0.02em;
-            color: var(--badge-text);
+            color: var(--icv-badge-text);
             white-space: nowrap;
         }
 
-        .badge-base {
+        .icv-badge-base {
             background: #22c55e1a;
             color: #22c55e;
         }
 
-        .inventory-pill {
+        .icv-inv-pill {
             font-size: 0.6rem;
             background: #0ea5e9;
             color: #fff;
@@ -163,125 +181,91 @@
             white-space: nowrap;
         }
 
-        /* right column */
-        .right-col {
+        .icv-right {
             display: flex;
             flex-direction: column;
             gap: 1rem;
             min-width: 0;
         }
 
-        .card {
-            background: var(--panel);
-            border: 1px solid var(--panel-border);
+        .icv-card {
+            background: var(--icv-panel);
+            border: 1px solid var(--icv-panel-border);
             border-radius: 8px;
             overflow: hidden;
+            margin: 0 !important;
         }
 
-        .card-header-inline {
-            background: var(--panel-header);
+        .icv-card-header {
+            background: var(--icv-panel-header);
+            padding: 0.6rem 0.8rem;
+            font-size: 1rem;
+            color: var(--icv-text);
+        }
+
+        .icv-card-header-inline {
+            background: var(--icv-panel-header);
+            padding: 0.6rem 0.8rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.6rem 0.8rem;
         }
 
-        .card h2 {
-            margin: 0;
-            font-size: 1rem;
-            color: var(--text);
-        }
-
-        .card-body {
+        .icv-card-body {
             padding: 0.6rem 0.8rem 0.8rem;
         }
 
-        .empty-state {
+        .icv-empty {
             font-size: 0.8rem;
-            color: var(--text-muted);
+            color: var(--icv-text-muted);
         }
 
-        .inventory-list-inline {
+        .icv-inventory-chips {
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem;
         }
 
-        .inventory-chip {
-            background: var(--inventory-chip-bg);
-            color: var(--inventory-chip-text);
+        .icv-chip {
+            background: var(--icv-inv-chip-bg);
+            color: var(--icv-inv-chip-text);
             padding: 2px 10px;
             border-radius: 999px;
             font-size: 0.67rem;
         }
 
-        .craftable-grid {
+        .icv-craftable-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
             gap: 0.6rem;
         }
 
-        .craftable-item {
-            background: var(--craftable-bg);
-            border: 1px solid var(--craftable-border);
+        .icv-craftable-item {
+            background: var(--icv-craftable-bg);
+            border: 1px solid var(--icv-craftable-border);
             border-radius: 6px;
             padding: 0.4rem 0.5rem 0.5rem;
         }
 
-        .craftable-name {
+        .icv-craftable-name {
             font-weight: 600;
             font-size: 0.8rem;
             margin-bottom: 0.25rem;
-            color: var(--text);
+            color: var(--icv-text);
         }
 
-        .recipe-line {
+        .icv-recipe-line {
             font-size: 0.7rem;
-            color: var(--text-muted);
+            color: var(--icv-text-muted);
         }
 
-        /* footer from your site */
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #99c2ff;
-            color: #fff;
-            text-align: right;
-            padding: 1em;
-            box-sizing: border-box;
-            z-index: 1000;
-        }
-
-        /* dark mode toggle btn */
-        .header-actions {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .small-btn {
-            background: rgba(15, 23, 42, 0.05);
-            border: 1px solid rgba(15, 23, 42, 0.15);
-            padding: 0.25rem 0.6rem;
-            border-radius: 999px;
-            font-size: 0.68rem;
-            cursor: pointer;
-        }
-
-        body.dark .small-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.12);
-            color: #e2e8f0;
-        }
-
-        @media (max-width: 880px) {
-            main {
+        @media (max-width: 900px) {
+            .icv-layout {
                 grid-template-columns: 1fr;
             }
 
-            .elements-panel {
+            .icv-left {
                 height: auto;
                 max-height: 320px;
             }
@@ -298,55 +282,64 @@
         </a>
         CatSu's Website
     </h2>
-    <nav class="header-actions">
+    <nav>
         <button onclick="location.href='https://catsu-osm.github.io/projects'">Projects</button>
         <button onclick="location.href='https://catsu-osm.github.io/resources'">Resources</button>
-        <button id="toggle-dark" class="small-btn" type="button">Dark</button>
     </nav>
 </header>
 
 <main>
-    <!-- LEFT: elements -->
-    <section class="elements-panel">
-        <div class="panel-header">
-            <h2>Infinite Craft Elements</h2>
-            <small>Click to add/remove from your inventory</small>
-        </div>
-        <div class="search-box">
-            <input id="element-search" type="text" placeholder="Filter elements…">
-        </div>
-        <div class="elements-list" id="elements-list">
-            <!-- filled by JS -->
-        </div>
-    </section>
+    <!-- our scoped app -->
+    <div id="icv-app" class="icv-shell">
+        <div class="icv-layout">
+            <!-- LEFT -->
+            <section class="icv-left">
+                <div class="icv-left-head">
+                    <h2>Infinite Craft Elements</h2>
+                    <small>Click to add/remove from your inventory</small>
+                </div>
+                <div class="icv-search">
+                    <input id="icv-search-input" type="text" placeholder="Filter elements...">
+                </div>
+                <div class="icv-elements-list" id="icv-elements-list">
+                    <!-- list -->
+                </div>
+            </section>
 
-    <!-- RIGHT -->
-    <section class="right-col">
-        <div class="card">
-            <h2>Your Inventory</h2>
-            <div class="card-body" id="inventory-body">
-                <p class="empty-state">No elements selected. Click an element on the left.</p>
-            </div>
-        </div>
+            <!-- RIGHT -->
+            <section class="icv-right">
+                <div class="icv-card">
+                    <div class="icv-card-header">Your Inventory</div>
+                    <div class="icv-card-body" id="icv-inventory-body">
+                        <p class="icv-empty">No elements selected. Click an element on the left.</p>
+                    </div>
+                </div>
 
-        <div class="card">
-            <h2>Craftable Right Now</h2>
-            <div class="card-body" id="craftable-body">
-                <p class="empty-state">Select at least one element to see results.</p>
-            </div>
-        </div>
+                <div class="icv-card">
+                    <div class="icv-card-header">Craftable Right Now</div>
+                    <div class="icv-card-body" id="icv-craftable-body">
+                        <p class="icv-empty">Select at least one element to see results.</p>
+                    </div>
+                </div>
 
-        <div class="card">
-            <div class="card-header-inline">
-                <h2>Source</h2>
-                <button id="reload-source" class="small-btn" type="button" title="Reload recipe JSON">Reload</button>
-            </div>
-            <div class="card-body">
-                <p style="font-size:0.7rem; color:var(--text-muted);">Loaded from <code>docs/infinite_craft_recipes.json</code>.</p>
-                <p id="source-status" style="font-size:0.7rem; color:var(--text-muted);"></p>
-            </div>
+                <div class="icv-card">
+                    <div class="icv-card-header-inline">
+                        <span>Source</span>
+                        <div style="display:flex; gap:0.4rem;">
+                            <button id="icv-reload" class="icv-header-actions-btn" type="button">Reload</button>
+                            <button id="icv-dark-toggle" class="icv-header-actions-btn" type="button">Dark</button>
+                        </div>
+                    </div>
+                    <div class="icv-card-body">
+                        <p style="font-size:0.7rem; color:var(--icv-text-muted);">Loaded from
+                            <code>docs/infinite_craft_recipes.json</code>.
+                        </p>
+                        <p id="icv-source-status" style="font-size:0.7rem; color:var(--icv-text-muted);"></p>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+    </div>
 </main>
 
 <footer>
@@ -354,30 +347,34 @@
 </footer>
 
 <script>
-    // base URL
-    const BASE_RECIPES_URL = "../docs/infinite_craft_recipes.json";
+    const BASE_URL = "../docs/infinite_craft_recipes.json";
+    const app = document.getElementById("icv-app");
+    const searchInput = document.getElementById("icv-search-input");
+    const listEl = document.getElementById("icv-elements-list");
+    const invBody = document.getElementById("icv-inventory-body");
+    const craftBody = document.getElementById("icv-craftable-body");
+    const statusEl = document.getElementById("icv-source-status");
+    const reloadBtn = document.getElementById("icv-reload");
+    const darkBtn = document.getElementById("icv-dark-toggle");
 
     let recipes = {};
     let allNames = [];
     let inventory = new Set();
 
-    // DARK MODE INIT
-    (function initTheme() {
-        const saved = localStorage.getItem("catsu-theme");
+    // dark mode load
+    (function initDark() {
+        const saved = localStorage.getItem("icv-theme");
         if (saved === "dark") {
-            document.body.classList.add("dark");
+            app.classList.add("icv-dark");
         }
+        darkBtn.textContent = app.classList.contains("icv-dark") ? "Light" : "Dark";
     })();
 
-    const toggleBtn = document.getElementById("toggle-dark");
-    function updateToggleLabel() {
-        toggleBtn.textContent = document.body.classList.contains("dark") ? "Light" : "Dark";
-    }
-    updateToggleLabel();
-    toggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-        localStorage.setItem("catsu-theme", document.body.classList.contains("dark") ? "dark" : "light");
-        updateToggleLabel();
+    darkBtn.addEventListener("click", () => {
+        app.classList.toggle("icv-dark");
+        const isDark = app.classList.contains("icv-dark");
+        localStorage.setItem("icv-theme", isDark ? "dark" : "light");
+        darkBtn.textContent = isDark ? "Light" : "Dark";
     });
 
     function isBase(name) {
@@ -388,15 +385,14 @@
     function getRecipeOptions(name) {
         const node = recipes[name];
         if (!node) return [];
-        if (Array.isArray(node.recipes)) return node.recipes;
-        return [];
+        return Array.isArray(node.recipes) ? node.recipes : [];
     }
 
     function canMakeWithInventory(name, inv) {
         if (inv.has(name)) return false;
-        const options = getRecipeOptions(name);
-        if (!options.length) return false;
-        for (const opt of options) {
+        const opts = getRecipeOptions(name);
+        if (!opts.length) return false;
+        for (const opt of opts) {
             let ok = true;
             for (const ing of opt) {
                 if (!inv.has(ing)) {
@@ -409,144 +405,127 @@
         return false;
     }
 
-    function renderElements(filterText = "") {
-        const list = document.getElementById("elements-list");
-        list.innerHTML = "";
-        const ft = filterText.trim().toLowerCase();
-
+    function renderElements(filter = "") {
+        listEl.innerHTML = "";
+        const ft = filter.trim().toLowerCase();
         for (const name of allNames) {
             if (ft && !name.toLowerCase().includes(ft)) continue;
-
             const row = document.createElement("div");
-            row.className = "element-row" + (inventory.has(name) ? " in-inv" : "");
-
+            row.className = "icv-element-row" + (inventory.has(name) ? " icv-inv" : "");
             const label = document.createElement("div");
-            label.className = "el-name";
+            label.className = "icv-el-name";
             label.textContent = name;
             row.appendChild(label);
 
             const badge = document.createElement("span");
-            badge.className = "badge" + (isBase(name) ? " badge-base" : "");
+            badge.className = "icv-badge" + (isBase(name) ? " icv-badge-base" : "");
             badge.textContent = isBase(name) ? "BASE" : "CRAFTABLE";
             row.appendChild(badge);
 
             if (inventory.has(name)) {
                 const pill = document.createElement("span");
-                pill.className = "inventory-pill";
+                pill.className = "icv-inv-pill";
                 pill.textContent = "IN";
                 row.appendChild(pill);
             }
 
             row.addEventListener("click", () => {
-                if (inventory.has(name)) {
-                    inventory.delete(name);
-                } else {
-                    inventory.add(name);
-                }
+                if (inventory.has(name)) inventory.delete(name);
+                else inventory.add(name);
                 renderInventory();
                 renderCraftables();
-                renderElements(document.getElementById("element-search").value || "");
+                renderElements(searchInput.value || "");
             });
 
-            list.appendChild(row);
+            listEl.appendChild(row);
         }
     }
 
     function renderInventory() {
-        const body = document.getElementById("inventory-body");
-        body.innerHTML = "";
+        invBody.innerHTML = "";
         if (inventory.size === 0) {
-            body.innerHTML = '<p class="empty-state">No elements selected. Click an element on the left.</p>';
+            invBody.innerHTML = '<p class="icv-empty">No elements selected. Click an element on the left.</p>';
             return;
         }
         const wrap = document.createElement("div");
-        wrap.className = "inventory-list-inline";
-        Array.from(inventory).sort((a,b)=>a.localeCompare(b)).forEach(name => {
+        wrap.className = "icv-inventory-chips";
+        Array.from(inventory).sort((a, b) => a.localeCompare(b)).forEach(n => {
             const chip = document.createElement("span");
-            chip.className = "inventory-chip";
-            chip.textContent = name;
+            chip.className = "icv-chip";
+            chip.textContent = n;
             wrap.appendChild(chip);
         });
-        body.appendChild(wrap);
+        invBody.appendChild(wrap);
     }
 
     function renderCraftables() {
-        const body = document.getElementById("craftable-body");
-        body.innerHTML = "";
+        craftBody.innerHTML = "";
         if (inventory.size === 0) {
-            body.innerHTML = '<p class="empty-state">Select at least one element to see results.</p>';
+            craftBody.innerHTML = '<p class="icv-empty">Select at least one element to see results.</p>';
             return;
         }
-
         const craftables = [];
         for (const name of allNames) {
             if (canMakeWithInventory(name, inventory)) {
                 craftables.push(name);
             }
         }
-
         if (!craftables.length) {
-            body.innerHTML = '<p class="empty-state">Nothing craftable from this set. Add another base.</p>';
+            craftBody.innerHTML = '<p class="icv-empty">Nothing craftable from this set. Add another base.</p>';
             return;
         }
-
         const grid = document.createElement("div");
-        grid.className = "craftable-grid";
-
+        grid.className = "icv-craftable-grid";
         for (const el of craftables) {
             const card = document.createElement("div");
-            card.className = "craftable-item";
-
+            card.className = "icv-craftable-item";
             const title = document.createElement("div");
-            title.className = "craftable-name";
+            title.className = "icv-craftable-name";
             title.textContent = el;
             card.appendChild(title);
 
             const opts = getRecipeOptions(el);
             for (const opt of opts) {
-                const ok = opt.every(ing => inventory.has(ing));
+                const ok = opt.every(x => inventory.has(x));
                 if (!ok) continue;
                 const line = document.createElement("div");
-                line.className = "recipe-line";
+                line.className = "icv-recipe-line";
                 line.innerHTML = "<strong>" + el + "</strong> = " + opt.join(" + ");
                 card.appendChild(line);
             }
 
             grid.appendChild(card);
         }
-
-        body.appendChild(grid);
+        craftBody.appendChild(grid);
     }
 
     async function loadRecipes(bust = false) {
-        const status = document.getElementById("source-status");
         try {
-            status.textContent = "Loading…";
-            const url = bust ? (BASE_RECIPES_URL + "?t=" + Date.now()) : BASE_RECIPES_URL;
+            statusEl.textContent = "Loading…";
+            const url = bust ? BASE_URL + "?t=" + Date.now() : BASE_URL;
             const res = await fetch(url, { cache: "no-store" });
             const data = await res.json();
             recipes = data || {};
-            allNames = Object.keys(recipes).sort((a,b)=>a.localeCompare(b));
-            renderElements(document.getElementById("element-search").value || "");
+            allNames = Object.keys(recipes).sort((a, b) => a.localeCompare(b));
+            renderElements(searchInput.value || "");
             renderCraftables();
-            status.textContent = "Loaded " + allNames.length + " elements.";
+            statusEl.textContent = "Loaded " + allNames.length + " elements.";
         } catch (e) {
             console.error(e);
-            status.textContent = "Failed to load source.";
-            document.getElementById("elements-list").innerHTML =
-                '<p style="padding:0.7rem; color:#b91c1c;">Could not load docs/infinite_craft_recipes.json</p>';
+            statusEl.textContent = "Failed to load source.";
+            listEl.innerHTML = '<p style="padding:0.7rem; color:#b91c1c;">Could not load docs/infinite_craft_recipes.json</p>';
         }
     }
 
-    document.getElementById("element-search").addEventListener("input", (e) => {
+    searchInput.addEventListener("input", e => {
         renderElements(e.target.value);
     });
 
-    document.getElementById("reload-source").addEventListener("click", () => {
+    reloadBtn.addEventListener("click", () => {
         loadRecipes(true);
     });
 
-    // initial load
+    // initial
     loadRecipes(false);
 </script>
 
