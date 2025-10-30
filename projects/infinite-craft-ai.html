@@ -2,276 +2,416 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Infinite Craft Visualizer – CatSu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infinite Craft Visualizer | CatSu</title>
 
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- your site’s main stylesheet -->
   <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-
   <style>
-    main { max-width: 1000px; margin: 0 auto; padding: 1rem; }
-    #graph { width: 100%; height: 70vh; border: 1px solid #ccc; border-radius: 8px; }
-    #controls { margin-bottom: 1rem; display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
-    #controls input { padding: .4rem; }
-    #errorBox {
-      display: none;
-      background: #ffdddd;
-      border: 1px solid #ff6b6b;
-      color: #7a0000;
-      padding: .5rem .75rem;
-      border-radius: 6px;
-      margin-bottom: .75rem;
+    /* Page-level tweaks so it’s not “crazy” */
+    body {
+      background: #f4f4f4;
+      min-height: 100vh;
     }
-    #jsonFallback {
-      display: none;
+    header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+    header a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .page-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) 1fr;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    /* left panel: all elements */
+    .panel {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 60vh;
+    }
+    .panel h2 {
+      margin: 0;
+      padding: 0.75rem 0.75rem 0.5rem;
+      border-bottom: 1px solid #eee;
+      font-size: 1rem;
+    }
+    .panel small {
+      display: block;
+      padding: 0 0.75rem 0.5rem;
+      color: #666;
+      border-bottom: 1px solid #eee;
+    }
+    .search-box {
+      padding: 0.75rem;
+      border-bottom: 1px solid #eee;
+    }
+    .search-box input {
       width: 100%;
-      height: 150px;
-      margin-bottom: .5rem;
-    }
-    #tooltip {
-      position: absolute;
-      background: rgba(30,30,30,0.85);
-      color: #fff;
-      padding: 4px 8px;
+      padding: 0.35rem 0.5rem;
+      border: 1px solid #ccc;
       border-radius: 4px;
-      font-size: 12px;
-      pointer-events: none;
-      display: none;
-      z-index: 2000;
+      font-size: 0.9rem;
+    }
+
+    .elements-list {
+      flex: 1;
+      overflow-y: auto;
+      max-height: calc(100vh - 200px);
+    }
+    .element-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.45rem 0.75rem;
+      border-bottom: 1px solid #f2f2f2;
+      cursor: pointer;
+      gap: 0.5rem;
+    }
+    .element-row:hover {
+      background: #f8fafc;
+    }
+    .el-name {
+      flex: 1;
+      font-size: 0.9rem;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      background: #e2e8f0;
+      color: #1e293b;
+      padding: 2px 6px;
+      border-radius: 6px;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    .badge-base {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .inventory-pill {
+      font-size: 0.65rem;
+      background: #0ea5e9;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .element-row.in-inventory {
+      background: #e0f2fe;
+    }
+
+    /* right panel: craftable / details */
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .card h2 {
+      margin: 0;
+      padding: 0.75rem 0.75rem 0.5rem;
+      border-bottom: 1px solid #eee;
+      font-size: 1rem;
+    }
+    .card-body {
+      padding: 0.75rem;
+    }
+    .craftable-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+    .craftable-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 0.5rem 0.55rem 0.5rem;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .craftable-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .recipe-line {
+      font-size: 0.7rem;
+      color: #475569;
+    }
+    .recipe-line strong {
+      font-weight: 600;
+    }
+    .empty-state {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .inventory-list-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .inventory-chip {
+      background: #0f172a;
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .elements-list {
+        max-height: 300px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h2>
-      <a href="https://catsu-osm.github.io" style="text-decoration:none;">
-        <i class="fas fa-home" style="margin-right:10px;"></i>
-      </a>
-      CatSu's Website
-    </h2>
-    <nav>
-      <button onclick="location.href='https://catsu-osm.github.io/projects'">Projects</button>
-      <button onclick="location.href='https://catsu-osm.github.io/resources'">Resources</button>
-      <button onclick="location.href='https://catsu-osm.github.io/projects/infinite-craft-ai.html'">Infinite Craft</button>
-    </nav>
+    <a href="https://catsu-osm.github.io/">← Back</a>
+    <span class="page-title">Infinite Craft Visualizer</span>
   </header>
 
-  <main>
-    <h2>Infinite Craft Recipe Visualizer</h2>
-    <p>
-      Loads from <code>/docs/infinite_craft_recipes.json</code>. If the file isn’t there yet,
-      you can paste JSON below and click “Load pasted JSON”.
-    </p>
+  <main class="layout">
+    <!-- LEFT: all elements -->
+    <section class="panel" id="all-elements-panel">
+      <h2>All Elements</h2>
+      <small>Click to toggle in/out of inventory.</small>
+      <div class="search-box">
+        <input type="text" id="element-search" placeholder="Filter elements…" />
+      </div>
+      <div class="elements-list" id="elements-list">
+        <!-- filled by JS -->
+      </div>
+    </section>
 
-    <div id="errorBox"></div>
+    <!-- RIGHT: inventory + craftables -->
+    <section class="right">
+      <div class="card">
+        <h2>Your inventory</h2>
+        <div class="card-body" id="inventory-body">
+          <p class="empty-state">Nothing selected yet. Click elements on the left to add them.</p>
+        </div>
+      </div>
 
-    <div id="controls">
-      <input id="searchBox" type="text" placeholder="Search element..." />
-      <button type="button" onclick="highlightNode()">Find</button>
-      <button type="button" onclick="resetView()">Reset View</button>
-      <button type="button" onclick="togglePaste()">Paste JSON…</button>
-      <button type="button" onclick="reloadData()">Reload file</button>
-    </div>
+      <div class="card">
+        <h2>Craftable right now</h2>
+        <div class="card-body" id="craftable-body">
+          <p class="empty-state">Pick at least one element to see results.</p>
+        </div>
+      </div>
 
-    <textarea id="jsonFallback" placeholder='Paste the contents of infinite_craft_recipes.json here…'></textarea>
-    <button id="loadPastedBtn" style="display:none;margin-bottom:1rem;" onclick="loadPasted()">Load pasted JSON</button>
-
-    <div id="graph"></div>
+      <div class="card">
+        <h2>All elements (raw JSON)</h2>
+        <div class="card-body">
+          <p style="font-size:0.7rem;color:#94a3b8">Loaded from <code>docs/infinite_craft_recipes.json</code>.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer style="position:fixed;bottom:0;width:100%;background-color:#99c2ff;color:#fff;text-align:right;padding:1em;box-sizing:border-box;z-index:1000;">
-    <p>&copy; CatSu 2025</p>
-  </footer>
-
-  <div id="tooltip"></div>
-
   <script>
-    const DATA_URL = "/docs/infinite_craft_recipes.json"; // <- your file
+    // adjust this if your HTML is in /projects/ and JSON is in /docs/
+    const RECIPES_URL = '../docs/infinite_craft_recipes.json';
 
-    const width = document.body.clientWidth;
-    const height = window.innerHeight * 0.65;
-    const svg = d3.select("#graph").append("svg")
-      .attr("width", "100%")
-      .attr("height", height);
+    // state
+    let recipes = {};
+    let sortedNames = [];
+    let inventory = new Set();
 
-    let simulation, nodes = [], links = [];
-
-    function showError(msg) {
-      const box = document.getElementById("errorBox");
-      box.textContent = msg;
-      box.style.display = "block";
-    }
-    function hideError() {
-      const box = document.getElementById("errorBox");
-      box.style.display = "none";
+    // helper: is base
+    function isBase(name) {
+      const node = recipes[name];
+      return node && node._base === true;
     }
 
-    async function loadData() {
-      hideError();
-      try {
-        const res = await fetch(DATA_URL, { cache: "no-store" });
-        if (!res.ok) throw new Error(res.status + " " + res.statusText);
-        const data = await res.json();
-        buildGraph(data);
-      } catch (err) {
-        console.error(err);
-        showError("Could not load " + DATA_URL + ". Make sure the file exists in your repo.");
+    // helper: get recipes for element
+    function getRecipeOptions(name) {
+      const node = recipes[name];
+      if (!node) return [];
+      if (Array.isArray(node.recipes)) {
+        return node.recipes;
+      }
+      return [];
+    }
+
+    // can we make "target" with current inventory?
+    function canMakeWithInventory(target, invSet) {
+      const opts = getRecipeOptions(target);
+      if (!opts.length) return false;
+
+      // target already in inventory -> we don't need to "make" it
+      if (invSet.has(target)) return false;
+
+      // if any option is fully satisfied by inventory -> craftable
+      for (const opt of opts) {
+        let ok = true;
+        for (const ing of opt) {
+          if (!invSet.has(ing)) {
+            ok = false;
+            break;
+          }
+        }
+        if (ok) return true;
+      }
+      return false;
+    }
+
+    function renderElements(filterText = '') {
+      const list = document.getElementById('elements-list');
+      list.innerHTML = '';
+      const ft = filterText.trim().toLowerCase();
+      for (const name of sortedNames) {
+        if (ft && !name.toLowerCase().includes(ft)) continue;
+        const row = document.createElement('div');
+        row.className = 'element-row' + (inventory.has(name) ? ' in-inventory' : '');
+        row.dataset.name = name;
+
+        const left = document.createElement('div');
+        left.className = 'el-name';
+        left.textContent = name;
+        row.appendChild(left);
+
+        const badge = document.createElement('span');
+        badge.className = 'badge' + (isBase(name) ? ' badge-base' : '');
+        badge.textContent = isBase(name) ? 'base' : 'craftable';
+        row.appendChild(badge);
+
+        if (inventory.has(name)) {
+          const inv = document.createElement('span');
+          inv.className = 'inventory-pill';
+          inv.textContent = 'in inventory';
+          row.appendChild(inv);
+        }
+
+        row.addEventListener('click', () => {
+          if (inventory.has(name)) {
+            inventory.delete(name);
+          } else {
+            inventory.add(name);
+          }
+          renderInventory();
+          renderCraftables();
+          renderElements(document.getElementById('element-search').value || '');
+        });
+
+        list.appendChild(row);
       }
     }
 
-    function buildGraph(recipes) {
-      svg.selectAll("*").remove(); // clear
+    function renderInventory() {
+      const body = document.getElementById('inventory-body');
+      body.innerHTML = '';
+      if (inventory.size === 0) {
+        body.innerHTML = '<p class="empty-state">Nothing selected yet. Click elements on the left to add them.</p>';
+        return;
+      }
+      const wrap = document.createElement('div');
+      wrap.className = 'inventory-list-inline';
+      Array.from(inventory).sort((a,b)=>a.localeCompare(b)).forEach(name => {
+        const chip = document.createElement('span');
+        chip.className = 'inventory-chip';
+        chip.textContent = name;
+        wrap.appendChild(chip);
+      });
+      body.appendChild(wrap);
+    }
 
-      nodes = Object.keys(recipes).map(k => ({
-        id: k,
-        base: !!(recipes[k] && recipes[k]._base)
-      }));
+    function renderCraftables() {
+      const body = document.getElementById('craftable-body');
+      body.innerHTML = '';
+      if (inventory.size === 0) {
+        body.innerHTML = '<p class="empty-state">Pick at least one element to see results.</p>';
+        return;
+      }
 
-      const idMap = new Map(nodes.map(n => [n.id, n]));
-      links = [];
-
-      for (const [out, node] of Object.entries(recipes)) {
-        if (!node || !Array.isArray(node.recipes)) continue;
-        for (const opt of node.recipes) {
-          if (!Array.isArray(opt)) continue;
-          for (const ing of opt) {
-            if (ing !== out && idMap.has(ing)) {
-              links.push({ source: ing, target: out });
-            }
-          }
+      const craftables = [];
+      for (const name of sortedNames) {
+        if (canMakeWithInventory(name, inventory)) {
+          craftables.push(name);
         }
       }
 
-      render();
-    }
-
-    function render() {
-      simulation = d3.forceSimulation(nodes)
-        .force("link", d3.forceLink(links).id(d => d.id).distance(80))
-        .force("charge", d3.forceManyBody().strength(-200))
-        .force("center", d3.forceCenter(width / 2, height / 2));
-
-      const link = svg.selectAll(".link")
-        .data(links)
-        .enter()
-        .append("line")
-        .attr("class", "link")
-        .attr("stroke", "#aaa")
-        .attr("stroke-opacity", 0.6);
-
-      const node = svg.selectAll(".node")
-        .data(nodes)
-        .enter()
-        .append("circle")
-        .attr("r", 6)
-        .attr("fill", d => d.base ? "#3399ff" : "#2ecc71")
-        .call(drag(simulation))
-        .on("mouseover", function (e, d) {
-          d3.select(this).attr("r", 10);
-          showTooltip(e, d.id);
-        })
-        .on("mouseout", function () {
-          d3.select(this).attr("r", 6);
-          hideTooltip();
-        });
-
-      const label = svg.selectAll(".label")
-        .data(nodes)
-        .enter()
-        .append("text")
-        .text(d => d.id)
-        .attr("font-size", "10px")
-        .attr("dx", 8)
-        .attr("dy", 3);
-
-      simulation.on("tick", () => {
-        link
-          .attr("x1", d => d.source.x)
-          .attr("y1", d => d.source.y)
-          .attr("x2", d => d.target.x)
-          .attr("y2", d => d.target.y);
-
-        node
-          .attr("cx", d => d.x)
-          .attr("cy", d => d.y);
-
-        label
-          .attr("x", d => d.x)
-          .attr("y", d => d.y);
-      });
-    }
-
-    function drag(sim) {
-      function dragstarted(event, d) {
-        if (!event.active) sim.alphaTarget(0.3).restart();
-        d.fx = d.x; d.fy = d.y;
+      if (!craftables.length) {
+        body.innerHTML = '<p class="empty-state">No elements can be crafted from exactly what you have. Try adding more.</p>';
+        return;
       }
-      function dragged(event, d) { d.fx = event.x; d.fy = event.y; }
-      function dragended(event, d) {
-        if (!event.active) sim.alphaTarget(0);
-        d.fx = null; d.fy = null;
+
+      const grid = document.createElement('div');
+      grid.className = 'craftable-grid';
+
+      for (const el of craftables) {
+        const card = document.createElement('div');
+        card.className = 'craftable-item';
+        const title = document.createElement('div');
+        title.className = 'craftable-name';
+        title.textContent = el;
+        card.appendChild(title);
+
+        // show ONLY the recipes that match inventory
+        const opts = getRecipeOptions(el);
+        for (const opt of opts) {
+          const ok = opt.every(ing => inventory.has(ing));
+          if (!ok) continue;
+          const line = document.createElement('div');
+          line.className = 'recipe-line';
+          line.innerHTML = `<strong>${el}</strong> = ${opt.join(' + ')}`;
+          card.appendChild(line);
+        }
+
+        grid.appendChild(card);
       }
-      return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
+
+      body.appendChild(grid);
     }
 
-    function showTooltip(e, text) {
-      const t = document.getElementById("tooltip");
-      t.textContent = text;
-      t.style.left = e.pageX + 10 + "px";
-      t.style.top = e.pageY + "px";
-      t.style.display = "block";
-    }
-
-    function hideTooltip() {
-      document.getElementById("tooltip").style.display = "none";
-    }
-
-    function highlightNode() {
-      const q = document.getElementById("searchBox").value.trim().toLowerCase();
-      svg.selectAll("circle").attr("stroke", null).attr("stroke-width", null);
-      if (!q) return;
-      svg.selectAll("circle")
-        .filter(d => d.id.toLowerCase() === q)
-        .attr("stroke", "red")
-        .attr("stroke-width", 3);
-    }
-
-    function resetView() {
-      document.getElementById("searchBox").value = "";
-      svg.selectAll("circle").attr("stroke", null).attr("stroke-width", null);
-      if (simulation) {
-        simulation.alpha(1).restart();
-      }
-    }
-
-    function togglePaste() {
-      const ta = document.getElementById("jsonFallback");
-      const btn = document.getElementById("loadPastedBtn");
-      const visible = ta.style.display === "block";
-      ta.style.display = visible ? "none" : "block";
-      btn.style.display = visible ? "none" : "inline-block";
-    }
-
-    function loadPasted() {
-      const txt = document.getElementById("jsonFallback").value;
-      if (!txt.trim()) return;
+    async function init() {
       try {
-        const obj = JSON.parse(txt);
-        buildGraph(obj);
-        hideError();
-      } catch (e) {
-        showError("Pasted JSON was not valid: " + e.message);
+        const res = await fetch(RECIPES_URL);
+        const data = await res.json();
+        recipes = data || {};
+        sortedNames = Object.keys(recipes).sort((a,b)=>a.localeCompare(b));
+        renderElements();
+      } catch (err) {
+        console.error('Failed to load recipes:', err);
+        document.getElementById('elements-list').innerHTML =
+          '<p style="padding:1rem;color:#b91c1c;">Could not load docs/infinite_craft_recipes.json</p>';
       }
     }
 
-    function reloadData() {
-      loadData();
-    }
+    document.getElementById('element-search').addEventListener('input', (e) => {
+      renderElements(e.target.value);
+    });
 
-    loadData();
+    init();
   </script>
 </body>
 </html>
