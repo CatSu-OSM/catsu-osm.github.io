@@ -11,7 +11,6 @@
     <style>
         /* scoped to our app */
         #icv-app {
-            /* default light tokens */
             --icv-bg: #edf0f5;
             --icv-panel: #ffffff;
             --icv-panel-border: #d5d8df;
@@ -28,6 +27,7 @@
             --icv-row-selected: #dbeafe;
             --icv-input-bg: #ffffff;
             --icv-input-border: #cbd5e1;
+            --icv-pill: #0ea5e9;
         }
 
         #icv-app.icv-dark {
@@ -47,39 +47,23 @@
             --icv-row-selected: #162036;
             --icv-input-bg: #0f172a;
             --icv-input-border: #1f2937;
+            --icv-pill: #0ea5e9;
         }
 
-        /* layout inside our shell */
         .icv-shell {
             background: var(--icv-bg);
             border-radius: 8px;
             padding: 0;
-            /* match your page width */
-        }
-
-        .icv-header-actions-btn {
-            background: rgba(15, 23, 42, 0.06);
-            border: 1px solid rgba(15, 23, 42, 0.12);
-            border-radius: 999px;
-            padding: 0.25rem 0.6rem;
-            font-size: 0.7rem;
-            cursor: pointer;
-        }
-
-        #icv-app.icv-dark .icv-header-actions-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.12);
-            color: #e2e8f0;
         }
 
         .icv-layout {
             display: grid;
             grid-template-columns: 280px minmax(0, 1fr);
             gap: 1rem;
-            /* we want it to ignore global section margins */
             margin: 0 !important;
         }
 
+        /* left panel */
         .icv-left {
             background: var(--icv-panel);
             border: 1px solid var(--icv-panel-border);
@@ -174,13 +158,14 @@
 
         .icv-inv-pill {
             font-size: 0.6rem;
-            background: #0ea5e9;
+            background: var(--icv-pill);
             color: #fff;
             border-radius: 999px;
             padding: 2px 6px;
             white-space: nowrap;
         }
 
+        /* right col */
         .icv-right {
             display: flex;
             flex-direction: column;
@@ -260,6 +245,41 @@
             color: var(--icv-text-muted);
         }
 
+        .icv-header-actions-btn {
+            background: rgba(15, 23, 42, 0.06);
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            border-radius: 999px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+
+        #icv-app.icv-dark .icv-header-actions-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+            color: #e2e8f0;
+        }
+
+        .icv-steps-input {
+            width: 4rem;
+            padding: 0.2rem 0.35rem;
+            border-radius: 5px;
+            border: 1px solid var(--icv-input-border);
+            background: var(--icv-input-bg);
+            color: var(--icv-text);
+            font-size: 0.7rem;
+        }
+
+        .icv-step-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            background: rgba(14, 165, 233, 0.14);
+            color: var(--icv-text);
+            padding: 1px 6px;
+            border-radius: 999px;
+            margin-bottom: 0.25rem;
+        }
+
         @media (max-width: 900px) {
             .icv-layout {
                 grid-template-columns: 1fr;
@@ -301,9 +321,7 @@
                 <div class="icv-search">
                     <input id="icv-search-input" type="text" placeholder="Filter elements...">
                 </div>
-                <div class="icv-elements-list" id="icv-elements-list">
-                    <!-- list -->
-                </div>
+                <div class="icv-elements-list" id="icv-elements-list"></div>
             </section>
 
             <!-- RIGHT -->
@@ -319,6 +337,16 @@
                     <div class="icv-card-header">Craftable Right Now</div>
                     <div class="icv-card-body" id="icv-craftable-body">
                         <p class="icv-empty">Select at least one element to see results.</p>
+                    </div>
+                </div>
+
+                <div class="icv-card">
+                    <div class="icv-card-header-inline">
+                        <span>Almost Craftable (≤ steps)</span>
+                        <input id="icv-steps" class="icv-steps-input" type="number" min="1" max="100" value="4" title="Max steps to look ahead">
+                    </div>
+                    <div class="icv-card-body" id="icv-almost-body">
+                        <p class="icv-empty">Pick some elements first.</p>
                     </div>
                 </div>
 
@@ -353,15 +381,17 @@
     const listEl = document.getElementById("icv-elements-list");
     const invBody = document.getElementById("icv-inventory-body");
     const craftBody = document.getElementById("icv-craftable-body");
+    const almostBody = document.getElementById("icv-almost-body");
     const statusEl = document.getElementById("icv-source-status");
     const reloadBtn = document.getElementById("icv-reload");
     const darkBtn = document.getElementById("icv-dark-toggle");
+    const stepsInput = document.getElementById("icv-steps");
 
     let recipes = {};
     let allNames = [];
     let inventory = new Set();
 
-    // dark mode load
+    // DARK
     (function initDark() {
         const saved = localStorage.getItem("icv-theme");
         if (saved === "dark") {
@@ -434,6 +464,7 @@
                 else inventory.add(name);
                 renderInventory();
                 renderCraftables();
+                renderAlmost();
                 renderElements(searchInput.value || "");
             });
 
@@ -499,6 +530,116 @@
         craftBody.appendChild(grid);
     }
 
+    // compute forward reach up to maxSteps
+    function computeReach(maxSteps) {
+        // level 0: current inventory
+        const level0 = new Set(inventory);
+        const byNameToStep = {};
+        // mark actual inventory as step 0
+        for (const n of level0) byNameToStep[n] = 0;
+
+        let currentSet = new Set(level0);
+
+        for (let step = 1; step <= maxSteps; step++) {
+            // find all craftable from currentSet (i.e., using everything we know up to this step)
+            const newly = [];
+            for (const name of allNames) {
+                if (byNameToStep[name] !== undefined) continue;
+                const opts = getRecipeOptions(name);
+                if (!opts.length) continue;
+                let okAny = false;
+                for (const opt of opts) {
+                    let ok = true;
+                    for (const ing of opt) {
+                        if (!currentSet.has(ing)) {
+                            ok = false;
+                            break;
+                        }
+                    }
+                    if (ok) {
+                        okAny = true;
+                        break;
+                    }
+                }
+                if (okAny) {
+                    newly.push(name);
+                }
+            }
+            if (!newly.length) break;
+            for (const n of newly) {
+                byNameToStep[n] = step;
+                currentSet.add(n);
+            }
+        }
+
+        return byNameToStep;
+    }
+
+    function renderAlmost() {
+        almostBody.innerHTML = "";
+        if (inventory.size === 0) {
+            almostBody.innerHTML = '<p class="icv-empty">Pick some elements first.</p>';
+            return;
+        }
+        let maxSteps = parseInt(stepsInput.value, 10);
+        if (isNaN(maxSteps) || maxSteps < 1) maxSteps = 1;
+        if (maxSteps > 100) maxSteps = 100;
+        stepsInput.value = maxSteps;
+
+        const reach = computeReach(maxSteps);
+        // collect those with step >=2 and <=maxSteps
+        const byStep = {};
+        for (const [name, step] of Object.entries(reach)) {
+            if (step >= 2 && step <= maxSteps) {
+                if (!byStep[step]) byStep[step] = [];
+                byStep[step].push(name);
+            }
+        }
+
+        const stepsSorted = Object.keys(byStep).map(Number).sort((a, b) => a - b);
+        if (!stepsSorted.length) {
+            almostBody.innerHTML = '<p class="icv-empty">Nothing extra is reachable within ' + maxSteps + ' steps.</p>';
+            return;
+        }
+
+        stepsSorted.forEach(step => {
+            const group = document.createElement("div");
+            group.style.marginBottom = "0.6rem";
+            const label = document.createElement("div");
+            label.className = "icv-step-tag";
+            label.textContent = "Step " + step;
+            group.appendChild(label);
+
+            const wrap = document.createElement("div");
+            wrap.className = "icv-craftable-grid";
+
+            byStep[step].sort((a, b) => a.localeCompare(b)).forEach(el => {
+                const card = document.createElement("div");
+                card.className = "icv-craftable-item";
+                const title = document.createElement("div");
+                title.className = "icv-craftable-name";
+                title.textContent = el;
+                card.appendChild(title);
+
+                // show matching recipes for this step if possible
+                const opts = getRecipeOptions(el);
+                for (const opt of opts) {
+                    const ok = opt.every(x => reach[x] !== undefined && reach[x] <= step - 1);
+                    if (!ok) continue;
+                    const line = document.createElement("div");
+                    line.className = "icv-recipe-line";
+                    line.innerHTML = "<strong>" + el + "</strong> = " + opt.join(" + ");
+                    card.appendChild(line);
+                }
+
+                wrap.appendChild(card);
+            });
+
+            group.appendChild(wrap);
+            almostBody.appendChild(group);
+        });
+    }
+
     async function loadRecipes(bust = false) {
         try {
             statusEl.textContent = "Loading…";
@@ -509,6 +650,7 @@
             allNames = Object.keys(recipes).sort((a, b) => a.localeCompare(b));
             renderElements(searchInput.value || "");
             renderCraftables();
+            renderAlmost();
             statusEl.textContent = "Loaded " + allNames.length + " elements.";
         } catch (e) {
             console.error(e);
@@ -523,6 +665,10 @@
 
     reloadBtn.addEventListener("click", () => {
         loadRecipes(true);
+    });
+
+    stepsInput.addEventListener("change", () => {
+        renderAlmost();
     });
 
     // initial
