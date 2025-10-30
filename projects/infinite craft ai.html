@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinite Craft Visualizer | CatSu</title>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css" />
+  <style>
+    main { max-width: 1000px; margin: 0 auto; padding: 1rem; }
+    #graph { width: 100%; height: 80vh; border: 1px solid #ccc; border-radius: 8px; }
+    #controls { margin-bottom: 1rem; }
+    #controls input { padding: .4rem; width: 200px; }
+    #controls button { padding: .4rem .8rem; margin-left: .5rem; }
+  </style>
+  <!-- D3 for graph rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <h2>
+      <a href="https://catsu-osm.github.io" style="text-decoration:none;">
+        <i class="fas fa-home" style="margin-right:10px;"></i>
+      </a>
+      CatSu's Website
+    </h2>
+    <nav>
+      <button onclick="location.href='https://catsu-osm.github.io/projects'">Projects</button>
+      <button onclick="location.href='https://catsu-osm.github.io/resources'">Resources</button>
+      <button onclick="location.href='https://catsu-osm.github.io/recipes'">Recipes Visualizer</button>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Infinite Craft Recipe Visualizer</h2>
+    <p>
+      This page loads your <code>infinite_craft_recipes.json</code> file and draws connections
+      between elements. Bases appear in blue, craftables in green, and edges show ingredient
+      relationships. Hover or click nodes to explore.
+    </p>
+
+    <div id="controls">
+      <input id="searchBox" type="text" placeholder="Search element..." />
+      <button onclick="highlightNode()">Find</button>
+      <button onclick="resetView()">Reset View</button>
+    </div>
+
+    <div id="graph"></div>
+  </main>
+
+  <footer style="position:fixed;bottom:0;width:100%;background-color:#99c2ff;color:#fff;text-align:right;padding:1em;box-sizing:border-box;z-index:1000;">
+    <p>&copy; CatSu 2025</p>
+  </footer>
+
+  <script>
+    const width = document.body.clientWidth;
+    const height = window.innerHeight * 0.75;
+    const svg = d3.select("#graph").append("svg")
+      .attr("width", "100%").attr("height", height);
+
+    let simulation, nodes, links;
+    const color = d => d.base ? "#3399ff" : "#2ecc71";
+
+    async function loadData() {
+      try {
+        const res = await fetch("https://catsu-osm.github.io/infinite_craft_recipes.json");
+        const data = await res.json();
+        buildGraph(data);
+      } catch (err) {
+        console.error(err);
+        d3.select("#graph").append("p")
+          .text("Failed to load recipe data. Ensure infinite_craft_recipes.json is accessible.");
+      }
+    }
+
+    function buildGraph(recipes) {
+      nodes = Object.keys(recipes).map(k => ({ id: k, base: recipes[k]._base }));
+      const idMap = new Map(nodes.map(n => [n.id, n]));
+      links = [];
+
+      for (const [out, node] of Object.entries(recipes)) {
+        if (!Array.isArray(node.recipes)) continue;
+        for (const opt of node.recipes) {
+          if (Array.isArray(opt)) {
+            for (const ing of opt) {
+              if (idMap.has(ing) && ing !== out)
+                links.push({ source: ing, target: out });
+            }
+          }
+        }
+      }
+
+      render();
+    }
+
+    function render() {
+      simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.id).distance(80))
+        .force("charge", d3.forceManyBody().strength(-200))
+        .force("center", d3.forceCenter(width / 2, height / 2));
+
+      const link = svg.selectAll(".link")
+        .data(links)
+        .enter().append("line")
+        .attr("class", "link")
+        .attr("stroke", "#999")
+        .attr("stroke-opacity", 0.6);
+
+      const node = svg.selectAll(".node")
+        .data(nodes)
+        .enter().append("circle")
+        .attr("r", 6)
+        .attr("fill", color)
+        .call(drag(simulation))
+        .on("mouseover", function (e, d) {
+          d3.select(this).attr("r", 10);
+          showTooltip(e, d.id);
+        })
+        .on("mouseout", function () {
+          d3.select(this).attr("r", 6);
+          hideTooltip();
+        });
+
+      const label = svg.selectAll(".label")
+        .data(nodes)
+        .enter().append("text")
+        .text(d => d.id)
+        .attr("font-size", "10px")
+        .attr("dx", 8)
+        .attr("dy", 3);
+
+      simulation.on("tick", () => {
+        link
+          .attr("x1", d => d.source.x)
+          .attr("y1", d => d.source.y)
+          .attr("x2", d => d.target.x)
+          .attr("y2", d => d.target.y);
+
+        node
+          .attr("cx", d => d.x)
+          .attr("cy", d => d.y);
+
+        label
+          .attr("x", d => d.x)
+          .attr("y", d => d.y);
+      });
+    }
+
+    function drag(sim) {
+      function dragstarted(event, d) {
+        if (!event.active) sim.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+      }
+      function dragged(event, d) { d.fx = event.x; d.fy = event.y; }
+      function dragended(event, d) {
+        if (!event.active) sim.alphaTarget(0);
+        d.fx = null; d.fy = null;
+      }
+      return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
+    }
+
+    function showTooltip(e, text) {
+      let t = document.getElementById("tooltip");
+      if (!t) {
+        t = document.createElement("div");
+        t.id = "tooltip";
+        Object.assign(t.style, {
+          position: "absolute", background: "#333", color: "#fff",
+          padding: "3px 6px", borderRadius: "4px", fontSize: "12px", pointerEvents: "none"
+        });
+        document.body.appendChild(t);
+      }
+      t.innerHTML = text;
+      t.style.left = e.pageX + 10 + "px";
+      t.style.top = e.pageY + "px";
+      t.style.display = "block";
+    }
+
+    function hideTooltip() {
+      const t = document.getElementById("tooltip");
+      if (t) t.style.display = "none";
+    }
+
+    function highlightNode() {
+      const query = document.getElementById("searchBox").value.trim().toLowerCase();
+      svg.selectAll("circle").attr("stroke", null).attr("stroke-width", null);
+      if (!query) return;
+      svg.selectAll("circle")
+        .filter(d => d.id.toLowerCase() === query)
+        .attr("stroke", "red").attr("stroke-width", 3);
+    }
+
+    function resetView() {
+      document.getElementById("searchBox").value = "";
+      svg.selectAll("circle").attr("stroke", null).attr("stroke-width", null);
+      simulation.alpha(1).restart();
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
