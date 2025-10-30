@@ -445,6 +445,11 @@
     let inventory = new Set();
     let currentTraceTarget = null;
 
+    // NEW: precomputed trace data
+    let icvBestCost = {};
+    let icvBestRecipe = {};
+    let icvIsBase = {};
+
     // DARK
     (function initDark() {
         const saved = localStorage.getItem("icv-theme");
@@ -461,6 +466,188 @@
         darkBtn.textContent = isDark ? "Light" : "Dark";
     });
 
+    // --- NEW HELPERS FOR DIJKSTRA ---
+
+    function icvNormalizeRecipes(raw) {
+        const out = {};
+        for (const [name, node] of Object.entries(raw)) {
+            const norm = {};
+            norm._base = !!node._base;
+            let recs = node.recipes || [];
+            if (!Array.isArray(recs)) recs = [recs];
+            const cleaned = [];
+            for (const opt of recs) {
+                if (!Array.isArray(opt)) continue;
+                const ingredients = opt.map(x => String(x));
+                if (ingredients.includes(name)) continue; // drop self-loop
+                cleaned.push(ingredients);
+            }
+            norm.recipes = cleaned;
+            out[name] = norm;
+        }
+        return out;
+    }
+
+    function icvBuildReverseIndex(recipesObj) {
+        const rev = {};
+        for (const [prod, node] of Object.entries(recipesObj)) {
+            for (const opt of node.recipes) {
+                for (const ing of opt) {
+                    if (!rev[ing]) rev[ing] = new Set();
+                    rev[ing].add(prod);
+                }
+            }
+        }
+        return rev;
+    }
+
+    function icvRunDijkstraFromBases(recipesObj, reverseIndex, maxNodes = 100000) {
+        icvBestCost = {};
+        icvBestRecipe = {};
+        icvIsBase = {};
+
+        // find bases
+        const baseNames = [];
+        for (const [name, node] of Object.entries(recipesObj)) {
+            if (node._base) {
+                baseNames.push(name);
+                icvBestCost[name] = 0;
+                icvIsBase[name] = true;
+            }
+        }
+
+        // hard-force classic 4 bases if present
+        const hardBases = ["Earth", "Fire", "Water", "Wind"];
+        for (const hb of hardBases) {
+            if (recipesObj[hb]) {
+                icvBestCost[hb] = 0;
+                icvIsBase[hb] = true;
+                if (!baseNames.includes(hb)) baseNames.push(hb);
+            }
+        }
+
+        // simple PQ
+        const pq = baseNames.map(nm => ({ name: nm, cost: 0 }));
+        let processed = 0;
+
+        while (pq.length && processed < maxNodes) {
+            // pick lowest
+            let bestIdx = 0;
+            for (let i = 1; i < pq.length; i++) {
+                if (pq[i].cost < pq[bestIdx].cost) bestIdx = i;
+            }
+            const current = pq.splice(bestIdx, 1)[0];
+            const curName = current.name;
+            const curCost = current.cost;
+            processed++;
+
+            const consumers = reverseIndex[curName];
+            if (!consumers) continue;
+
+            for (const product of consumers) {
+                const prodNode = recipesObj[product];
+                if (!prodNode) continue;
+
+                for (const opt of prodNode.recipes) {
+                    // only if we have all ingredients
+                    let allHave = true;
+                    let sumCost = 0;
+                    for (const ing of opt) {
+                        const ingCost = icvBestCost[ing];
+                        if (ingCost === undefined) {
+                            allHave = false;
+                            break;
+                        }
+                        sumCost += ingCost;
+                    }
+                    if (!allHave) continue;
+
+                    const candidateCost = sumCost + 1; // craft step
+                    const existing = icvBestCost[product];
+                    if (existing === undefined || candidateCost < existing) {
+                        icvBestCost[product] = candidateCost;
+                        icvBestRecipe[product] = opt.slice();
+                        pq.push({ name: product, cost: candidateCost });
+                    }
+                }
+            }
+        }
+    }
+
+    function icvReconstructPlan(target, depth = 0, seen = new Set()) {
+        if (depth > 200) {
+            return { error: "too-deep", target };
+        }
+        if (seen.has(target)) {
+            return { error: "cycle", target };
+        }
+        seen.add(target);
+
+        if (icvIsBase[target]) {
+            return { type: "base", name: target };
+        }
+
+        const recipe = icvBestRecipe[target];
+        if (!recipe) {
+            return { error: "no-path", target };
+        }
+
+        const subplans = [];
+        for (const ing of recipe) {
+            const sub = icvReconstructPlan(ing, depth + 1, new Set(seen));
+            subplans.push(sub);
+        }
+
+        return {
+            type: "make",
+            name: target,
+            using: recipe,
+            from: subplans
+        };
+    }
+
+    function icvFlattenPlan(plan, out = [], haveSet = new Set()) {
+        if (!plan) return out;
+
+        if (plan.error) {
+            out.push({
+                kind: "error",
+                info: plan
+            });
+            return out;
+        }
+
+        if (plan.type === "base") {
+            if (!haveSet.has(plan.name)) {
+                out.push({
+                    kind: "have",
+                    name: plan.name,
+                    base: true
+                });
+                haveSet.add(plan.name);
+            }
+            return out;
+        }
+
+        if (plan.type === "make") {
+            for (const sub of plan.from) {
+                icvFlattenPlan(sub, out, haveSet);
+            }
+            if (!haveSet.has(plan.name)) {
+                out.push({
+                    kind: "make",
+                    name: plan.name,
+                    recipe: plan.using
+                });
+                haveSet.add(plan.name);
+            }
+            return out;
+        }
+
+        return out;
+    }
+
+    // original helpers (unchanged)
     function isBase(name) {
         const node = recipes[name];
         return node && node._base === true;
@@ -523,14 +710,13 @@
                 renderInventory();
                 renderCraftables();
                 renderAlmost();
-                // if this is the thing we currently traced, re-run
                 if (currentTraceTarget === nm) {
                     renderTraceFor(nm);
                 }
                 renderElements(searchInput.value || "");
             });
 
-            // right-click: trace (ALWAYS FROM BASES)
+            // right-click: trace (ALWAYS FROM PRECOMPUTED BASE DIJKSTRA)
             row.addEventListener("contextmenu", (e) => {
                 e.preventDefault();
                 const nm = row.dataset.name;
@@ -705,53 +891,7 @@
         });
     }
 
-    // TRACE LOGIC (always bases only)
-    function findTrace(target, startingSet, maxDepth = 20, visited = new Set()) {
-        if (startingSet.has(target)) {
-            return [{ type: "have", name: target }];
-        }
-        if (maxDepth <= 0) return null;
-
-        const opts = getRecipeOptions(target);
-        if (!opts.length) return null;
-
-        for (const opt of opts) {
-            // if all ingredients in startingSet -> done
-            if (opt.every(ing => startingSet.has(ing))) {
-                return [
-                    ...opt.map(ing => ({ type: "have", name: ing })),
-                    { type: "make", name: target, recipe: opt }
-                ];
-            }
-
-            if (visited.has(target)) continue;
-            const newVisited = new Set(visited);
-            newVisited.add(target);
-
-            let steps = [];
-            let tmpSet = new Set(startingSet);
-            let failed = false;
-            for (const ing of opt) {
-                if (!tmpSet.has(ing)) {
-                    const sub = findTrace(ing, tmpSet, maxDepth - 1, newVisited);
-                    if (!sub) {
-                        failed = true;
-                        break;
-                    }
-                    steps = steps.concat(sub);
-                    tmpSet.add(ing);
-                } else {
-                    steps.push({ type: "have", name: ing });
-                }
-            }
-            if (!failed) {
-                steps.push({ type: "make", name: target, recipe: opt });
-                return steps;
-            }
-        }
-        return null;
-    }
-
+    // NEW: render trace from precomputed dijkstra
     function renderTraceFor(target) {
         traceBody.innerHTML = "";
         if (!target) {
@@ -759,47 +899,42 @@
             return;
         }
 
-        // ALWAYS start from bases only
-        const startingSet = new Set(allNames.filter(n => isBase(n)));
+        const plan = icvReconstructPlan(target);
+        const flat = icvFlattenPlan(plan);
 
-        const trace = findTrace(target, startingSet, 20);
-        if (!trace) {
-            traceBody.innerHTML = '<p class="icv-empty">No path found within 20 steps from bases.</p>';
+        if (!flat.length || (flat.length === 1 && flat[0].kind === "error")) {
+            traceBody.innerHTML = '<p class="icv-empty">No path found from bases.</p>';
             return;
         }
 
         const title = document.createElement("div");
         title.className = "icv-trace-title";
         title.textContent = "Trace for: " + target;
+        traceBody.appendChild(title);
 
         const list = document.createElement("div");
         list.className = "icv-trace-list";
 
-        const originalStart = new Set(startingSet);
-
-        trace.forEach(step => {
+        for (const step of flat) {
             const row = document.createElement("div");
             row.className = "icv-trace-step";
-            if (step.type === "have") {
-                const ok = originalStart.has(step.name);
-                if (ok) {
-                    row.classList.add("icv-trace-ok");
-                    row.innerHTML = `✅ Have <strong>${step.name}</strong>`;
-                } else {
-                    row.innerHTML = `➕ Need <strong>${step.name}</strong> (built earlier in trace)`;
-                }
-            } else if (step.type === "make") {
+            if (step.kind === "have") {
+                row.classList.add("icv-trace-ok");
+                row.innerHTML = `✅ Have <strong>${step.name}</strong>`;
+            } else if (step.kind === "make") {
                 row.classList.add("icv-trace-ok");
                 row.innerHTML = `🛠️ <strong>${step.name}</strong> = ${step.recipe.join(" + ")}`;
+            } else if (step.kind === "error") {
+                row.classList.add("icv-trace-miss");
+                row.innerHTML = `❌ Cannot build <strong>${step.info.target}</strong> (${step.info.error})`;
             }
             list.appendChild(row);
-        });
+        }
 
         const note = document.createElement("div");
         note.className = "icv-trace-small";
-        note.textContent = "Tracing from bases only.";
+        note.textContent = "Tracing from bases only (precomputed reverse-Dijkstra).";
 
-        traceBody.appendChild(title);
         traceBody.appendChild(list);
         traceBody.appendChild(note);
     }
@@ -810,8 +945,13 @@
             const url = bust ? BASE_URL + "?t=" + Date.now() : BASE_URL;
             const res = await fetch(url, { cache: "no-store" });
             const data = await res.json();
-            recipes = data || {};
+
+            // NEW: normalize + build reverse + run dijkstra
+            recipes = icvNormalizeRecipes(data || {});
             allNames = Object.keys(recipes).sort((a, b) => a.localeCompare(b));
+            const rev = icvBuildReverseIndex(recipes);
+            icvRunDijkstraFromBases(recipes, rev);
+
             renderElements(searchInput.value || "");
             renderCraftables();
             renderAlmost();
