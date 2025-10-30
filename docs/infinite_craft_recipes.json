@@ -2906,11 +2906,11 @@
                 "Wind"
             ],
             [
-                "duune",
+                "Dune",
                 "Earth"
             ],
             [
-                "duune",
+                "Dune",
                 "Fire"
             ],
             [
@@ -4355,6 +4355,10 @@
             [
                 "Lizard King",
                 "Sandstorm"
+            ],
+            [
+                "Sand",
+                "Wind"
             ]
         ]
     },
@@ -5041,7 +5045,7 @@
                 "Wind"
             ],
             [
-                "duune",
+                "Dune",
                 "Wind"
             ],
             [
@@ -13748,20 +13752,11 @@
             ]
         ]
     },
-    "duune": {
-        "_base": false,
-        "recipes": [
-            [
-                "Sand",
-                "Wind"
-            ]
-        ]
-    },
     "Wet Sand": {
         "_base": false,
         "recipes": [
             [
-                "duune",
+                "Dune",
                 "Water"
             ],
             [
