@@ -411,6 +411,10 @@
             [
                 "Magma Mutant",
                 "Misty Water"
+            ],
+            [
+                "Lava",
+                "Mythical Beast"
             ]
         ]
     },
@@ -460,6 +464,10 @@
             [
                 "Spook",
                 "Volcanic Smog"
+            ],
+            [
+                "Tempest Sentinel",
+                "Volcanic Ash"
             ]
         ]
     },
@@ -604,6 +612,10 @@
             [
                 "Toadstool",
                 "Wind"
+            ],
+            [
+                "Cloud",
+                "Cosmic Inferno"
             ]
         ]
     },
@@ -839,6 +851,18 @@
             [
                 "Lava Flood",
                 "Wind"
+            ],
+            [
+                "Lava Slime",
+                "Tempest"
+            ],
+            [
+                "Cinderland",
+                "Lava Broth"
+            ],
+            [
+                "Lava Sculpture",
+                "Toxic Tornado"
             ]
         ]
     },
@@ -1323,6 +1347,10 @@
             [
                 "Fire",
                 "Kraken"
+            ],
+            [
+                "Lava",
+                "Storm"
             ]
         ]
     },
@@ -1596,6 +1624,14 @@
             [
                 "Dragonite",
                 "Wind"
+            ],
+            [
+                "Magma Lizard",
+                "Smog Brick"
+            ],
+            [
+                "Lava Geyser",
+                "Molten Creature"
             ]
         ]
     },
@@ -1848,6 +1884,10 @@
             ],
             [
                 "Meteorite",
+                "Zeus"
+            ],
+            [
+                "Dragon Meteor",
                 "Zeus"
             ]
         ]
@@ -2428,6 +2468,10 @@
             [
                 "Terradragon",
                 "Volcanic Ash"
+            ],
+            [
+                "Dragon Scale Earth",
+                "Ice Dragon"
             ]
         ]
     },
@@ -2665,6 +2709,10 @@
             [
                 "Dragonfire",
                 "Volcanic Rock"
+            ],
+            [
+                "Venus Rock",
+                "Volcanic Eruption"
             ]
         ]
     },
@@ -2778,6 +2826,14 @@
             [
                 "Fire",
                 "Magma Volcano"
+            ],
+            [
+                "Magma Chamber",
+                "Siren"
+            ],
+            [
+                "Fission Plume",
+                "Pyroclastic Flow"
             ]
         ]
     },
@@ -2800,6 +2856,10 @@
             [
                 "Dragon Fire",
                 "Lava Tubes"
+            ],
+            [
+                "Brick Wall",
+                "Volcanic Serpent"
             ]
         ]
     },
@@ -2829,6 +2889,10 @@
             [
                 "Fire",
                 "Swamp Lizard"
+            ],
+            [
+                "Earth",
+                "Salamander"
             ]
         ]
     },
@@ -2883,6 +2947,14 @@
             [
                 "Fission Plume",
                 "Volcanic Lizard"
+            ],
+            [
+                "Ancient Tempest",
+                "Fire Lizard"
+            ],
+            [
+                "Radiation Burn",
+                "Salamander"
             ]
         ]
     },
@@ -3074,6 +3146,10 @@
             [
                 "Dragon Armor Cloud",
                 "Dragon's Fury"
+            ],
+            [
+                "Dragon",
+                "Hot Spring"
             ]
         ]
     },
@@ -3247,6 +3323,14 @@
             [
                 "Dragon's Breath Smog",
                 "Volcanic Breccia"
+            ],
+            [
+                "Ash Cloud",
+                "Pumice Frog"
+            ],
+            [
+                "Pyroclastic Phoenix",
+                "Volcanic Eruption"
             ]
         ]
     },
@@ -3367,6 +3451,10 @@
             [
                 "Comet",
                 "Fire"
+            ],
+            [
+                "Frankenstein",
+                "Shooting Star"
             ]
         ]
     },
@@ -3641,6 +3729,18 @@
             [
                 "Kraken",
                 "Wind"
+            ],
+            [
+                "Fus Ro Dah!",
+                "Typhoon Wolf"
+            ],
+            [
+                "Fujita Scale",
+                "Fulgur Fire"
+            ],
+            [
+                "Twister",
+                "Zephyr"
             ]
         ]
     },
@@ -3791,6 +3891,10 @@
             [
                 "Dragon Bones",
                 "Mountain Blaze"
+            ],
+            [
+                "Oasis King",
+                "Volcanic Ash"
             ]
         ]
     },
@@ -3816,6 +3920,10 @@
             [
                 "Blight",
                 "Water"
+            ],
+            [
+                "Radiaton",
+                "Toxic Meme"
             ]
         ]
     },
@@ -3944,6 +4052,10 @@
             [
                 "Cosmic Impact",
                 "Dragon Tomb"
+            ],
+            [
+                "Dragon God",
+                "Meteorite Strike"
             ]
         ]
     },
@@ -4002,6 +4114,10 @@
             [
                 "Pyroclastic Flow",
                 "Supernova"
+            ],
+            [
+                "Cosmic Entity",
+                "Lava Tide"
             ]
         ]
     },
@@ -4645,6 +4761,10 @@
             [
                 "Cosmic Pool",
                 "Industrial Spa"
+            ],
+            [
+                "Dungeon",
+                "Onsen"
             ]
         ]
     },
@@ -4688,6 +4808,10 @@
             [
                 "Desert Rock",
                 "Storm"
+            ],
+            [
+                "Rock Concert",
+                "Sahara"
             ]
         ]
     },
@@ -5447,6 +5571,10 @@
             [
                 "Memorial",
                 "Water"
+            ],
+            [
+                "Cosmic Ruin",
+                "Industrial Art"
             ]
         ]
     },
@@ -5616,6 +5744,14 @@
             [
                 "Lunar",
                 "Meteor Serpent"
+            ],
+            [
+                "Extraterrestrial Impact",
+                "Shatter"
+            ],
+            [
+                "Dragon Siren",
+                "Meteor"
             ]
         ]
     },
@@ -5877,6 +6013,14 @@
             [
                 "Meteor",
                 "Water"
+            ],
+            [
+                "Cosmic Roar",
+                "Flood"
+            ],
+            [
+                "Cosmic Tidal Wave",
+                "Hot Spring Salamander"
             ]
         ]
     },
@@ -6071,6 +6215,10 @@
             [
                 "Dragon Fire",
                 "Scorched Earth"
+            ],
+            [
+                "Dragonstone",
+                "Specter of Vesuvius"
             ]
         ]
     },
@@ -6088,6 +6236,10 @@
             [
                 "Dragon Storm",
                 "Salamander"
+            ],
+            [
+                "Dragon Breath",
+                "Lizard Lounge"
             ]
         ]
     },
@@ -6326,6 +6478,10 @@
             [
                 "Air Current",
                 "Tsunami"
+            ],
+            [
+                "Lightning Strike",
+                "Smog Brick Tsunami"
             ]
         ]
     },
@@ -6425,6 +6581,10 @@
             [
                 "Bahamut",
                 "Gorgon"
+            ],
+            [
+                "Gorgon's Gaze",
+                "Melted Glass"
             ]
         ]
     },
@@ -6493,6 +6653,14 @@
             [
                 "Hot Spring",
                 "Medusan Horror"
+            ],
+            [
+                "Geyseer",
+                "Pyroclastic Flow"
+            ],
+            [
+                "Lava Tubes",
+                "Water"
             ]
         ]
     },
@@ -6581,6 +6749,10 @@
             [
                 "Snake",
                 "Volcanic Ash Cloud"
+            ],
+            [
+                "Lamia",
+                "Volcano"
             ]
         ]
     },
@@ -7016,6 +7188,10 @@
             [
                 "Drake",
                 "Tornado Alley"
+            ],
+            [
+                "Tornado",
+                "Volcanic Bloom"
             ]
         ]
     },
@@ -7893,6 +8069,10 @@
             [
                 "Fire",
                 "Swamp Creature"
+            ],
+            [
+                "Glass Lizard",
+                "Swamp Gas"
             ]
         ]
     },
@@ -8109,6 +8289,10 @@
             [
                 "Swamp Creature",
                 "Swamp Monster"
+            ],
+            [
+                "Amphibian Storm",
+                "Frogman"
             ]
         ]
     },
@@ -8138,6 +8322,10 @@
             [
                 "Dragon",
                 "Marsh Gas"
+            ],
+            [
+                "Dragon's Breath",
+                "Swamp Thing"
             ]
         ]
     },
@@ -8207,6 +8395,10 @@
             [
                 "Storm Voice",
                 "Toxic Mermaid"
+            ],
+            [
+                "Flute",
+                "Sunburn"
             ]
         ]
     },
@@ -8501,6 +8693,10 @@
             [
                 "Dragon Mummy",
                 "Petrified Soil"
+            ],
+            [
+                "Nessie",
+                "Sandstone"
             ]
         ]
     },
@@ -8514,6 +8710,10 @@
             [
                 "Dragon Skeleton",
                 "Oil"
+            ],
+            [
+                "Fossil",
+                "Pot"
             ]
         ]
     },
@@ -8637,6 +8837,10 @@
             [
                 "Comet Dragon",
                 "Dragonborn"
+            ],
+            [
+                "Dragon",
+                "Terradragon"
             ]
         ]
     },
@@ -8736,6 +8940,10 @@
             [
                 "Meteorite",
                 "Steam"
+            ],
+            [
+                "Chimera",
+                "Geothermal Power Plant"
             ]
         ]
     },
@@ -8827,6 +9035,10 @@
             [
                 "Extinction Event",
                 "Supernova Dragon"
+            ],
+            [
+                "Doomsday Turtle",
+                "Tropical Glow"
             ]
         ]
     },
@@ -9065,6 +9277,14 @@
             [
                 "Fire",
                 "Rainbow Fire"
+            ],
+            [
+                "Frog Rain",
+                "Rainbow Frog"
+            ],
+            [
+                "Cyclone",
+                "Rainbow"
             ]
         ]
     },
@@ -9211,6 +9431,34 @@
             [
                 "Mothra",
                 "Volcanic Plume"
+            ],
+            [
+                "Kaiju",
+                "Lava Lamp"
+            ],
+            [
+                "Kaiju",
+                "Tree"
+            ],
+            [
+                "Fulgurite Dweller",
+                "Kaiju"
+            ],
+            [
+                "Fire Lizard",
+                "Radioactive Monster"
+            ],
+            [
+                "Dragon Dung",
+                "Kaiju"
+            ],
+            [
+                "Eden",
+                "Kaiju"
+            ],
+            [
+                "Kaiju",
+                "Phoenix"
             ]
         ]
     },
@@ -9412,6 +9660,14 @@
             [
                 "Lava Gecko",
                 "Shattered Glass"
+            ],
+            [
+                "Glass Volcano",
+                "Singing Gecko"
+            ],
+            [
+                "Lava Lamp",
+                "Pollutant"
             ]
         ]
     },
@@ -9445,6 +9701,30 @@
             [
                 "Fierce Guardian",
                 "Mutant Beast"
+            ],
+            [
+                "Chaos Dragon",
+                "Hydra Strike"
+            ],
+            [
+                "Godzilla",
+                "Ventifact"
+            ],
+            [
+                "Dragon's Lullaby",
+                "Godzilla"
+            ],
+            [
+                "Gorgonite",
+                "Wyrm"
+            ],
+            [
+                "Godzilla",
+                "Super Saiyan Wind"
+            ],
+            [
+                "Abyssal Horror",
+                "Godzilla's Lair"
             ]
         ]
     },
@@ -10671,6 +10951,10 @@
             [
                 "Ash Cloud",
                 "Lizard Pool"
+            ],
+            [
+                "Dragon Meteor",
+                "Lizard"
             ]
         ]
     },
@@ -10716,6 +11000,10 @@
             [
                 "Meteorite Strike",
                 "Sea Dragon"
+            ],
+            [
+                "Nuclear Dinosaur",
+                "Super Impact"
             ]
         ]
     },
@@ -10875,6 +11163,10 @@
             [
                 "Lava House",
                 "Volcanic Gecko"
+            ],
+            [
+                "Storm Gecko",
+                "Volcanic Rock"
             ]
         ]
     },
@@ -11000,6 +11292,10 @@
             [
                 "Sailor",
                 "Volcanic Frog"
+            ],
+            [
+                "Frogman",
+                "Pyramid"
             ]
         ]
     },
@@ -11070,6 +11366,10 @@
             ],
             [
                 "Pompeii",
+                "Steam Engine"
+            ],
+            [
+                "Godzilla",
                 "Steam Engine"
             ]
         ]
@@ -11776,6 +12076,10 @@
             [
                 "Immortality",
                 "Nuclear Winter"
+            ],
+            [
+                "Mushroom Cloud",
+                "Radioactive aura"
             ]
         ]
     },
@@ -12004,6 +12308,10 @@
             [
                 "Fire",
                 "Spa"
+            ],
+            [
+                "Steam Bath",
+                "Swamp Monster"
             ]
         ]
     },
@@ -12537,6 +12845,10 @@
             [
                 "Tsunami",
                 "Wind"
+            ],
+            [
+                "Hydro Slime",
+                "Storm Surge"
             ]
         ]
     },
@@ -13286,6 +13598,14 @@
             [
                 "Mudflat",
                 "Toxic Dragonfire"
+            ],
+            [
+                "Acid Scorpion",
+                "Mudflow"
+            ],
+            [
+                "Toxic Downpour",
+                "Volcanic Mud"
             ]
         ]
     },
@@ -13889,6 +14209,10 @@
             [
                 "Dragon Boat",
                 "Icewing"
+            ],
+            [
+                "Dragon Smog",
+                "Frozen Ceremony"
             ]
         ]
     },
@@ -13911,6 +14235,10 @@
             [
                 "Prevailing Wind",
                 "Toxic Fog"
+            ],
+            [
+                "Legendary Warrior",
+                "Toxic Mist"
             ]
         ]
     },
@@ -14100,15 +14428,6 @@
             [
                 "Fire",
                 "Lava Tubes"
-            ]
-        ]
-    },
-    "Geyseer": {
-        "_base": false,
-        "recipes": [
-            [
-                "Lava Tubes",
-                "Water"
             ]
         ]
     },
@@ -14725,6 +15044,10 @@
             [
                 "Alligator",
                 "Dust"
+            ],
+            [
+                "Extinction",
+                "Pyramid"
             ]
         ]
     },
@@ -15426,6 +15749,10 @@
             [
                 "Martian Ghost",
                 "Water"
+            ],
+            [
+                "Bog Magic",
+                "Muddy Gust"
             ]
         ]
     },
@@ -16061,6 +16388,10 @@
             [
                 "Lycanthropy",
                 "Smog Monster"
+            ],
+            [
+                "Moonlight",
+                "Plant"
             ]
         ]
     },
@@ -16797,6 +17128,10 @@
             [
                 "Froggy Pot",
                 "Radiation Burn"
+            ],
+            [
+                "Radioactive Frog",
+                "Thunder"
             ]
         ]
     },
@@ -17058,6 +17393,10 @@
             [
                 "Atomic Breath",
                 "Marsh Wind"
+            ],
+            [
+                "Misty Water",
+                "Radioactive Ash"
             ]
         ]
     },
@@ -17220,6 +17559,10 @@
             [
                 "Dune",
                 "Stone"
+            ],
+            [
+                "Monument",
+                "Scorpion King"
             ]
         ]
     },
@@ -17238,6 +17581,10 @@
             [
                 "Radioactive Fallout",
                 "Volcanic Ashfall"
+            ],
+            [
+                "Nuclear Alarm",
+                "Specter of Vesuvius"
             ]
         ]
     },
@@ -17872,6 +18219,919 @@
             [
                 "Fire",
                 "Inferno Colossus"
+            ]
+        ]
+    },
+    "Industrial Art": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Magma Sculpture"
+            ]
+        ]
+    },
+    "Bog Magic": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mystic Resort",
+                "Swamp Thing"
+            ]
+        ]
+    },
+    "Steam Rocket": {
+        "_base": false,
+        "recipes": [
+            [
+                "Sauna",
+                "Skyrocket"
+            ]
+        ]
+    },
+    "Ghost Rocket": {
+        "_base": false,
+        "recipes": [
+            [
+                "Spooky Breeze",
+                "Steam Rocket"
+            ]
+        ]
+    },
+    "Phantom Dust": {
+        "_base": false,
+        "recipes": [
+            [
+                "Ghost Rocket",
+                "Lunar Cinder"
+            ]
+        ]
+    },
+    "Clockwork Phantom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Clockwork Dragon",
+                "Phantom Dust"
+            ]
+        ]
+    },
+    "Celestial Being": {
+        "_base": false,
+        "recipes": [
+            [
+                "Clockwork Phantom",
+                "Star Flare"
+            ]
+        ]
+    },
+    "Dragon God": {
+        "_base": false,
+        "recipes": [
+            [
+                "Celestial Being",
+                "Dragon Bones"
+            ]
+        ]
+    },
+    "Toxic Toad": {
+        "_base": false,
+        "recipes": [
+            [
+                "Desert",
+                "Radioactive Frog"
+            ]
+        ]
+    },
+    "Ancient Tempest": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gargoyle Storm",
+                "Mummy"
+            ]
+        ]
+    },
+    "Chaos Dragon": {
+        "_base": false,
+        "recipes": [
+            [
+                "Chaos Elixir",
+                "Komodo Dragon"
+            ]
+        ]
+    },
+    "King Kong": {
+        "_base": false,
+        "recipes": [
+            [
+                "Godzilla",
+                "Lightning"
+            ]
+        ]
+    },
+    "Ape": {
+        "_base": false,
+        "recipes": [
+            [
+                "King Kong",
+                "Telescope"
+            ]
+        ]
+    },
+    "Primate Tsunami": {
+        "_base": false,
+        "recipes": [
+            [
+                "Ape",
+                "Tidal Wave Memorial"
+            ]
+        ]
+    },
+    "Acidic Tsunami": {
+        "_base": false,
+        "recipes": [
+            [
+                "Acid",
+                "Primate Tsunami"
+            ]
+        ]
+    },
+    "Acid Scorpion": {
+        "_base": false,
+        "recipes": [
+            [
+                "Acidic Tsunami",
+                "Inferno Scorpion"
+            ]
+        ]
+    },
+    "Radioactive Ash": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lava Sand",
+                "Toxic Sludge"
+            ]
+        ]
+    },
+    "Glow Slime": {
+        "_base": false,
+        "recipes": [
+            [
+                "Frankenstein",
+                "Radioactive Fog"
+            ]
+        ]
+    },
+    "Bioluminescent Pebble": {
+        "_base": false,
+        "recipes": [
+            [
+                "Glow Slime",
+                "Pet Rock"
+            ]
+        ]
+    },
+    "Lightbulb": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bioluminescent Pebble",
+                "Glassblower"
+            ]
+        ]
+    },
+    "Moonlight": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lightbulb",
+                "Lunar Planter"
+            ]
+        ]
+    },
+    "Dungeon": {
+        "_base": false,
+        "recipes": [
+            [
+                "Brick Wall",
+                "Werewolf"
+            ]
+        ]
+    },
+    "Onsen Meteor": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragon Meteor",
+                "Hot Spring"
+            ]
+        ]
+    },
+    "Axolotl Bath": {
+        "_base": false,
+        "recipes": [
+            [
+                "Axolotl",
+                "Onsen Meteor"
+            ]
+        ]
+    },
+    "Axolotl Landing": {
+        "_base": false,
+        "recipes": [
+            [
+                "Axolotl Bath",
+                "Landing"
+            ]
+        ]
+    },
+    "Mythic Amphibian": {
+        "_base": false,
+        "recipes": [
+            [
+                "Axolotl Landing",
+                "Elemental Siren"
+            ]
+        ]
+    },
+    "Rainbow Frog": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mythic Amphibian",
+                "Prism"
+            ]
+        ]
+    },
+    "Unicorn": {
+        "_base": false,
+        "recipes": [
+            [
+                "Plasma",
+                "Rainbow"
+            ]
+        ]
+    },
+    "Mythical Beast": {
+        "_base": false,
+        "recipes": [
+            [
+                "Primeval Dragon",
+                "Unicorn"
+            ],
+            [
+                "Mermaid",
+                "Mythical Beast"
+            ]
+        ]
+    },
+    "Lava Slime": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lava Gecko",
+                "Slime"
+            ]
+        ]
+    },
+    "Sunburn": {
+        "_base": false,
+        "recipes": [
+            [
+                "Ashfall",
+                "Windburn"
+            ]
+        ]
+    },
+    "Pyramid Song": {
+        "_base": false,
+        "recipes": [
+            [
+                "Pyramid",
+                "Siren Song"
+            ]
+        ]
+    },
+    "Melody": {
+        "_base": false,
+        "recipes": [
+            [
+                "Pyramid Song",
+                "Wind Chime"
+            ]
+        ]
+    },
+    "Singing Gecko": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lava Gecko",
+                "Melody"
+            ]
+        ]
+    },
+    "Lava Tide": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lava Lamp",
+                "Tidal"
+            ]
+        ]
+    },
+    "Cosmic Roar": {
+        "_base": false,
+        "recipes": [
+            [
+                "Supernova",
+                "Thunderous Anthem"
+            ]
+        ]
+    },
+    "Cosmic Tidal Wave": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cosmic Lightning",
+                "Tsunami"
+            ]
+        ]
+    },
+    "Smog Brick Tsunami": {
+        "_base": false,
+        "recipes": [
+            [
+                "Smog Brick",
+                "Tsunami"
+            ]
+        ]
+    },
+    "Specter": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fireball",
+                "Ghost Prince"
+            ]
+        ]
+    },
+    "Specter of Vesuvius": {
+        "_base": false,
+        "recipes": [
+            [
+                "Specter",
+                "Volcanic Shore"
+            ]
+        ]
+    },
+    "Internet Ghoul": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cosmic Troll",
+                "Specter of Vesuvius"
+            ]
+        ]
+    },
+    "Internet Fire": {
+        "_base": false,
+        "recipes": [
+            [
+                "Blaze",
+                "Internet Ghoul"
+            ]
+        ]
+    },
+    "Viral Video": {
+        "_base": false,
+        "recipes": [
+            [
+                "Internet Fire",
+                "Landing"
+            ]
+        ]
+    },
+    "Meme Flight": {
+        "_base": false,
+        "recipes": [
+            [
+                "Flying",
+                "Viral Video"
+            ]
+        ]
+    },
+    "Meme Shock": {
+        "_base": false,
+        "recipes": [
+            [
+                "Meme Flight",
+                "Shocked Ash"
+            ]
+        ]
+    },
+    "Toxic Meme": {
+        "_base": false,
+        "recipes": [
+            [
+                "Acid Lizard",
+                "Meme Shock"
+            ]
+        ]
+    },
+    "Irritation": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dry Skin",
+                "Toxic Waste"
+            ]
+        ]
+    },
+    "Epiphany": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dark Revelation",
+                "Irritation"
+            ]
+        ]
+    },
+    "Gorgon's Gaze": {
+        "_base": false,
+        "recipes": [
+            [
+                "Epiphany",
+                "Medusa's Lair"
+            ]
+        ]
+    },
+    "Magma Lizard": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rare Gem",
+                "Volcanic Gecko"
+            ]
+        ]
+    },
+    "Swamp Behemoth": {
+        "_base": false,
+        "recipes": [
+            [
+                "Behemoth",
+                "Swamp Dragon"
+            ]
+        ]
+    },
+    "Cosmic Mire": {
+        "_base": false,
+        "recipes": [
+            [
+                "Moon Dust",
+                "Swamp Behemoth"
+            ]
+        ]
+    },
+    "Cosmic Pyramid": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cosmic Mire",
+                "Pyramid"
+            ]
+        ]
+    },
+    "Cosmic Inferno": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cosmic Pyramid",
+                "Lava Storm"
+            ]
+        ]
+    },
+    "Thunder Peak": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cloud",
+                "Mountain Blaze"
+            ]
+        ]
+    },
+    "Thunder Monster": {
+        "_base": false,
+        "recipes": [
+            [
+                "Monster",
+                "Thunder Peak"
+            ]
+        ]
+    },
+    "StormyAmphibian": {
+        "_base": false,
+        "recipes": [
+            [
+                "Frog Tempest",
+                "Thunder Monster"
+            ]
+        ]
+    },
+    "Stormigator": {
+        "_base": false,
+        "recipes": [
+            [
+                "Alligator",
+                "StormyAmphibian"
+            ]
+        ]
+    },
+    "Storm Surfing": {
+        "_base": false,
+        "recipes": [
+            [
+                "Stormigator",
+                "Surfing"
+            ]
+        ]
+    },
+    "Wave Riding": {
+        "_base": false,
+        "recipes": [
+            [
+                "Basalt",
+                "Storm Surfing"
+            ]
+        ]
+    },
+    "Paradise Surf": {
+        "_base": false,
+        "recipes": [
+            [
+                "Eden",
+                "Wave Riding"
+            ]
+        ]
+    },
+    "Tropical Glow": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lava Lamp",
+                "Paradise Surf"
+            ]
+        ]
+    },
+    "Cthulhu": {
+        "_base": false,
+        "recipes": [
+            [
+                "Apocalypse",
+                "Kraken"
+            ]
+        ]
+    },
+    "Shroom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cthulhu",
+                "Mushroom"
+            ]
+        ]
+    },
+    "Mushroom Cloud": {
+        "_base": false,
+        "recipes": [
+            [
+                "Phantom Breeze",
+                "Shroom"
+            ]
+        ]
+    },
+    "Nuclear Alarm": {
+        "_base": false,
+        "recipes": [
+            [
+                "Elemental Siren",
+                "Fallout"
+            ]
+        ]
+    },
+    "Frozen Ceremony": {
+        "_base": false,
+        "recipes": [
+            [
+                "Nuclear Winter",
+                "Ritual Swim"
+            ]
+        ]
+    },
+    "Cosmic Monster": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cosmic Tadpoles",
+                "Godzilla"
+            ]
+        ]
+    },
+    "Gorgonite": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cosmic Monster",
+                "Gorgon"
+            ]
+        ]
+    },
+    "Xenoplanet": {
+        "_base": false,
+        "recipes": [
+            [
+                "Alien Planet",
+                "Gorgonite"
+            ]
+        ]
+    },
+    "Xeno Volcano": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragon's Volcano",
+                "Xenoplanet"
+            ]
+        ]
+    },
+    "Extraterrestrial Impact": {
+        "_base": false,
+        "recipes": [
+            [
+                "Meteorite Strike",
+                "Xeno Volcano"
+            ]
+        ]
+    },
+    "Shooting Star": {
+        "_base": false,
+        "recipes": [
+            [
+                "Ghost Rocket",
+                "Meteor Shower"
+            ]
+        ]
+    },
+    "Toxic Downpour": {
+        "_base": false,
+        "recipes": [
+            [
+                "Meteor Shower",
+                "Poison Gas"
+            ]
+        ]
+    },
+    "Toxic Tide": {
+        "_base": false,
+        "recipes": [
+            [
+                "Toxic Sludge",
+                "Wave"
+            ]
+        ]
+    },
+    "Nessie": {
+        "_base": false,
+        "recipes": [
+            [
+                "Loch Ness Monster",
+                "Toxic Tide"
+            ]
+        ]
+    },
+    "Biofuel": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fossil Fuel",
+                "Greenhouse"
+            ]
+        ]
+    },
+    "Apocalypse Fuel": {
+        "_base": false,
+        "recipes": [
+            [
+                "Biofuel",
+                "Doomsday Turtle"
+            ]
+        ]
+    },
+    "Sphinx": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cthulhu",
+                "Sand"
+            ]
+        ]
+    },
+    "Mythic Beast": {
+        "_base": false,
+        "recipes": [
+            [
+                "Desert Dragonborn",
+                "Sphinx"
+            ]
+        ]
+    },
+    "Crystal Golem": {
+        "_base": false,
+        "recipes": [
+            [
+                "Amethyst",
+                "Mythic Beast"
+            ]
+        ]
+    },
+    "Obsidian Golem": {
+        "_base": false,
+        "recipes": [
+            [
+                "Crystal Golem",
+                "Volcanic Storm"
+            ]
+        ]
+    },
+    "Swamp Golem": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bog Magic",
+                "Obsidian Golem"
+            ]
+        ]
+    },
+    "Swamp Rocker": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rock Star",
+                "Swamp Golem"
+            ]
+        ]
+    },
+    "Magma Cave": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lava Tubes",
+                "Swamp Rocker"
+            ]
+        ]
+    },
+    "Lava Broth": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragon Soup",
+                "Magma Cave"
+            ]
+        ]
+    },
+    "Volcanic Winter": {
+        "_base": false,
+        "recipes": [
+            [
+                "Extinction Event",
+                "Volcanic Ash"
+            ]
+        ]
+    },
+    "Lava Swamp": {
+        "_base": false,
+        "recipes": [
+            [
+                "Swamp Lizard",
+                "Volcanic Winter"
+            ]
+        ]
+    },
+    "Dragonstone Swamp": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragonstone Crater",
+                "Lava Swamp"
+            ]
+        ]
+    },
+    "Mythic Mire": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragonstone Swamp",
+                "The Doors"
+            ]
+        ]
+    },
+    "Legendary Warrior": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mythic Mire",
+                "Super Saiyan 3"
+            ]
+        ]
+    },
+    "Alien": {
+        "_base": false,
+        "recipes": [
+            [
+                "Poison Gas",
+                "Venus"
+            ]
+        ]
+    },
+    "Cryptid": {
+        "_base": false,
+        "recipes": [
+            [
+                "Alien",
+                "Mythic Beast"
+            ]
+        ]
+    },
+    "Molten Creature": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cryptid",
+                "Lava Lamp"
+            ]
+        ]
+    },
+    "Godzilla's Lair": {
+        "_base": false,
+        "recipes": [
+            [
+                "Godzilla",
+                "Volcanic Shore"
+            ]
+        ]
+    },
+    "Kaiju Statue": {
+        "_base": false,
+        "recipes": [
+            [
+                "Frog Statue",
+                "Godzilla"
+            ]
+        ]
+    },
+    "Geothermal Power Plant": {
+        "_base": false,
+        "recipes": [
+            [
+                "Geothermal Turbine",
+                "Kaiju Statue"
+            ]
+        ]
+    },
+    "Train Wreck": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lightning Storm",
+                "Train"
+            ]
+        ]
+    },
+    "Fus Ro Dah!": {
+        "_base": false,
+        "recipes": [
+            [
+                "Skyrim Storm",
+                "Train Wreck"
+            ]
+        ]
+    },
+    "Fujita Scale": {
+        "_base": false,
+        "recipes": [
+            [
+                "Tornado",
+                "Wind Scale"
+            ]
+        ]
+    },
+    "Toxic Tornado": {
+        "_base": false,
+        "recipes": [
+            [
+                "Pollutant",
+                "Tornado"
             ]
         ]
     }
