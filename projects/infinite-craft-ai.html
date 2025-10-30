@@ -2,858 +2,371 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinite Craft Visualizer – CatSu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- your site css -->
-    <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css">
-    <style>
-        /* scoped to our app */
-        #icv-app {
-            --icv-bg: #edf0f5;
-            --icv-panel: #ffffff;
-            --icv-panel-border: #d5d8df;
-            --icv-panel-header: #dfe7f5;
-            --icv-text: #0f172a;
-            --icv-text-muted: #6b7280;
-            --icv-badge: #edf1f5;
-            --icv-badge-text: #1f2937;
-            --icv-inv-chip-bg: #0f172a;
-            --icv-inv-chip-text: #ffffff;
-            --icv-craftable-bg: #f8fafc;
-            --icv-craftable-border: #e2e8f0;
-            --icv-row-hover: #f2f6ff;
-            --icv-row-selected: #dbeafe;
-            --icv-input-bg: #ffffff;
-            --icv-input-border: #cbd5e1;
-            --icv-pill: #0ea5e9;
-            --icv-trace-good: #16a34a;
-            --icv-trace-miss: #b91c1c;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinite Craft Visualizer – CatSu</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css" />
+  <style>
+    /* scoped dark/light vars */
+    #icv-app {
+      --bg: #edf0f5;
+      --panel: #fff;
+      --panel-border: #d5d8df;
+      --panel-header: #dfe7f5;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --badge: #edf1f5;
+      --badge-text: #1f2937;
+      --pill: #0ea5e9;
+      --trace-ok: #16a34a;
+      --trace-miss: #b91c1c;
+    }
+    #icv-app.icv-dark {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-border: #1f2937;
+      --panel-header: #1f2937;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --badge: #1f2937;
+      --badge-text: #e2e8f0;
+    }
 
-        #icv-app.icv-dark {
-            --icv-bg: #0f172a;
-            --icv-panel: #111827;
-            --icv-panel-border: #1f2937;
-            --icv-panel-header: #1f2937;
-            --icv-text: #e2e8f0;
-            --icv-text-muted: #94a3b8;
-            --icv-badge: #1f2937;
-            --icv-badge-text: #e2e8f0;
-            --icv-inv-chip-bg: #0ea5e9;
-            --icv-inv-chip-text: #0f172a;
-            --icv-craftable-bg: #0f172a;
-            --icv-craftable-border: #1f2937;
-            --icv-row-hover: #162036;
-            --icv-row-selected: #162036;
-            --icv-input-bg: #0f172a;
-            --icv-input-border: #1f2937;
-            --icv-pill: #0ea5e9;
-        }
-
-        .icv-shell {
-            background: var(--icv-bg);
-            border-radius: 8px;
-            padding: 0;
-        }
-
-        .icv-layout {
-            display: grid;
-            grid-template-columns: 280px minmax(0, 1fr);
-            gap: 1rem;
-            margin: 0 !important;
-        }
-
-        /* left panel */
-        .icv-left {
-            background: var(--icv-panel);
-            border: 1px solid var(--icv-panel-border);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 170px);
-            min-height: 460px;
-        }
-
-        .icv-left-head {
-            background: var(--icv-panel-header);
-            padding: 0.6rem 0.8rem 0.3rem;
-        }
-
-        .icv-left-head h2 {
-            margin: 0;
-            font-size: 1rem;
-            color: var(--icv-text);
-        }
-
-        .icv-left-head small {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--icv-text-muted);
-            margin-top: 0.25rem;
-        }
-
-        .icv-search {
-            padding: 0.6rem 0.8rem;
-            background: var(--icv-panel);
-            border-bottom: 1px solid rgba(237, 240, 244, 0.08);
-        }
-
-        .icv-search input {
-            width: 100%;
-            padding: 0.35rem 0.4rem;
-            border: 1px solid var(--icv-input-border);
-            background: var(--icv-input-bg);
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--icv-text);
-        }
-
-        .icv-elements-list {
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .icv-element-row {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.35rem 0.6rem;
-            border-bottom: 1px solid rgba(243, 244, 246, 0.03);
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .icv-element-row:hover {
-            background: var(--icv-row-hover);
-        }
-
-        .icv-element-row.icv-inv {
-            background: var(--icv-row-selected);
-        }
-
-        .icv-el-name {
-            flex: 1;
-            font-size: 0.8rem;
-            color: var(--icv-text);
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .icv-badge {
-            font-size: 0.6rem;
-            background: var(--icv-badge);
-            border-radius: 999px;
-            padding: 2px 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            color: var(--icv-badge-text);
-            white-space: nowrap;
-        }
-
-        .icv-badge-base {
-            background: #22c55e1a;
-            color: #22c55e;
-        }
-
-        .icv-inv-pill {
-            font-size: 0.6rem;
-            background: var(--icv-pill);
-            color: #fff;
-            border-radius: 999px;
-            padding: 2px 6px;
-            white-space: nowrap;
-        }
-
-        /* right col */
-        .icv-right {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            min-width: 0;
-        }
-
-        .icv-card {
-            background: var(--icv-panel);
-            border: 1px solid var(--icv-panel-border);
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 0 !important;
-        }
-
-        .icv-card-header {
-            background: var(--icv-panel-header);
-            padding: 0.6rem 0.8rem;
-            font-size: 1rem;
-            color: var(--icv-text);
-        }
-
-        .icv-card-header-inline {
-            background: var(--icv-panel-header);
-            padding: 0.6rem 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .icv-card-body {
-            padding: 0.6rem 0.8rem 0.8rem;
-        }
-
-        .icv-empty {
-            font-size: 0.8rem;
-            color: var(--icv-text-muted);
-        }
-
-        .icv-inventory-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .icv-chip {
-            background: var(--icv-inv-chip-bg);
-            color: var(--icv-inv-chip-text);
-            padding: 2px 10px;
-            border-radius: 999px;
-            font-size: 0.67rem;
-        }
-
-        .icv-craftable-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-            gap: 0.6rem;
-        }
-
-        .icv-craftable-item {
-            background: var(--icv-craftable-bg);
-            border: 1px solid var(--icv-craftable-border);
-            border-radius: 6px;
-            padding: 0.4rem 0.5rem 0.5rem;
-        }
-
-        .icv-craftable-name {
-            font-weight: 600;
-            font-size: 0.8rem;
-            margin-bottom: 0.25rem;
-            color: var(--icv-text);
-        }
-
-        .icv-recipe-line {
-            font-size: 0.7rem;
-            color: var(--icv-text-muted);
-        }
-
-        .icv-header-actions-btn {
-            background: rgba(15, 23, 42, 0.06);
-            border: 1px solid rgba(15, 23, 42, 0.12);
-            border-radius: 999px;
-            padding: 0.25rem 0.6rem;
-            font-size: 0.7rem;
-            cursor: pointer;
-        }
-
-        #icv-app.icv-dark .icv-header-actions-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.12);
-            color: #e2e8f0;
-        }
-
-        .icv-steps-input {
-            width: 4rem;
-            padding: 0.2rem 0.35rem;
-            border-radius: 5px;
-            border: 1px solid var(--icv-input-border);
-            background: var(--icv-input-bg);
-            color: var(--icv-text);
-            font-size: 0.7rem;
-        }
-
-        .icv-step-tag {
-            display: inline-block;
-            font-size: 0.6rem;
-            background: rgba(14, 165, 233, 0.14);
-            color: var(--icv-text);
-            padding: 1px 6px;
-            border-radius: 999px;
-            margin-bottom: 0.25rem;
-        }
-
-        /* trace */
-        .icv-trace-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.35rem;
-        }
-
-        .icv-trace-step {
-            padding: 0.3rem 0.4rem;
-            border-left: 3px solid transparent;
-            background: rgba(248, 250, 252, 0.05);
-            border-radius: 4px;
-            font-size: 0.72rem;
-        }
-
-        .icv-trace-ok {
-            border-left-color: var(--icv-trace-good);
-        }
-
-        .icv-trace-miss {
-            border-left-color: var(--icv-trace-miss);
-        }
-
-        .icv-trace-small {
-            font-size: 0.65rem;
-            color: var(--icv-text-muted);
-        }
-
-        .icv-inline {
-            display: flex;
-            gap: 0.4rem;
-            align-items: center;
-        }
-
-        .icv-trace-title {
-            font-weight: 600;
-        }
-
-        @media (max-width: 900px) {
-            .icv-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .icv-left {
-                height: auto;
-                max-height: 320px;
-            }
-        }
-    </style>
+    .icv-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1rem;
+    }
+    .icv-left {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+    .icv-left-head {
+      background: var(--panel-header);
+      padding: 0.6rem 0.8rem 0.3rem;
+    }
+    .icv-left-head h2 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .icv-left-head small {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .icv-search {
+      padding: 0.6rem 0.8rem;
+    }
+    .icv-search input {
+      width: 100%;
+      padding: 0.35rem 0.4rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: #fff;
+      color: var(--text);
+      font-size: 0.8rem;
+    }
+    .icv-element-row {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.6rem;
+      border-bottom: 1px solid #f3f4f6;
+      cursor: pointer;
+      user-select: none;
+    }
+    .icv-element-row:hover {
+      background: #f2f6ff;
+    }
+    .icv-element-row.icv-inv {
+      background: #dbeafe;
+    }
+    .icv-el-name {
+      flex: 1;
+      font-size: 0.8rem;
+      color: var(--text);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .icv-badge {
+      font-size: 0.6rem;
+      background: var(--badge);
+      color: var(--badge-text);
+      padding: 2px 6px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+    .icv-badge-base {
+      background: #22c55e1a;
+      color: #22c55e;
+    }
+    .icv-inv-pill {
+      font-size: 0.6rem;
+      background: var(--pill);
+      color: #fff;
+      border-radius: 999px;
+      padding: 2px 6px;
+    }
+    .icv-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .icv-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+    }
+    .icv-card-header,
+    .icv-card-header-inline {
+      background: var(--panel-header);
+      padding: 0.6rem 0.8rem;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .icv-card-header-inline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .icv-card-body {
+      padding: 0.6rem 0.8rem 0.8rem;
+    }
+    .icv-trace-title {
+      font-weight: 600;
+    }
+    .icv-trace-step {
+      border-left: 3px solid transparent;
+      padding: 0.3rem 0.4rem;
+      font-size: 0.72rem;
+      border-radius: 4px;
+    }
+    .icv-trace-ok {
+      border-left-color: var(--trace-ok);
+    }
+    .icv-trace-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+  </style>
 </head>
 
 <body>
-
-<header>
+  <header>
     <h2>
-        <a href="https://catsu-osm.github.io" style="text-decoration: none;">
-            <i class="fas fa-home" style="margin-right: 10px;"></i>
-        </a>
-        CatSu's Website
+      <a href="https://catsu-osm.github.io" style="text-decoration:none">
+        <i class="fas fa-home" style="margin-right:10px"></i>
+      </a>
+      CatSu's Website
     </h2>
     <nav>
-        <button onclick="location.href='https://catsu-osm.github.io/projects'">Projects</button>
-        <button onclick="location.href='https://catsu-osm.github.io/resources'">Resources</button>
+      <button onclick="location.href='https://catsu-osm.github.io/projects'">
+        Projects
+      </button>
+      <button onclick="location.href='https://catsu-osm.github.io/resources'">
+        Resources
+      </button>
     </nav>
-</header>
+  </header>
 
-<main>
-    <!-- our scoped app -->
-    <div id="icv-app" class="icv-shell">
-        <div class="icv-layout">
-            <!-- LEFT -->
-            <section class="icv-left">
-                <div class="icv-left-head">
-                    <h2>Infinite Craft Elements</h2>
-                    <small>Click to add/remove from your inventory, right-click to trace</small>
-                </div>
-                <div class="icv-search">
-                    <input id="icv-search-input" type="text" placeholder="Filter elements...">
-                </div>
-                <div class="icv-elements-list" id="icv-elements-list"></div>
-            </section>
+  <main>
+    <div id="icv-app">
+      <div class="icv-layout">
+        <section class="icv-left">
+          <div class="icv-left-head">
+            <h2>Infinite Craft Elements</h2>
+            <small
+              >Click to add/remove from inventory, right-click to trace (bases
+              only)</small
+            >
+          </div>
+          <div class="icv-search">
+            <input
+              id="search"
+              type="text"
+              placeholder="Filter elements..."
+            />
+          </div>
+          <div id="elist" style="flex:1;overflow-y:auto"></div>
+        </section>
 
-            <!-- RIGHT -->
-            <section class="icv-right">
-                <div class="icv-card">
-                    <div class="icv-card-header">Your Inventory</div>
-                    <div class="icv-card-body" id="icv-inventory-body">
-                        <p class="icv-empty">No elements selected. Click an element on the left.</p>
-                    </div>
-                </div>
+        <section class="icv-right">
+          <div class="icv-card">
+            <div class="icv-card-header">Your Inventory</div>
+            <div class="icv-card-body" id="invbody">
+              <p style="font-size:0.8rem;color:var(--muted)">
+                No elements selected.
+              </p>
+            </div>
+          </div>
 
-                <div class="icv-card">
-                    <div class="icv-card-header">Craftable Right Now</div>
-                    <div class="icv-card-body" id="icv-craftable-body">
-                        <p class="icv-empty">Select at least one element to see results.</p>
-                    </div>
-                </div>
+          <div class="icv-card">
+            <div class="icv-card-header">Craftable Right Now</div>
+            <div class="icv-card-body" id="craftbody">
+              <p style="font-size:0.8rem;color:var(--muted)">
+                Select elements to see results.
+              </p>
+            </div>
+          </div>
 
-                <div class="icv-card">
-                    <div class="icv-card-header-inline">
-                        <span>Almost Craftable (≤ steps)</span>
-                        <input id="icv-steps" class="icv-steps-input" type="number" min="1" max="100" value="4" title="Max steps to look ahead">
-                    </div>
-                    <div class="icv-card-body" id="icv-almost-body">
-                        <p class="icv-empty">Pick some elements first.</p>
-                    </div>
-                </div>
-
-                <!-- TRACE CARD -->
-                <div class="icv-card">
-                    <div class="icv-card-header-inline">
-                        <span>Trace Element</span>
-                        <label style="display:flex; gap:4px; align-items:center;">
-                            <input type="checkbox" id="icv-trace-bases-only">
-                            <span style="font-size:0.65rem; color:var(--icv-text-muted);">bases only</span>
-                        </label>
-                    </div>
-                    <div class="icv-card-body" id="icv-trace-body">
-                        <p class="icv-empty">Right-click an element on the left to trace it.</p>
-                    </div>
-                </div>
-
-                <div class="icv-card">
-                    <div class="icv-card-header-inline">
-                        <span>Source</span>
-                        <div style="display:flex; gap:0.4rem;">
-                            <button id="icv-reload" class="icv-header-actions-btn" type="button">Reload</button>
-                            <button id="icv-dark-toggle" class="icv-header-actions-btn" type="button">Dark</button>
-                        </div>
-                    </div>
-                    <div class="icv-card-body">
-                        <p style="font-size:0.7rem; color:var(--icv-text-muted);">Loaded from
-                            <code>docs/infinite_craft_recipes.json</code>.
-                        </p>
-                        <p id="icv-source-status" style="font-size:0.7rem; color:var(--icv-text-muted);"></p>
-                    </div>
-                </div>
-            </section>
-        </div>
+          <div class="icv-card">
+            <div class="icv-card-header-inline">
+              <span>Trace Element</span>
+            </div>
+            <div class="icv-card-body" id="tracebody">
+              <p style="font-size:0.8rem;color:var(--muted)">
+                Right-click an element on the left to trace from bases.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-</main>
+  </main>
 
-<footer>
+  <footer>
     <p>&copy; CatSu 2023</p>
-</footer>
+  </footer>
 
-<script>
-    const BASE_URL = "../docs/infinite_craft_recipes.json";
-    const app = document.getElementById("icv-app");
-    const searchInput = document.getElementById("icv-search-input");
-    const listEl = document.getElementById("icv-elements-list");
-    const invBody = document.getElementById("icv-inventory-body");
-    const craftBody = document.getElementById("icv-craftable-body");
-    const almostBody = document.getElementById("icv-almost-body");
-    const traceBody = document.getElementById("icv-trace-body");
-    const traceBasesOnly = document.getElementById("icv-trace-bases-only");
-    const statusEl = document.getElementById("icv-source-status");
-    const reloadBtn = document.getElementById("icv-reload");
-    const darkBtn = document.getElementById("icv-dark-toggle");
-    const stepsInput = document.getElementById("icv-steps");
+  <script>
+    const URL = "../docs/infinite_craft_recipes.json";
+    const elist = document.getElementById("elist");
+    const invBody = document.getElementById("invbody");
+    const craftBody = document.getElementById("craftbody");
+    const traceBody = document.getElementById("tracebody");
+    const search = document.getElementById("search");
 
     let recipes = {};
-    let allNames = [];
-    let inventory = new Set();
-    let currentTraceTarget = null;
+    let all = [];
+    let inv = new Set();
 
-    // DARK
-    (function initDark() {
-        const saved = localStorage.getItem("icv-theme");
-        if (saved === "dark") {
-            app.classList.add("icv-dark");
-        }
-        darkBtn.textContent = app.classList.contains("icv-dark") ? "Light" : "Dark";
-    })();
-
-    darkBtn.addEventListener("click", () => {
-        app.classList.toggle("icv-dark");
-        const isDark = app.classList.contains("icv-dark");
-        localStorage.setItem("icv-theme", isDark ? "dark" : "light");
-        darkBtn.textContent = isDark ? "Light" : "Dark";
-    });
-
-    function isBase(name) {
-        const node = recipes[name];
-        return node && node._base === true;
+    function isBase(n) {
+      const r = recipes[n];
+      return r && r._base === true;
+    }
+    function opts(n) {
+      const r = recipes[n];
+      return r && Array.isArray(r.recipes) ? r.recipes : [];
     }
 
-    function getRecipeOptions(name) {
-        const node = recipes[name];
-        if (!node) return [];
-        return Array.isArray(node.recipes) ? node.recipes : [];
+    function renderList(filt = "") {
+      elist.innerHTML = "";
+      const ft = filt.trim().toLowerCase();
+      for (const n of all) {
+        if (ft && !n.toLowerCase().includes(ft)) continue;
+        const row = document.createElement("div");
+        row.className = "icv-element-row" + (inv.has(n) ? " icv-inv" : "");
+        row.innerHTML = `<div class="icv-el-name">${n}</div>
+        <span class="icv-badge${isBase(n) ? " icv-badge-base" : ""}">${
+          isBase(n) ? "BASE" : "CRAFT"
+        }</span>`;
+        row.onclick = () => {
+          if (inv.has(n)) inv.delete(n);
+          else inv.add(n);
+          renderList(ft);
+        };
+        row.oncontextmenu = (e) => {
+          e.preventDefault();
+          traceBody.innerHTML = "";
+          renderTrace(n);
+        };
+        elist.appendChild(row);
+      }
     }
 
-    function canMakeWithInventory(name, inv) {
-        if (inv.has(name)) return false;
-        const opts = getRecipeOptions(name);
-        if (!opts.length) return false;
-        for (const opt of opts) {
-            let ok = true;
-            for (const ing of opt) {
-                if (!inv.has(ing)) {
-                    ok = false;
-                    break;
-                }
-            }
-            if (ok) return true;
-        }
-        return false;
+    function canMake(n, set) {
+      if (set.has(n)) return false;
+      for (const o of opts(n)) {
+        if (o.every((x) => set.has(x))) return true;
+      }
+      return false;
     }
 
-    function renderElements(filter = "") {
-        listEl.innerHTML = "";
-        const ft = filter.trim().toLowerCase();
-        for (const name of allNames) {
-            if (ft && !name.toLowerCase().includes(ft)) continue;
-            const row = document.createElement("div");
-            row.className = "icv-element-row" + (inventory.has(name) ? " icv-inv" : "");
-            row.dataset.name = name;
+    function renderTrace(target) {
+      const bases = new Set(all.filter((x) => isBase(x)));
+      const trace = findTrace(target, bases);
+      const tb = traceBody;
+      tb.innerHTML = "";
+      if (!trace) {
+        tb.innerHTML = `<p style="font-size:0.8rem;color:var(--muted)">No path from bases found.</p>`;
+        return;
+      }
+      const title = document.createElement("div");
+      title.className = "icv-trace-title";
+      title.textContent = "Trace for: " + target;
+      tb.appendChild(title);
 
-            const label = document.createElement("div");
-            label.className = "icv-el-name";
-            label.textContent = name;
-            row.appendChild(label);
-
-            const badge = document.createElement("span");
-            badge.className = "icv-badge" + (isBase(name) ? " icv-badge-base" : "");
-            badge.textContent = isBase(name) ? "BASE" : "CRAFTABLE";
-            row.appendChild(badge);
-
-            if (inventory.has(name)) {
-                const pill = document.createElement("span");
-                pill.className = "icv-inv-pill";
-                pill.textContent = "IN";
-                row.appendChild(pill);
-            }
-
-            // left-click: toggle inventory
-            row.addEventListener("click", () => {
-                const nm = row.dataset.name;
-                if (inventory.has(nm)) inventory.delete(nm);
-                else inventory.add(nm);
-                renderInventory();
-                renderCraftables();
-                renderAlmost();
-                // if this is the thing we currently traced, re-run
-                if (currentTraceTarget === nm) {
-                    renderTraceFor(nm);
-                }
-                renderElements(searchInput.value || "");
-            });
-
-            // right-click: trace
-            row.addEventListener("contextmenu", (e) => {
-                e.preventDefault();
-                const nm = row.dataset.name;
-                currentTraceTarget = nm;
-                renderTraceFor(nm);
-            });
-
-            listEl.appendChild(row);
-        }
+      const list = document.createElement("div");
+      list.className = "icv-trace-list";
+      for (const st of trace) {
+        const r = document.createElement("div");
+        r.className = "icv-trace-step icv-trace-ok";
+        if (st.type === "have")
+          r.textContent = `✅ Have ${st.name}`;
+        else
+          r.textContent = `🛠️ ${st.name} = ${st.recipe.join(" + ")}`;
+        list.appendChild(r);
+      }
+      tb.appendChild(list);
     }
 
-    function renderInventory() {
-        invBody.innerHTML = "";
-        if (inventory.size === 0) {
-            invBody.innerHTML = '<p class="icv-empty">No elements selected. Click an element on the left.</p>';
-            return;
+    function findTrace(target, start, depth = 20, seen = new Set()) {
+      if (start.has(target)) return [{ type: "have", name: target }];
+      if (depth <= 0) return null;
+      const o = opts(target);
+      if (!o.length) return null;
+      for (const rec of o) {
+        if (rec.every((x) => start.has(x))) {
+          return [
+            ...rec.map((x) => ({ type: "have", name: x })),
+            { type: "make", name: target, recipe: rec },
+          ];
         }
-        const wrap = document.createElement("div");
-        wrap.className = "icv-inventory-chips";
-        Array.from(inventory).sort((a, b) => a.localeCompare(b)).forEach(n => {
-            const chip = document.createElement("span");
-            chip.className = "icv-chip";
-            chip.textContent = n;
-            wrap.appendChild(chip);
-        });
-        invBody.appendChild(wrap);
+        if (seen.has(target)) continue;
+        const newSeen = new Set(seen);
+        newSeen.add(target);
+        let steps = [];
+        let cur = new Set(start);
+        let fail = false;
+        for (const ing of rec) {
+          if (!cur.has(ing)) {
+            const sub = findTrace(ing, cur, depth - 1, newSeen);
+            if (!sub) {
+              fail = true;
+              break;
+            }
+            steps = steps.concat(sub);
+            cur.add(ing);
+          } else {
+            steps.push({ type: "have", name: ing });
+          }
+        }
+        if (!fail) {
+          steps.push({ type: "make", name: target, recipe: rec });
+          return steps;
+        }
+      }
+      return null;
     }
 
-    function renderCraftables() {
-        craftBody.innerHTML = "";
-        if (inventory.size === 0) {
-            craftBody.innerHTML = '<p class="icv-empty">Select at least one element to see results.</p>';
-            return;
-        }
-        const craftables = [];
-        for (const name of allNames) {
-            if (canMakeWithInventory(name, inventory)) {
-                craftables.push(name);
-            }
-        }
-        if (!craftables.length) {
-            craftBody.innerHTML = '<p class="icv-empty">Nothing craftable from this set. Add another base.</p>';
-            return;
-        }
-        const grid = document.createElement("div");
-        grid.className = "icv-craftable-grid";
-        for (const el of craftables) {
-            const card = document.createElement("div");
-            card.className = "icv-craftable-item";
-            const title = document.createElement("div");
-            title.className = "icv-craftable-name";
-            title.textContent = el;
-            card.appendChild(title);
-
-            const opts = getRecipeOptions(el);
-            for (const opt of opts) {
-                const ok = opt.every(x => inventory.has(x));
-                if (!ok) continue;
-                const line = document.createElement("div");
-                line.className = "icv-recipe-line";
-                line.innerHTML = "<strong>" + el + "</strong> = " + opt.join(" + ");
-                card.appendChild(line);
-            }
-
-            grid.appendChild(card);
-        }
-        craftBody.appendChild(grid);
+    async function load() {
+      const res = await fetch(URL);
+      recipes = await res.json();
+      all = Object.keys(recipes).sort((a, b) => a.localeCompare(b));
+      renderList();
     }
 
-    // compute forward reach up to maxSteps
-    function computeReach(maxSteps) {
-        const level0 = new Set(inventory);
-        const byNameToStep = {};
-        for (const n of level0) byNameToStep[n] = 0;
-
-        let currentSet = new Set(level0);
-
-        for (let step = 1; step <= maxSteps; step++) {
-            const newly = [];
-            for (const name of allNames) {
-                if (byNameToStep[name] !== undefined) continue;
-                const opts = getRecipeOptions(name);
-                if (!opts.length) continue;
-                let okAny = false;
-                for (const opt of opts) {
-                    let ok = true;
-                    for (const ing of opt) {
-                        if (!currentSet.has(ing)) {
-                            ok = false;
-                            break;
-                        }
-                    }
-                    if (ok) {
-                        okAny = true;
-                        break;
-                    }
-                }
-                if (okAny) {
-                    newly.push(name);
-                }
-            }
-            if (!newly.length) break;
-            for (const n of newly) {
-                byNameToStep[n] = step;
-                currentSet.add(n);
-            }
-        }
-
-        return byNameToStep;
-    }
-
-    function renderAlmost() {
-        almostBody.innerHTML = "";
-        if (inventory.size === 0) {
-            almostBody.innerHTML = '<p class="icv-empty">Pick some elements first.</p>';
-            return;
-        }
-        let maxSteps = parseInt(stepsInput.value, 10);
-        if (isNaN(maxSteps) || maxSteps < 1) maxSteps = 1;
-        if (maxSteps > 100) maxSteps = 100;
-        stepsInput.value = maxSteps;
-
-        const reach = computeReach(maxSteps);
-        const byStep = {};
-        for (const [name, step] of Object.entries(reach)) {
-            if (step >= 2 && step <= maxSteps) {
-                if (!byStep[step]) byStep[step] = [];
-                byStep[step].push(name);
-            }
-        }
-
-        const stepsSorted = Object.keys(byStep).map(Number).sort((a, b) => a - b);
-        if (!stepsSorted.length) {
-            almostBody.innerHTML = '<p class="icv-empty">Nothing extra is reachable within ' + maxSteps + ' steps.</p>';
-            return;
-        }
-
-        stepsSorted.forEach(step => {
-            const group = document.createElement("div");
-            group.style.marginBottom = "0.6rem";
-            const label = document.createElement("div");
-            label.className = "icv-step-tag";
-            label.textContent = "Step " + step;
-            group.appendChild(label);
-
-            const wrap = document.createElement("div");
-            wrap.className = "icv-craftable-grid";
-
-            byStep[step].sort((a, b) => a.localeCompare(b)).forEach(el => {
-                const card = document.createElement("div");
-                card.className = "icv-craftable-item";
-                const title = document.createElement("div");
-                title.className = "icv-craftable-name";
-                title.textContent = el;
-                card.appendChild(title);
-
-                const opts = getRecipeOptions(el);
-                for (const opt of opts) {
-                    const ok = opt.every(x => reach[x] !== undefined && reach[x] <= step - 1);
-                    if (!ok) continue;
-                    const line = document.createElement("div");
-                    line.className = "icv-recipe-line";
-                    line.innerHTML = "<strong>" + el + "</strong> = " + opt.join(" + ");
-                    card.appendChild(line);
-                }
-
-                wrap.appendChild(card);
-            });
-
-            group.appendChild(wrap);
-            almostBody.appendChild(group);
-        });
-    }
-
-    // TRACE LOGIC
-    function findTrace(target, startingSet, maxDepth = 20, visited = new Set()) {
-        if (startingSet.has(target)) {
-            return [{ type: "have", name: target }];
-        }
-        if (maxDepth <= 0) return null;
-
-        const opts = getRecipeOptions(target);
-        if (!opts.length) return null;
-
-        for (const opt of opts) {
-            // if all ingredients in startingSet -> done
-            if (opt.every(ing => startingSet.has(ing))) {
-                return [
-                    ...opt.map(ing => ({ type: "have", name: ing })),
-                    { type: "make", name: target, recipe: opt }
-                ];
-            }
-
-            if (visited.has(target)) continue;
-            const newVisited = new Set(visited);
-            newVisited.add(target);
-
-            let steps = [];
-            let tmpSet = new Set(startingSet);
-            let failed = false;
-            for (const ing of opt) {
-                if (!tmpSet.has(ing)) {
-                    const sub = findTrace(ing, tmpSet, maxDepth - 1, newVisited);
-                    if (!sub) {
-                        failed = true;
-                        break;
-                    }
-                    steps = steps.concat(sub);
-                    tmpSet.add(ing);
-                } else {
-                    steps.push({ type: "have", name: ing });
-                }
-            }
-            if (!failed) {
-                steps.push({ type: "make", name: target, recipe: opt });
-                return steps;
-            }
-        }
-        return null;
-    }
-
-    function renderTraceFor(target) {
-        traceBody.innerHTML = "";
-        if (!target) {
-            traceBody.innerHTML = '<p class="icv-empty">Right-click an element on the left to trace it.</p>';
-            return;
-        }
-
-        let startingSet;
-        if (traceBasesOnly.checked) {
-            startingSet = new Set(allNames.filter(n => isBase(n)));
-        } else {
-            startingSet = new Set(inventory);
-        }
-
-        const trace = findTrace(target, startingSet, 20);
-        if (!trace) {
-            traceBody.innerHTML = '<p class="icv-empty">No path found within 20 steps from current start.</p>';
-            return;
-        }
-
-        const title = document.createElement("div");
-        title.className = "icv-trace-title";
-        title.textContent = "Trace for: " + target;
-
-        const list = document.createElement("div");
-        list.className = "icv-trace-list";
-
-        const originalStart = new Set(startingSet);
-
-        trace.forEach(step => {
-            const row = document.createElement("div");
-            row.className = "icv-trace-step";
-            if (step.type === "have") {
-                const ok = originalStart.has(step.name);
-                if (ok) {
-                    row.classList.add("icv-trace-ok");
-                    row.innerHTML = `✅ Have <strong>${step.name}</strong>`;
-                } else {
-                    row.innerHTML = `➕ Need <strong>${step.name}</strong> (built earlier in trace)`;
-                }
-            } else if (step.type === "make") {
-                row.classList.add("icv-trace-ok");
-                row.innerHTML = `🛠️ <strong>${step.name}</strong> = ${step.recipe.join(" + ")}`;
-            }
-            list.appendChild(row);
-        });
-
-        const note = document.createElement("div");
-        note.className = "icv-trace-small";
-        note.textContent = traceBasesOnly.checked
-            ? "Tracing from bases only. (right-click another element to change target)"
-            : "Tracing from your current inventory. (right-click another element to change target)";
-
-        traceBody.appendChild(title);
-        traceBody.appendChild(list);
-        traceBody.appendChild(note);
-    }
-
-    async function loadRecipes(bust = false) {
-        try {
-            statusEl.textContent = "Loading…";
-            const url = bust ? BASE_URL + "?t=" + Date.now() : BASE_URL;
-            const res = await fetch(url, { cache: "no-store" });
-            const data = await res.json();
-            recipes = data || {};
-            allNames = Object.keys(recipes).sort((a, b) => a.localeCompare(b));
-            renderElements(searchInput.value || "");
-            renderCraftables();
-            renderAlmost();
-            statusEl.textContent = "Loaded " + allNames.length + " elements.";
-        } catch (e) {
-            console.error(e);
-            statusEl.textContent = "Failed to load source.";
-            listEl.innerHTML = '<p style="padding:0.7rem; color:#b91c1c;">Could not load docs/infinite_craft_recipes.json</p>';
-        }
-    }
-
-    searchInput.addEventListener("input", e => {
-        renderElements(e.target.value);
-    });
-
-    reloadBtn.addEventListener("click", () => {
-        loadRecipes(true);
-    });
-
-    stepsInput.addEventListener("change", () => {
-        renderAlmost();
-    });
-
-    traceBasesOnly.addEventListener("change", () => {
-        if (currentTraceTarget) {
-            renderTraceFor(currentTraceTarget);
-        }
-    });
-
-    // initial
-    loadRecipes(false);
-</script>
-
+    search.oninput = (e) => renderList(e.target.value);
+    load();
+  </script>
 </body>
 </html>
