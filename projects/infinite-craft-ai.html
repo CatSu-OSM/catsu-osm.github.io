@@ -8,124 +8,190 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css">
     <style>
+        /* override the dark look the screenshot had */
+        body {
+            background: #f0f2f7;
+            min-height: 100vh;
+        }
+
         main {
             display: grid;
-            grid-template-columns: minmax(260px, 330px) 1fr;
+            grid-template-columns: 280px minmax(0, 1fr);
             gap: 1rem;
-            padding-bottom: 4rem;
+            padding: 1rem 1rem 5rem;
+            box-sizing: border-box;
         }
-        .panel, .card {
+
+        /* left column */
+        .elements-panel {
             background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            border: 1px solid #d5d8df;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 150px);
+            min-height: 460px;
+        }
+
+        .panel-header {
+            background: #e6f0ff;
+            padding: 0.6rem 0.8rem 0.3rem;
+        }
+
+        .panel-header h2 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .panel-header small {
+            display: block;
+            font-size: 0.7rem;
+            color: #4b5563;
+            margin-top: 0.25rem;
+        }
+
+        .search-box {
+            padding: 0.6rem 0.8rem;
+            background: #fff;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.35rem 0.4rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .elements-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .element-row {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.6rem;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+        }
+
+        .element-row:hover {
+            background: #f2f6ff;
+        }
+
+        .element-row.in-inv {
+            background: #dbeafe;
+        }
+
+        .el-name {
+            flex: 1;
+            font-size: 0.8rem;
+            color: #111827;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .badge {
+            font-size: 0.6rem;
+            background: #edf1f5;
+            border-radius: 999px;
+            padding: 2px 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: #1f2937;
+            white-space: nowrap;
+        }
+
+        .badge-base {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .inventory-pill {
+            font-size: 0.6rem;
+            background: #0ea5e9;
+            color: #fff;
+            border-radius: 999px;
+            padding: 2px 6px;
+            white-space: nowrap;
+        }
+
+        /* right column */
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-width: 0;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #d5d8df;
+            border-radius: 8px;
             overflow: hidden;
         }
-        .panel h2, .card h2 {
+
+        .card h2 {
             margin: 0;
             background: #e6f0ff;
             padding: 0.6rem 0.8rem;
             font-size: 1rem;
         }
-        .panel small {
-            display: block;
-            padding: 0 0.8rem 0.5rem;
-            font-size: 0.7rem;
-            color: #666;
-            background: #e6f0ff;
-        }
-        .search-box {
-            padding: 0.6rem 0.8rem;
-            border-bottom: 1px solid #eee;
-            background: #fff;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 0.3rem 0.4rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 0.85rem;
-        }
-        .elements-list {
-            max-height: calc(100vh - 220px);
-            overflow-y: auto;
-        }
-        .element-row {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.4rem 0.8rem;
-            border-bottom: 1px solid #f2f2f2;
-            cursor: pointer;
-        }
-        .element-row:hover {
-            background: #f5f8ff;
-        }
-        .element-row.in-inv {
-            background: #dbeafe;
-        }
-        .el-name {
-            flex: 1;
-            font-size: 0.85rem;
-        }
-        .badge {
-            font-size: 0.6rem;
-            background: #e2e8f0;
-            padding: 2px 6px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-        .badge-base {
-            background: #dcfce7;
-            color: #166534;
-        }
-        .inventory-pill {
-            font-size: 0.6rem;
-            background: #0ea5e9;
-            color: #fff;
-            padding: 2px 6px;
-            border-radius: 99px;
-        }
+
         .card-body {
             padding: 0.6rem 0.8rem 0.8rem;
         }
+
         .empty-state {
             font-size: 0.8rem;
-            color: #666;
+            color: #6b7280;
         }
+
         .inventory-list-inline {
             display: flex;
-            gap: 0.35rem;
             flex-wrap: wrap;
+            gap: 0.4rem;
         }
+
         .inventory-chip {
             background: #0f172a;
             color: #fff;
             padding: 2px 10px;
             border-radius: 999px;
-            font-size: 0.65rem;
+            font-size: 0.67rem;
         }
+
         .craftable-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
             gap: 0.6rem;
         }
+
         .craftable-item {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-radius: 4px;
-            padding: 0.45rem 0.5rem;
+            border-radius: 6px;
+            padding: 0.4rem 0.5rem 0.5rem;
         }
+
         .craftable-name {
             font-weight: 600;
             font-size: 0.8rem;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.25rem;
+            color: #0f172a;
         }
+
         .recipe-line {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             color: #475569;
         }
+
+        /* keep your footer look */
         footer {
             position: fixed;
             bottom: 0;
@@ -137,12 +203,14 @@
             box-sizing: border-box;
             z-index: 1000;
         }
+
         @media (max-width: 880px) {
             main {
                 grid-template-columns: 1fr;
             }
-            .elements-list {
-                max-height: 260px;
+            .elements-panel {
+                height: auto;
+                max-height: 320px;
             }
         }
     </style>
@@ -150,230 +218,228 @@
 
 <body>
 
-    <header>
-        <h2>
-            <a href="https://catsu-osm.github.io" style="text-decoration: none;">
-                <i class="fas fa-home" style="margin-right: 10px;"></i>
-            </a>
-            CatSu's Website
-        </h2>
-        <nav>
-            <button onclick="location.href='https://catsu-osm.github.io/projects'">Projects</button>
-            <button onclick="location.href='https://catsu-osm.github.io/resources'">Resources</button>
-        </nav>
-    </header>
+<header>
+    <h2>
+        <a href="https://catsu-osm.github.io" style="text-decoration: none;">
+            <i class="fas fa-home" style="margin-right: 10px;"></i>
+        </a>
+        CatSu's Website
+    </h2>
+    <nav>
+        <button onclick="location.href='https://catsu-osm.github.io/projects'">Projects</button>
+        <button onclick="location.href='https://catsu-osm.github.io/resources'">Resources</button>
+    </nav>
+</header>
 
-    <main>
-        <!-- LEFT: elements -->
-        <section class="panel" id="elements-panel">
+<main>
+    <!-- LEFT: elements -->
+    <section class="elements-panel">
+        <div class="panel-header">
             <h2>Infinite Craft Elements</h2>
             <small>Click to add/remove from your inventory</small>
-            <div class="search-box">
-                <input id="element-search" type="text" placeholder="Filter elements…">
+        </div>
+        <div class="search-box">
+            <input id="element-search" type="text" placeholder="Filter elements…">
+        </div>
+        <div class="elements-list" id="elements-list">
+            <!-- filled by JS -->
+        </div>
+    </section>
+
+    <!-- RIGHT -->
+    <section class="right-col">
+        <div class="card">
+            <h2>Your Inventory</h2>
+            <div class="card-body" id="inventory-body">
+                <p class="empty-state">No elements selected. Click an element on the left.</p>
             </div>
-            <div class="elements-list" id="elements-list">
-                <!-- JS fills -->
+        </div>
+
+        <div class="card">
+            <h2>Craftable Right Now</h2>
+            <div class="card-body" id="craftable-body">
+                <p class="empty-state">Select at least one element to see results.</p>
             </div>
-        </section>
+        </div>
 
-        <!-- RIGHT: inventory + craftables -->
-        <section style="display:flex; flex-direction:column; gap:1rem;">
-            <div class="card">
-                <h2>Your Inventory</h2>
-                <div class="card-body" id="inventory-body">
-                    <p class="empty-state">No elements selected. Click an element on the left.</p>
-                </div>
+        <div class="card">
+            <h2>Source</h2>
+            <div class="card-body">
+                <p style="font-size:0.7rem; color:#666;">Loaded from <code>docs/infinite_craft_recipes.json</code>.</p>
             </div>
+        </div>
+    </section>
+</main>
 
-            <div class="card">
-                <h2>Craftable Right Now</h2>
-                <div class="card-body" id="craftable-body">
-                    <p class="empty-state">Select at least one element to see results.</p>
-                </div>
-            </div>
+<footer>
+    <p>&copy; CatSu 2023</p>
+</footer>
 
-            <div class="card">
-                <h2>Source</h2>
-                <div class="card-body">
-                    <p style="font-size:0.7rem; color:#666;">Loaded from <code>docs/infinite_craft_recipes.json</code>.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+<script>
+    const RECIPES_URL = "../docs/infinite_craft_recipes.json"; // adjust if needed
 
-    <footer>
-        <p>&copy; CatSu 2023</p>
-    </footer>
+    let recipes = {};
+    let allNames = [];
+    let inventory = new Set();
 
-    <script>
-        // if this lives at /projects/infinite-craft-ai.html and JSON is at /docs/...:
-        const RECIPES_URL = "../docs/infinite_craft_recipes.json";
+    function isBase(name) {
+        const node = recipes[name];
+        return node && node._base === true;
+    }
 
-        let recipes = {};
-        let allNames = [];
-        let inventory = new Set();
+    function getRecipeOptions(name) {
+        const node = recipes[name];
+        if (!node) return [];
+        if (Array.isArray(node.recipes)) return node.recipes;
+        return [];
+    }
 
-        function isBase(name) {
-            const node = recipes[name];
-            return node && node._base === true;
-        }
-
-        function getRecipeOptions(name) {
-            const node = recipes[name];
-            if (!node) return [];
-            if (Array.isArray(node.recipes)) return node.recipes;
-            return [];
-        }
-
-        function canMakeWithInventory(name, inv) {
-            // don't "craft" what we already have
-            if (inv.has(name)) return false;
-            const options = getRecipeOptions(name);
-            if (!options.length) return false;
-            for (const opt of options) {
-                // opt is array of ingredients
-                let ok = true;
-                for (const ing of opt) {
-                    if (!inv.has(ing)) {
-                        ok = false;
-                        break;
-                    }
+    function canMakeWithInventory(name, inv) {
+        if (inv.has(name)) return false;
+        const options = getRecipeOptions(name);
+        if (!options.length) return false;
+        for (const opt of options) {
+            let ok = true;
+            for (const ing of opt) {
+                if (!inv.has(ing)) {
+                    ok = false;
+                    break;
                 }
-                if (ok) return true;
             }
-            return false;
+            if (ok) return true;
         }
+        return false;
+    }
 
-        function renderElements(filterText = "") {
-            const list = document.getElementById("elements-list");
-            list.innerHTML = "";
-            const ft = filterText.trim().toLowerCase();
+    function renderElements(filterText = "") {
+        const list = document.getElementById("elements-list");
+        list.innerHTML = "";
+        const ft = filterText.trim().toLowerCase();
 
-            for (const name of allNames) {
-                if (ft && !name.toLowerCase().includes(ft)) continue;
+        for (const name of allNames) {
+            if (ft && !name.toLowerCase().includes(ft)) continue;
 
-                const row = document.createElement("div");
-                row.className = "element-row" + (inventory.has(name) ? " in-inv" : "");
-                row.dataset.name = name;
+            const row = document.createElement("div");
+            row.className = "element-row" + (inventory.has(name) ? " in-inv" : "");
 
-                const left = document.createElement("div");
-                left.className = "el-name";
-                left.textContent = name;
-                row.appendChild(left);
+            const label = document.createElement("div");
+            label.className = "el-name";
+            label.textContent = name;
+            row.appendChild(label);
 
-                const badge = document.createElement("span");
-                badge.className = "badge" + (isBase(name) ? " badge-base" : "");
-                badge.textContent = isBase(name) ? "base" : "craftable";
-                row.appendChild(badge);
+            const badge = document.createElement("span");
+            badge.className = "badge" + (isBase(name) ? " badge-base" : "");
+            badge.textContent = isBase(name) ? "BASE" : "CRAFTABLE";
+            row.appendChild(badge);
 
+            if (inventory.has(name)) {
+                const pill = document.createElement("span");
+                pill.className = "inventory-pill";
+                pill.textContent = "IN";
+                row.appendChild(pill);
+            }
+
+            row.addEventListener("click", () => {
                 if (inventory.has(name)) {
-                    const pill = document.createElement("span");
-                    pill.className = "inventory-pill";
-                    pill.textContent = "in inventory";
-                    row.appendChild(pill);
+                    inventory.delete(name);
+                } else {
+                    inventory.add(name);
                 }
-
-                row.addEventListener("click", () => {
-                    if (inventory.has(name)) {
-                        inventory.delete(name);
-                    } else {
-                        inventory.add(name);
-                    }
-                    renderInventory();
-                    renderCraftables();
-                    renderElements(document.getElementById("element-search").value || "");
-                });
-
-                list.appendChild(row);
-            }
-        }
-
-        function renderInventory() {
-            const body = document.getElementById("inventory-body");
-            body.innerHTML = "";
-            if (inventory.size === 0) {
-                body.innerHTML = '<p class="empty-state">No elements selected. Click an element on the left.</p>';
-                return;
-            }
-            const wrap = document.createElement("div");
-            wrap.className = "inventory-list-inline";
-            Array.from(inventory).sort((a,b)=>a.localeCompare(b)).forEach(name => {
-                const chip = document.createElement("span");
-                chip.className = "inventory-chip";
-                chip.textContent = name;
-                wrap.appendChild(chip);
+                renderInventory();
+                renderCraftables();
+                renderElements(document.getElementById("element-search").value || "");
             });
-            body.appendChild(wrap);
+
+            list.appendChild(row);
         }
+    }
 
-        function renderCraftables() {
-            const body = document.getElementById("craftable-body");
-            body.innerHTML = "";
-            if (inventory.size === 0) {
-                body.innerHTML = '<p class="empty-state">Select at least one element to see results.</p>';
-                return;
-            }
-
-            const craftables = [];
-            for (const name of allNames) {
-                if (canMakeWithInventory(name, inventory)) {
-                    craftables.push(name);
-                }
-            }
-
-            if (!craftables.length) {
-                body.innerHTML = '<p class="empty-state">Nothing craftable from this exact set. Add more.</p>';
-                return;
-            }
-
-            const grid = document.createElement("div");
-            grid.className = "craftable-grid";
-
-            for (const el of craftables) {
-                const card = document.createElement("div");
-                card.className = "craftable-item";
-
-                const title = document.createElement("div");
-                title.className = "craftable-name";
-                title.textContent = el;
-                card.appendChild(title);
-
-                const options = getRecipeOptions(el);
-                for (const opt of options) {
-                    const ok = opt.every(ing => inventory.has(ing));
-                    if (!ok) continue;
-                    const line = document.createElement("div");
-                    line.className = "recipe-line";
-                    line.innerHTML = "<strong>" + el + "</strong> = " + opt.join(" + ");
-                    card.appendChild(line);
-                }
-
-                grid.appendChild(card);
-            }
-
-            body.appendChild(grid);
+    function renderInventory() {
+        const body = document.getElementById("inventory-body");
+        body.innerHTML = "";
+        if (inventory.size === 0) {
+            body.innerHTML = '<p class="empty-state">No elements selected. Click an element on the left.</p>';
+            return;
         }
-
-        async function init() {
-            try {
-                const res = await fetch(RECIPES_URL);
-                const data = await res.json();
-                recipes = data || {};
-                allNames = Object.keys(recipes).sort((a,b)=>a.localeCompare(b));
-                renderElements();
-            } catch (err) {
-                console.error("Error loading recipes:", err);
-                document.getElementById("elements-list").innerHTML =
-                    '<p style="padding:0.8rem; color:#c00;">Could not load ../docs/infinite_craft_recipes.json</p>';
-            }
-        }
-
-        document.getElementById("element-search").addEventListener("input", (e) => {
-            renderElements(e.target.value);
+        const wrap = document.createElement("div");
+        wrap.className = "inventory-list-inline";
+        Array.from(inventory).sort((a,b)=>a.localeCompare(b)).forEach(name => {
+            const chip = document.createElement("span");
+            chip.className = "inventory-chip";
+            chip.textContent = name;
+            wrap.appendChild(chip);
         });
+        body.appendChild(wrap);
+    }
 
-        init();
-    </script>
+    function renderCraftables() {
+        const body = document.getElementById("craftable-body");
+        body.innerHTML = "";
+        if (inventory.size === 0) {
+            body.innerHTML = '<p class="empty-state">Select at least one element to see results.</p>';
+            return;
+        }
+
+        const craftables = [];
+        for (const name of allNames) {
+            if (canMakeWithInventory(name, inventory)) {
+                craftables.push(name);
+            }
+        }
+
+        if (!craftables.length) {
+            body.innerHTML = '<p class="empty-state">Nothing craftable from this set. Add another base.</p>';
+            return;
+        }
+
+        const grid = document.createElement("div");
+        grid.className = "craftable-grid";
+
+        for (const el of craftables) {
+            const card = document.createElement("div");
+            card.className = "craftable-item";
+
+            const title = document.createElement("div");
+            title.className = "craftable-name";
+            title.textContent = el;
+            card.appendChild(title);
+
+            const opts = getRecipeOptions(el);
+            for (const opt of opts) {
+                const ok = opt.every(ing => inventory.has(ing));
+                if (!ok) continue;
+                const line = document.createElement("div");
+                line.className = "recipe-line";
+                line.innerHTML = "<strong>" + el + "</strong> = " + opt.join(" + ");
+                card.appendChild(line);
+            }
+
+            grid.appendChild(card);
+        }
+
+        body.appendChild(grid);
+    }
+
+    async function init() {
+        try {
+            const res = await fetch(RECIPES_URL);
+            const data = await res.json();
+            recipes = data || {};
+            allNames = Object.keys(recipes).sort((a,b)=>a.localeCompare(b));
+            renderElements();
+        } catch (e) {
+            console.error(e);
+            document.getElementById("elements-list").innerHTML =
+                '<p style="padding:0.7rem; color:#b91c1c;">Could not load docs/infinite_craft_recipes.json</p>';
+        }
+    }
+
+    document.getElementById("element-search").addEventListener("input", (e) => {
+        renderElements(e.target.value);
+    });
+
+    init();
+</script>
 
 </body>
 </html>
