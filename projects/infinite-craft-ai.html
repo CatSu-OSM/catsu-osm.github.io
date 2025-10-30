@@ -1,432 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinite Craft Visualizer – CatSu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- your site css -->
-    <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css">
-    <style>
-        /* scoped to our app */
-        #icv-app {
-            --icv-bg: #edf0f5;
-            --icv-panel: #ffffff;
-            --icv-panel-border: #d5d8df;
-            --icv-panel-header: #dfe7f5;
-            --icv-text: #0f172a;
-            --icv-text-muted: #6b7280;
-            --icv-badge: #edf1f5;
-            --icv-badge-text: #1f2937;
-            --icv-inv-chip-bg: #0f172a;
-            --icv-inv-chip-text: #ffffff;
-            --icv-craftable-bg: #f8fafc;
-            --icv-craftable-border: #e2e8f0;
-            --icv-row-hover: #f2f6ff;
-            --icv-row-selected: #dbeafe;
-            --icv-input-bg: #ffffff;
-            --icv-input-border: #cbd5e1;
-            --icv-pill: #0ea5e9;
-            --icv-trace-good: #16a34a;
-            --icv-trace-miss: #b91c1c;
-        }
-
-        #icv-app.icv-dark {
-            --icv-bg: #0f172a;
-            --icv-panel: #111827;
-            --icv-panel-border: #1f2937;
-            --icv-panel-header: #1f2937;
-            --icv-text: #e2e8f0;
-            --icv-text-muted: #94a3b8;
-            --icv-badge: #1f2937;
-            --icv-badge-text: #e2e8f0;
-            --icv-inv-chip-bg: #0ea5e9;
-            --icv-inv-chip-text: #0f172a;
-            --icv-craftable-bg: #0f172a;
-            --icv-craftable-border: #1f2937;
-            --icv-row-hover: #162036;
-            --icv-row-selected: #162036;
-            --icv-input-bg: #0f172a;
-            --icv-input-border: #1f2937;
-            --icv-pill: #0ea5e9;
-        }
-
-        .icv-shell {
-            background: var(--icv-bg);
-            border-radius: 8px;
-            padding: 0;
-        }
-
-        .icv-layout {
-            display: grid;
-            grid-template-columns: 280px minmax(0, 1fr);
-            gap: 1rem;
-            margin: 0 !important;
-        }
-
-        /* left panel */
-        .icv-left {
-            background: var(--icv-panel);
-            border: 1px solid var(--icv-panel-border);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 170px);
-            min-height: 460px;
-        }
-
-        .icv-left-head {
-            background: var(--icv-panel-header);
-            padding: 0.6rem 0.8rem 0.3rem;
-        }
-
-        .icv-left-head h2 {
-            margin: 0;
-            font-size: 1rem;
-            color: var(--icv-text);
-        }
-
-        .icv-left-head small {
-            display: block;
-            font-size: 0.7rem;
-            color: var(--icv-text-muted);
-            margin-top: 0.25rem;
-        }
-
-        .icv-search {
-            padding: 0.6rem 0.8rem;
-            background: var(--icv-panel);
-            border-bottom: 1px solid rgba(237, 240, 244, 0.08);
-        }
-
-        .icv-search input {
-            width: 100%;
-            padding: 0.35rem 0.4rem;
-            border: 1px solid var(--icv-input-border);
-            background: var(--icv-input-bg);
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--icv-text);
-        }
-
-        .icv-elements-list {
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .icv-element-row {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.35rem 0.6rem;
-            border-bottom: 1px solid rgba(243, 244, 246, 0.03);
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .icv-element-row:hover {
-            background: var(--icv-row-hover);
-        }
-
-        .icv-element-row.icv-inv {
-            background: var(--icv-row-selected);
-        }
-
-        .icv-el-name {
-            flex: 1;
-            font-size: 0.8rem;
-            color: var(--icv-text);
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .icv-badge {
-            font-size: 0.6rem;
-            background: var(--icv-badge);
-            border-radius: 999px;
-            padding: 2px 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            color: var(--icv-badge-text);
-            white-space: nowrap;
-        }
-
-        .icv-badge-base {
-            background: #22c55e1a;
-            color: #22c55e;
-        }
-
-        .icv-inv-pill {
-            font-size: 0.6rem;
-            background: var(--icv-pill);
-            color: #fff;
-            border-radius: 999px;
-            padding: 2px 6px;
-            white-space: nowrap;
-        }
-
-        /* right col */
-        .icv-right {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            min-width: 0;
-        }
-
-        .icv-card {
-            background: var(--icv-panel);
-            border: 1px solid var(--icv-panel-border);
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 0 !important;
-        }
-
-        .icv-card-header {
-            background: var(--icv-panel-header);
-            padding: 0.6rem 0.8rem;
-            font-size: 1rem;
-            color: var(--icv-text);
-        }
-
-        .icv-card-header-inline {
-            background: var(--icv-panel-header);
-            padding: 0.6rem 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .icv-card-body {
-            padding: 0.6rem 0.8rem 0.8rem;
-        }
-
-        .icv-empty {
-            font-size: 0.8rem;
-            color: var(--icv-text-muted);
-        }
-
-        .icv-inventory-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .icv-chip {
-            background: var(--icv-inv-chip-bg);
-            color: var(--icv-inv-chip-text);
-            padding: 2px 10px;
-            border-radius: 999px;
-            font-size: 0.67rem;
-        }
-
-        .icv-craftable-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-            gap: 0.6rem;
-        }
-
-        .icv-craftable-item {
-            background: var(--icv-craftable-bg);
-            border: 1px solid var(--icv-craftable-border);
-            border-radius: 6px;
-            padding: 0.4rem 0.5rem 0.5rem;
-        }
-
-        .icv-craftable-name {
-            font-weight: 600;
-            font-size: 0.8rem;
-            margin-bottom: 0.25rem;
-            color: var(--icv-text);
-        }
-
-        .icv-recipe-line {
-            font-size: 0.7rem;
-            color: var(--icv-text-muted);
-        }
-
-        .icv-header-actions-btn {
-            background: rgba(15, 23, 42, 0.06);
-            border: 1px solid rgba(15, 23, 42, 0.12);
-            border-radius: 999px;
-            padding: 0.25rem 0.6rem;
-            font-size: 0.7rem;
-            cursor: pointer;
-        }
-
-        #icv-app.icv-dark .icv-header-actions-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.12);
-            color: #e2e8f0;
-        }
-
-        .icv-steps-input {
-            width: 4rem;
-            padding: 0.2rem 0.35rem;
-            border-radius: 5px;
-            border: 1px solid var(--icv-input-border);
-            background: var(--icv-input-bg);
-            color: var(--icv-text);
-            font-size: 0.7rem;
-        }
-
-        .icv-step-tag {
-            display: inline-block;
-            font-size: 0.6rem;
-            background: rgba(14, 165, 233, 0.14);
-            color: var(--icv-text);
-            padding: 1px 6px;
-            border-radius: 999px;
-            margin-bottom: 0.25rem;
-        }
-
-        /* trace */
-        .icv-trace-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.35rem;
-        }
-
-        .icv-trace-step {
-            padding: 0.3rem 0.4rem;
-            border-left: 3px solid transparent;
-            background: rgba(248, 250, 252, 0.05);
-            border-radius: 4px;
-            font-size: 0.72rem;
-        }
-
-        .icv-trace-ok {
-            border-left-color: var(--icv-trace-good);
-        }
-
-        .icv-trace-miss {
-            border-left-color: var(--icv-trace-miss);
-        }
-
-        .icv-trace-small {
-            font-size: 0.65rem;
-            color: var(--icv-text-muted);
-        }
-
-        .icv-inline {
-            display: flex;
-            gap: 0.4rem;
-            align-items: center;
-        }
-
-        .icv-trace-title {
-            font-weight: 600;
-        }
-
-        @media (max-width: 900px) {
-            .icv-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .icv-left {
-                height: auto;
-                max-height: 320px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Infinite Craft Visualizer – CatSu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="https://catsu-osm.github.io/styles.css" />
+  <style>
+    :root {
+      --icv-bg: #edf0f3;
+      --icv-panel: #ffffff;
+      --icv-border: #cfd4da;
+      --icv-text: #1f2933;
+      --icv-muted: #64748b;
+      --icv-accent: #3b82f6;
+      --icv-danger: #b91c1c;
+    }
+    #icv-app {
+      display: grid;
+      grid-template-columns: 280px 1fr 1fr;
+      gap: 0.75rem;
+      background: var(--icv-bg);
+      min-height: 100vh;
+      padding: 0.75rem;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: var(--icv-text);
+    }
+    #icv-app.icv-dark {
+      --icv-bg: #0f172a;
+      --icv-panel: #111827;
+      --icv-border: #1f2937;
+      --icv-text: #e2e8f0;
+      --icv-muted: #94a3b8;
+      --icv-accent: #38bdf8;
+    }
+    .icv-panel {
+      background: var(--icv-panel);
+      border: 1px solid var(--icv-border);
+      border-radius: 0.6rem;
+      padding: 0.5rem 0.6rem 0.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      min-height: 0;
+    }
+    .icv-panel-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .icv-header-actions {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+    .icv-header-actions-btn {
+      background: transparent;
+      border: 1px solid var(--icv-border);
+      border-radius: 999px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.7rem;
+      cursor: pointer;
+      color: inherit;
+    }
+    .icv-search {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.03);
+      border: 1px solid var(--icv-border);
+      border-radius: 0.45rem;
+      padding: 0.25rem 0.4rem;
+    }
+    .icv-search input {
+      border: 0;
+      outline: 0;
+      background: transparent;
+      flex: 1;
+      color: inherit;
+      font-size: 0.78rem;
+    }
+    .icv-left-list {
+      overflow-y: auto;
+      min-height: 0;
+    }
+    .icv-element-row {
+      display: flex;
+      gap: 0.3rem;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(100, 116, 139, 0.08);
+      padding: 0.15rem 0.3rem;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+    .icv-element-row:hover {
+      background: rgba(59, 130, 246, 0.09);
+    }
+    .icv-element-row.icv-inv {
+      background: rgba(34, 197, 94, 0.16);
+    }
+    .icv-el-name {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .icv-badge {
+      font-size: 0.6rem;
+      border-radius: 999px;
+      padding: 0.1rem 0.4rem;
+      background: rgba(100, 116, 139, 0.1);
+    }
+    .icv-badge-base {
+      background: rgba(59, 130, 246, 0.16);
+      color: #0f172a;
+      font-weight: 600;
+    }
+    #icv-inventory-body {
+      min-height: 3rem;
+    }
+    .icv-inventory-chips {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .icv-chip {
+      background: rgba(15, 23, 42, 0.05);
+      border: 1px solid rgba(100, 116, 139, 0.2);
+      border-radius: 999px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.7rem;
+    }
+    .icv-craftable-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.45rem;
+    }
+    .icv-craftable-item {
+      border: 1px solid rgba(100, 116, 139, 0.18);
+      border-radius: 0.45rem;
+      padding: 0.3rem 0.4rem;
+      background: rgba(15, 23, 42, 0.015);
+    }
+    .icv-craftable-name {
+      font-weight: 600;
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+    .icv-recipe-line {
+      font-size: 0.65rem;
+      color: var(--icv-muted);
+    }
+    .icv-empty {
+      font-size: 0.7rem;
+      color: var(--icv-muted);
+      padding: 0.25rem 0.2rem;
+    }
+    .icv-trace-title {
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-bottom: 0.25rem;
+    }
+    .icv-trace-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .icv-trace-step {
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 0.35rem;
+      padding: 0.25rem 0.35rem;
+      font-size: 0.68rem;
+    }
+    .icv-trace-ok {
+      background: rgba(34, 197, 94, 0.12);
+    }
+    .icv-trace-miss {
+      background: rgba(248, 113, 113, 0.14);
+    }
+    .icv-trace-small {
+      font-size: 0.6rem;
+      color: var(--icv-muted);
+      margin-top: 0.25rem;
+    }
+    .icv-step-tag {
+      display: inline-flex;
+      background: rgba(59, 130, 246, 0.18);
+      border-radius: 999px;
+      font-size: 0.6rem;
+      padding: 0.1rem 0.45rem;
+      margin-bottom: 0.25rem;
+    }
+    .icv-inv-pill {
+      background: rgba(34, 197, 94, 0.2);
+      padding: 0.05rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.58rem;
+    }
+    .icv-row-inline {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      font-size: 0.65rem;
+    }
+    .icv-row-inline input[type="number"] {
+      width: 3.6rem;
+      background: transparent;
+      border: 1px solid var(--icv-border);
+      border-radius: 0.3rem;
+      font-size: 0.63rem;
+      padding: 0.1rem 0.25rem;
+      color: inherit;
+    }
+  </style>
 </head>
-
 <body>
-
-<header>
-    <h2>
-        <a href="https://catsu-osm.github.io" style="text-decoration: none;">
-            <i class="fas fa-home" style="margin-right: 10px;"></i>
-        </a>
-        CatSu's Website
-    </h2>
-    <nav>
-        <button onclick="location.href='https://catsu-osm.github.io/projects'">Projects</button>
-        <button onclick="location.href='https://catsu-osm.github.io/resources'">Resources</button>
-    </nav>
-</header>
-
-<main>
-    <!-- our scoped app -->
-    <div id="icv-app" class="icv-shell">
-        <div class="icv-layout">
-            <!-- LEFT -->
-            <section class="icv-left">
-                <div class="icv-left-head">
-                    <h2>Infinite Craft Elements</h2>
-                    <small>Click to add/remove from your inventory, right-click to trace</small>
-                </div>
-                <div class="icv-search">
-                    <input id="icv-search-input" type="text" placeholder="Filter elements...">
-                </div>
-                <div class="icv-elements-list" id="icv-elements-list"></div>
-            </section>
-
-            <!-- RIGHT -->
-            <section class="icv-right">
-                <div class="icv-card">
-                    <div class="icv-card-header">Your Inventory</div>
-                    <div class="icv-card-body" id="icv-inventory-body">
-                        <p class="icv-empty">No elements selected. Click an element on the left.</p>
-                    </div>
-                </div>
-
-                <div class="icv-card">
-                    <div class="icv-card-header">Craftable Right Now</div>
-                    <div class="icv-card-body" id="icv-craftable-body">
-                        <p class="icv-empty">Select at least one element to see results.</p>
-                    </div>
-                </div>
-
-                <div class="icv-card">
-                    <div class="icv-card-header-inline">
-                        <span>Almost Craftable (≤ steps)</span>
-                        <input id="icv-steps" class="icv-steps-input" type="number" min="1" max="100" value="4" title="Max steps to look ahead">
-                    </div>
-                    <div class="icv-card-body" id="icv-almost-body">
-                        <p class="icv-empty">Pick some elements first.</p>
-                    </div>
-                </div>
-
-                <!-- TRACE CARD -->
-                <div class="icv-card">
-                    <div class="icv-card-header-inline">
-                        <span>Trace Element</span>
-                        <small style="font-size:0.6rem; color:var(--icv-text-muted);">bases only</small>
-                    </div>
-                    <div class="icv-card-body" id="icv-trace-body">
-                        <p class="icv-empty">Right-click an element on the left to trace it.</p>
-                    </div>
-                </div>
-
-                <div class="icv-card">
-                    <div class="icv-card-header-inline">
-                        <span>Source</span>
-                        <div style="display:flex; gap:0.4rem;">
-                            <button id="icv-reload" class="icv-header-actions-btn" type="button">Reload</button>
-                            <button id="icv-dark-toggle" class="icv-header-actions-btn" type="button">Dark</button>
-                        </div>
-                    </div>
-                    <div class="icv-card-body">
-                        <p style="font-size:0.7rem; color:var(--icv-text-muted);">Loaded from
-                            <code>docs/infinite_craft_recipes.json</code>.
-                        </p>
-                        <p id="icv-source-status" style="font-size:0.7rem; color:var(--icv-text-muted);"></p>
-                    </div>
-                </div>
-            </section>
+  <div id="icv-app">
+    <!-- LEFT: elements -->
+    <div class="icv-panel">
+      <div class="icv-panel-title">
+        <span>Elements</span>
+        <div class="icv-header-actions">
+          <button id="icv-reload" class="icv-header-actions-btn" type="button">
+            Reload
+          </button>
+          <button id="icv-dark-toggle" class="icv-header-actions-btn" type="button">
+            Dark
+          </button>
         </div>
+      </div>
+      <div class="icv-search">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <input id="icv-search-input" placeholder="Search elements…" />
+      </div>
+      <div id="icv-source-status" style="font-size:0.64rem; color:var(--icv-muted);">
+        Loading…
+      </div>
+      <div id="icv-elements-list" class="icv-left-list"></div>
     </div>
-</main>
 
-<footer>
-    <p>&copy; CatSu 2023</p>
-</footer>
+    <!-- MIDDLE: inventory + craftables + almost -->
+    <div class="icv-panel">
+      <div class="icv-panel-title">
+        <span>Inventory</span>
+        <span style="font-size:0.62rem;color:var(--icv-muted);">
+          (bases always included)
+        </span>
+      </div>
+      <div id="icv-inventory-body"></div>
 
-<script>
+      <div class="icv-panel-title" style="margin-top:0.25rem;">
+        <span>Craftable</span>
+      </div>
+      <div id="icv-craftable-body"></div>
+
+      <div class="icv-panel-title" style="margin-top:0.25rem;">
+        <span>Almost (multi-step)</span>
+      </div>
+      <div class="icv-row-inline">
+        <label for="icv-steps">Max steps:</label>
+        <input id="icv-steps" type="number" min="1" max="100" value="4" />
+        <span style="color:var(--icv-muted);">right-click an element to trace</span>
+      </div>
+      <div id="icv-almost-body"></div>
+    </div>
+
+    <!-- RIGHT: trace -->
+    <div class="icv-panel">
+      <div class="icv-panel-title">
+        <span>Trace</span>
+        <span style="font-size:0.62rem;color:var(--icv-muted);">
+          bases → target
+        </span>
+      </div>
+      <div id="icv-trace-body" class="icv-left-list">
+        <p class="icv-empty">Right-click an element on the left to trace it.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
     const BASE_URL = "../docs/infinite_craft_recipes.json";
     const app = document.getElementById("icv-app");
     const searchInput = document.getElementById("icv-search-input");
@@ -445,325 +307,523 @@
     let inventory = new Set();
     let currentTraceTarget = null;
 
-    // NEW: precomputed trace data
+    // precomputed from bases
     let icvBestCost = {};
     let icvBestRecipe = {};
     let icvIsBase = {};
 
-    // DARK
-    (function initDark() {
-        const saved = localStorage.getItem("icv-theme");
-        if (saved === "dark") {
-            app.classList.add("icv-dark");
+    // ensure bases always in inventory
+    function icvEnsureBaseInInventory() {
+      for (const [name, node] of Object.entries(recipes)) {
+        if (node && node._base === true) {
+          inventory.add(name);
         }
-        darkBtn.textContent = app.classList.contains("icv-dark") ? "Light" : "Dark";
+      }
+      ["Earth", "Fire", "Water", "Wind"].forEach((b) => {
+        if (recipes[b]) {
+          inventory.add(b);
+        }
+      });
+    }
+
+    // export inventory → txt
+    function icvExportInventoryTxt() {
+      const lines = Array.from(inventory).sort((a, b) =>
+        a.localeCompare(b)
+      );
+      const blob = new Blob([lines.join("\n")], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "inventory.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // import inventory ← txt
+    function icvImportInventoryTxt(text) {
+      const lines = text
+        .split(/\r?\n/)
+        .map((l) => l.trim())
+        .filter(Boolean);
+      // start fresh but re-add bases
+      inventory = new Set();
+      icvEnsureBaseInInventory();
+      for (const line of lines) {
+        if (recipes[line]) {
+          inventory.add(line);
+        }
+      }
+      renderInventory();
+      renderCraftables();
+      renderAlmost();
+      if (currentTraceTarget) {
+        renderTraceFor(currentTraceTarget);
+      }
+      renderElements(searchInput.value || "");
+    }
+
+    // attach import/export
+    function icvAttachInventoryButtons() {
+      if (document.getElementById("icv-inv-export-btn")) return;
+      const wrap = document.createElement("div");
+      wrap.style.marginTop = "0.6rem";
+      wrap.style.display = "flex";
+      wrap.style.gap = "0.4rem";
+
+      const expBtn = document.createElement("button");
+      expBtn.id = "icv-inv-export-btn";
+      expBtn.className = "icv-header-actions-btn";
+      expBtn.type = "button";
+      expBtn.textContent = "Export TXT";
+      expBtn.addEventListener("click", () => icvExportInventoryTxt());
+
+      const impBtn = document.createElement("button");
+      impBtn.id = "icv-inv-import-btn";
+      impBtn.className = "icv-header-actions-btn";
+      impBtn.type = "button";
+      impBtn.textContent = "Import TXT";
+      impBtn.addEventListener("click", () => {
+        const txt = prompt(
+          "Paste inventory TXT (one element per line):",
+          ""
+        );
+        if (txt !== null) {
+          icvImportInventoryTxt(txt);
+        }
+      });
+
+      wrap.appendChild(expBtn);
+      wrap.appendChild(impBtn);
+      invBody.parentElement.appendChild(wrap);
+    }
+
+    // dark init
+    (function initDark() {
+      const saved = localStorage.getItem("icv-theme");
+      if (saved === "dark") {
+        app.classList.add("icv-dark");
+      }
+      darkBtn.textContent = app.classList.contains("icv-dark")
+        ? "Light"
+        : "Dark";
     })();
 
     darkBtn.addEventListener("click", () => {
-        app.classList.toggle("icv-dark");
-        const isDark = app.classList.contains("icv-dark");
-        localStorage.setItem("icv-theme", isDark ? "dark" : "light");
-        darkBtn.textContent = isDark ? "Light" : "Dark";
+      app.classList.toggle("icv-dark");
+      const isDark = app.classList.contains("icv-dark");
+      localStorage.setItem("icv-theme", isDark ? "dark" : "light");
+      darkBtn.textContent = isDark ? "Light" : "Dark";
     });
 
-    // --- NEW HELPERS FOR DIJKSTRA ---
-
+    // normalize recipes and build reverse idx
     function icvNormalizeRecipes(raw) {
-        const out = {};
-        for (const [name, node] of Object.entries(raw)) {
-            const norm = {};
-            norm._base = !!node._base;
-            let recs = node.recipes || [];
-            if (!Array.isArray(recs)) recs = [recs];
-            const cleaned = [];
-            for (const opt of recs) {
-                if (!Array.isArray(opt)) continue;
-                const ingredients = opt.map(x => String(x));
-                if (ingredients.includes(name)) continue; // drop self-loop
-                cleaned.push(ingredients);
-            }
-            norm.recipes = cleaned;
-            out[name] = norm;
+      const out = {};
+      for (const [name, node] of Object.entries(raw)) {
+        const norm = {};
+        norm._base = !!node._base;
+        let recs = node.recipes || [];
+        if (!Array.isArray(recs)) recs = [recs];
+        const cleaned = [];
+        for (const opt of recs) {
+          if (!Array.isArray(opt)) continue;
+          const ings = opt.map((x) => String(x));
+          if (ings.includes(name)) continue; // drop self-loop
+          cleaned.push(ings);
         }
-        return out;
+        norm.recipes = cleaned;
+        out[name] = norm;
+      }
+      return out;
     }
 
     function icvBuildReverseIndex(recipesObj) {
-        const rev = {};
-        for (const [prod, node] of Object.entries(recipesObj)) {
-            for (const opt of node.recipes) {
-                for (const ing of opt) {
-                    if (!rev[ing]) rev[ing] = new Set();
-                    rev[ing].add(prod);
-                }
-            }
+      const rev = {};
+      for (const [prod, node] of Object.entries(recipesObj)) {
+        for (const opt of node.recipes) {
+          for (const ing of opt) {
+            if (!rev[ing]) rev[ing] = new Set();
+            rev[ing].add(prod);
+          }
         }
-        return rev;
+      }
+      return rev;
     }
 
+    // precompute reachable from bases
     function icvRunDijkstraFromBases(recipesObj, reverseIndex, maxNodes = 100000) {
-        icvBestCost = {};
-        icvBestRecipe = {};
-        icvIsBase = {};
+      icvBestCost = {};
+      icvBestRecipe = {};
+      icvIsBase = {};
 
-        // find bases
-        const baseNames = [];
-        for (const [name, node] of Object.entries(recipesObj)) {
-            if (node._base) {
-                baseNames.push(name);
-                icvBestCost[name] = 0;
-                icvIsBase[name] = true;
-            }
+      const baseNames = [];
+      for (const [name, node] of Object.entries(recipesObj)) {
+        if (node._base) {
+          baseNames.push(name);
+          icvBestCost[name] = 0;
+          icvIsBase[name] = true;
         }
+      }
 
-        // hard-force classic 4 bases if present
-        const hardBases = ["Earth", "Fire", "Water", "Wind"];
-        for (const hb of hardBases) {
-            if (recipesObj[hb]) {
-                icvBestCost[hb] = 0;
-                icvIsBase[hb] = true;
-                if (!baseNames.includes(hb)) baseNames.push(hb);
-            }
+      // hard 4 bases
+      ["Earth", "Fire", "Water", "Wind"].forEach((hb) => {
+        if (recipesObj[hb]) {
+          icvBestCost[hb] = 0;
+          icvIsBase[hb] = true;
+          if (!baseNames.includes(hb)) baseNames.push(hb);
         }
+      });
 
-        // simple PQ
-        const pq = baseNames.map(nm => ({ name: nm, cost: 0 }));
-        let processed = 0;
+      const pq = baseNames.map((nm) => ({ name: nm, cost: 0 }));
+      let processed = 0;
 
-        while (pq.length && processed < maxNodes) {
-            // pick lowest
-            let bestIdx = 0;
-            for (let i = 1; i < pq.length; i++) {
-                if (pq[i].cost < pq[bestIdx].cost) bestIdx = i;
-            }
-            const current = pq.splice(bestIdx, 1)[0];
-            const curName = current.name;
-            const curCost = current.cost;
-            processed++;
-
-            const consumers = reverseIndex[curName];
-            if (!consumers) continue;
-
-            for (const product of consumers) {
-                const prodNode = recipesObj[product];
-                if (!prodNode) continue;
-
-                for (const opt of prodNode.recipes) {
-                    // only if we have all ingredients
-                    let allHave = true;
-                    let sumCost = 0;
-                    for (const ing of opt) {
-                        const ingCost = icvBestCost[ing];
-                        if (ingCost === undefined) {
-                            allHave = false;
-                            break;
-                        }
-                        sumCost += ingCost;
-                    }
-                    if (!allHave) continue;
-
-                    const candidateCost = sumCost + 1; // craft step
-                    const existing = icvBestCost[product];
-                    if (existing === undefined || candidateCost < existing) {
-                        icvBestCost[product] = candidateCost;
-                        icvBestRecipe[product] = opt.slice();
-                        pq.push({ name: product, cost: candidateCost });
-                    }
-                }
-            }
+      while (pq.length && processed < maxNodes) {
+        // pick lowest
+        let bestIdx = 0;
+        for (let i = 1; i < pq.length; i++) {
+          if (pq[i].cost < pq[bestIdx].cost) bestIdx = i;
         }
+        const { name: curName, cost: curCost } = pq.splice(bestIdx, 1)[0];
+        processed++;
+
+        const consumers = reverseIndex[curName];
+        if (!consumers) continue;
+
+        for (const product of consumers) {
+          const prodNode = recipesObj[product];
+          if (!prodNode) continue;
+
+          for (const opt of prodNode.recipes) {
+            let allHave = true;
+            let sumCost = 0;
+            for (const ing of opt) {
+              const ingCost = icvBestCost[ing];
+              if (ingCost === undefined) {
+                allHave = false;
+                break;
+              }
+              sumCost += ingCost;
+            }
+            if (!allHave) continue;
+
+            const candidateCost = sumCost + 1;
+            const existing = icvBestCost[product];
+            if (existing === undefined || candidateCost < existing) {
+              icvBestCost[product] = candidateCost;
+              icvBestRecipe[product] = opt.slice();
+              pq.push({ name: product, cost: candidateCost });
+            }
+          }
+        }
+      }
     }
 
+    // reconstruct trace
     function icvReconstructPlan(target, depth = 0, seen = new Set()) {
-        if (depth > 200) {
-            return { error: "too-deep", target };
-        }
-        if (seen.has(target)) {
-            return { error: "cycle", target };
-        }
-        seen.add(target);
+      if (depth > 200) {
+        return { error: "too-deep", target };
+      }
+      if (seen.has(target)) {
+        return { error: "cycle", target };
+      }
+      seen.add(target);
 
-        if (icvIsBase[target]) {
-            return { type: "base", name: target };
-        }
+      if (icvIsBase[target]) {
+        return { type: "base", name: target };
+      }
 
-        const recipe = icvBestRecipe[target];
-        if (!recipe) {
-            return { error: "no-path", target };
-        }
+      const recipe = icvBestRecipe[target];
+      if (!recipe) {
+        return { error: "no-path", target };
+      }
 
-        const subplans = [];
-        for (const ing of recipe) {
-            const sub = icvReconstructPlan(ing, depth + 1, new Set(seen));
-            subplans.push(sub);
-        }
+      const subs = [];
+      for (const ing of recipe) {
+        const sub = icvReconstructPlan(ing, depth + 1, new Set(seen));
+        subs.push(sub);
+      }
 
-        return {
-            type: "make",
-            name: target,
-            using: recipe,
-            from: subplans
-        };
+      return {
+        type: "make",
+        name: target,
+        using: recipe,
+        from: subs,
+      };
     }
 
     function icvFlattenPlan(plan, out = [], haveSet = new Set()) {
-        if (!plan) return out;
+      if (!plan) return out;
 
-        if (plan.error) {
-            out.push({
-                kind: "error",
-                info: plan
-            });
-            return out;
-        }
-
-        if (plan.type === "base") {
-            if (!haveSet.has(plan.name)) {
-                out.push({
-                    kind: "have",
-                    name: plan.name,
-                    base: true
-                });
-                haveSet.add(plan.name);
-            }
-            return out;
-        }
-
-        if (plan.type === "make") {
-            for (const sub of plan.from) {
-                icvFlattenPlan(sub, out, haveSet);
-            }
-            if (!haveSet.has(plan.name)) {
-                out.push({
-                    kind: "make",
-                    name: plan.name,
-                    recipe: plan.using
-                });
-                haveSet.add(plan.name);
-            }
-            return out;
-        }
-
+      if (plan.error) {
+        out.push({ kind: "error", info: plan });
         return out;
+      }
+
+      if (plan.type === "base") {
+        if (!haveSet.has(plan.name)) {
+          out.push({ kind: "have", name: plan.name, base: true });
+          haveSet.add(plan.name);
+        }
+        return out;
+      }
+
+      if (plan.type === "make") {
+        for (const sub of plan.from) {
+          icvFlattenPlan(sub, out, haveSet);
+        }
+        if (!haveSet.has(plan.name)) {
+          out.push({
+            kind: "make",
+            name: plan.name,
+            recipe: plan.using,
+          });
+          haveSet.add(plan.name);
+        }
+        return out;
+      }
+
+      return out;
     }
 
-    // original helpers (unchanged)
     function isBase(name) {
-        const node = recipes[name];
-        return node && node._base === true;
+      const node = recipes[name];
+      return node && node._base === true;
     }
 
     function getRecipeOptions(name) {
-        const node = recipes[name];
-        if (!node) return [];
-        return Array.isArray(node.recipes) ? node.recipes : [];
+      const node = recipes[name];
+      if (!node) return [];
+      return Array.isArray(node.recipes) ? node.recipes : [];
     }
 
     function canMakeWithInventory(name, inv) {
-        if (inv.has(name)) return false;
-        const opts = getRecipeOptions(name);
-        if (!opts.length) return false;
-        for (const opt of opts) {
-            let ok = true;
-            for (const ing of opt) {
-                if (!inv.has(ing)) {
-                    ok = false;
-                    break;
-                }
-            }
-            if (ok) return true;
+      if (inv.has(name)) return false;
+      const opts = getRecipeOptions(name);
+      if (!opts.length) return false;
+      for (const opt of opts) {
+        let ok = true;
+        for (const ing of opt) {
+          if (!inv.has(ing)) {
+            ok = false;
+            break;
+          }
         }
-        return false;
+        if (ok) return true;
+      }
+      return false;
     }
 
     function renderElements(filter = "") {
-        listEl.innerHTML = "";
-        const ft = filter.trim().toLowerCase();
-        for (const name of allNames) {
-            if (ft && !name.toLowerCase().includes(ft)) continue;
-            const row = document.createElement("div");
-            row.className = "icv-element-row" + (inventory.has(name) ? " icv-inv" : "");
-            row.dataset.name = name;
+      listEl.innerHTML = "";
+      const ft = filter.trim().toLowerCase();
+      for (const name of allNames) {
+        if (ft && !name.toLowerCase().includes(ft)) continue;
+        const row = document.createElement("div");
+        row.className =
+          "icv-element-row" + (inventory.has(name) ? " icv-inv" : "");
+        row.dataset.name = name;
 
-            const label = document.createElement("div");
-            label.className = "icv-el-name";
-            label.textContent = name;
-            row.appendChild(label);
+        const label = document.createElement("div");
+        label.className = "icv-el-name";
+        label.textContent = name;
+        row.appendChild(label);
 
-            const badge = document.createElement("span");
-            badge.className = "icv-badge" + (isBase(name) ? " icv-badge-base" : "");
-            badge.textContent = isBase(name) ? "BASE" : "CRAFTABLE";
-            row.appendChild(badge);
+        const badge = document.createElement("span");
+        badge.className =
+          "icv-badge" + (isBase(name) ? " icv-badge-base" : "");
+        badge.textContent = isBase(name) ? "BASE" : "CRAFTABLE";
+        row.appendChild(badge);
 
-            if (inventory.has(name)) {
-                const pill = document.createElement("span");
-                pill.className = "icv-inv-pill";
-                pill.textContent = "IN";
-                row.appendChild(pill);
-            }
-
-            // left-click: toggle inventory
-            row.addEventListener("click", () => {
-                const nm = row.dataset.name;
-                if (inventory.has(nm)) inventory.delete(nm);
-                else inventory.add(nm);
-                renderInventory();
-                renderCraftables();
-                renderAlmost();
-                if (currentTraceTarget === nm) {
-                    renderTraceFor(nm);
-                }
-                renderElements(searchInput.value || "");
-            });
-
-            // right-click: trace (ALWAYS FROM PRECOMPUTED BASE DIJKSTRA)
-            row.addEventListener("contextmenu", (e) => {
-                e.preventDefault();
-                const nm = row.dataset.name;
-                currentTraceTarget = nm;
-                renderTraceFor(nm);
-            });
-
-            listEl.appendChild(row);
+        if (inventory.has(name)) {
+          const pill = document.createElement("span");
+          pill.className = "icv-inv-pill";
+          pill.textContent = "IN";
+          row.appendChild(pill);
         }
+
+        // toggle inventory
+        row.addEventListener("click", () => {
+          const nm = row.dataset.name;
+          if (isBase(nm)) {
+            // bases cannot be removed
+            inventory.add(nm);
+          } else {
+            if (inventory.has(nm)) inventory.delete(nm);
+            else inventory.add(nm);
+          }
+          renderInventory();
+          renderCraftables();
+          renderAlmost();
+          if (currentTraceTarget === nm) {
+            renderTraceFor(nm);
+          }
+          renderElements(searchInput.value || "");
+        });
+
+        // right-click to trace
+        row.addEventListener("contextmenu", (e) => {
+          e.preventDefault();
+          const nm = row.dataset.name;
+          currentTraceTarget = nm;
+          renderTraceFor(nm);
+        });
+
+        listEl.appendChild(row);
+      }
     }
 
     function renderInventory() {
-        invBody.innerHTML = "";
-        if (inventory.size === 0) {
-            invBody.innerHTML = '<p class="icv-empty">No elements selected. Click an element on the left.</p>';
-            return;
-        }
-        const wrap = document.createElement("div");
-        wrap.className = "icv-inventory-chips";
-        Array.from(inventory).sort((a, b) => a.localeCompare(b)).forEach(n => {
-            const chip = document.createElement("span");
-            chip.className = "icv-chip";
-            chip.textContent = n;
-            wrap.appendChild(chip);
+      invBody.innerHTML = "";
+      if (inventory.size === 0) {
+        invBody.innerHTML =
+          '<p class="icv-empty">No elements selected. Click an element on the left.</p>';
+        return;
+      }
+      const wrap = document.createElement("div");
+      wrap.className = "icv-inventory-chips";
+      Array.from(inventory)
+        .sort((a, b) => a.localeCompare(b))
+        .forEach((n) => {
+          const chip = document.createElement("span");
+          chip.className = "icv-chip";
+          chip.textContent = n + (isBase(n) ? " (base)" : "");
+          wrap.appendChild(chip);
         });
-        invBody.appendChild(wrap);
+      invBody.appendChild(wrap);
     }
 
     function renderCraftables() {
-        craftBody.innerHTML = "";
-        if (inventory.size === 0) {
-            craftBody.innerHTML = '<p class="icv-empty">Select at least one element to see results.</p>';
-            return;
+      craftBody.innerHTML = "";
+      if (inventory.size === 0) {
+        craftBody.innerHTML =
+          '<p class="icv-empty">Select at least one element to see results.</p>';
+        return;
+      }
+      const craftables = [];
+      for (const name of allNames) {
+        if (canMakeWithInventory(name, inventory)) {
+          craftables.push(name);
         }
-        const craftables = [];
+      }
+      if (!craftables.length) {
+        craftBody.innerHTML =
+          '<p class="icv-empty">Nothing craftable from this set. Add another base.</p>';
+        return;
+      }
+      const grid = document.createElement("div");
+      grid.className = "icv-craftable-grid";
+      for (const el of craftables) {
+        const card = document.createElement("div");
+        card.className = "icv-craftable-item";
+        const title = document.createElement("div");
+        title.className = "icv-craftable-name";
+        title.textContent = el;
+        card.appendChild(title);
+
+        const opts = getRecipeOptions(el);
+        for (const opt of opts) {
+          const ok = opt.every((x) => inventory.has(x));
+          if (!ok) continue;
+          const line = document.createElement("div");
+          line.className = "icv-recipe-line";
+          line.innerHTML = "<strong>" + el + "</strong> = " + opt.join(" + ");
+          card.appendChild(line);
+        }
+
+        grid.appendChild(card);
+      }
+      craftBody.appendChild(grid);
+    }
+
+    // compute reach up to max steps
+    function computeReach(maxSteps) {
+      const level0 = new Set(inventory);
+      const byNameToStep = {};
+      for (const n of level0) byNameToStep[n] = 0;
+
+      let currentSet = new Set(level0);
+
+      for (let step = 1; step <= maxSteps; step++) {
+        const newly = [];
         for (const name of allNames) {
-            if (canMakeWithInventory(name, inventory)) {
-                craftables.push(name);
+          if (byNameToStep[name] !== undefined) continue;
+          const opts = getRecipeOptions(name);
+          if (!opts.length) continue;
+          let okAny = false;
+          for (const opt of opts) {
+            let ok = true;
+            for (const ing of opt) {
+              if (!currentSet.has(ing)) {
+                ok = false;
+                break;
+              }
             }
+            if (ok) {
+              okAny = true;
+              break;
+            }
+          }
+          if (okAny) {
+            newly.push(name);
+          }
         }
-        if (!craftables.length) {
-            craftBody.innerHTML = '<p class="icv-empty">Nothing craftable from this set. Add another base.</p>';
-            return;
+        if (!newly.length) break;
+        for (const n of newly) {
+          byNameToStep[n] = step;
+          currentSet.add(n);
         }
-        const grid = document.createElement("div");
-        grid.className = "icv-craftable-grid";
-        for (const el of craftables) {
+      }
+
+      return byNameToStep;
+    }
+
+    function renderAlmost() {
+      almostBody.innerHTML = "";
+      if (inventory.size === 0) {
+        almostBody.innerHTML = '<p class="icv-empty">Pick some elements first.</p>';
+        return;
+      }
+      let maxSteps = parseInt(stepsInput.value, 10);
+      if (isNaN(maxSteps) || maxSteps < 1) maxSteps = 1;
+      if (maxSteps > 100) maxSteps = 100;
+      stepsInput.value = maxSteps;
+
+      const reach = computeReach(maxSteps);
+      const byStep = {};
+      for (const [name, step] of Object.entries(reach)) {
+        if (step >= 2 && step <= maxSteps) {
+          if (!byStep[step]) byStep[step] = [];
+          byStep[step].push(name);
+        }
+      }
+
+      const stepsSorted = Object.keys(byStep)
+        .map(Number)
+        .sort((a, b) => a - b);
+      if (!stepsSorted.length) {
+        almostBody.innerHTML =
+          '<p class="icv-empty">Nothing extra is reachable within ' +
+          maxSteps +
+          " steps.</p>";
+        return;
+      }
+
+      stepsSorted.forEach((step) => {
+        const group = document.createElement("div");
+        group.style.marginBottom = "0.6rem";
+        const label = document.createElement("div");
+        label.className = "icv-step-tag";
+        label.textContent = "Step " + step;
+        group.appendChild(label);
+
+        const wrap = document.createElement("div");
+        wrap.className = "icv-craftable-grid";
+
+        byStep[step]
+          .sort((a, b) => a.localeCompare(b))
+          .forEach((el) => {
             const card = document.createElement("div");
             card.className = "icv-craftable-item";
             const title = document.createElement("div");
@@ -773,211 +833,121 @@
 
             const opts = getRecipeOptions(el);
             for (const opt of opts) {
-                const ok = opt.every(x => inventory.has(x));
-                if (!ok) continue;
-                const line = document.createElement("div");
-                line.className = "icv-recipe-line";
-                line.innerHTML = "<strong>" + el + "</strong> = " + opt.join(" + ");
-                card.appendChild(line);
+              const ok = opt.every(
+                (x) => reach[x] !== undefined && reach[x] <= step - 1
+              );
+              if (!ok) continue;
+              const line = document.createElement("div");
+              line.className = "icv-recipe-line";
+              line.innerHTML =
+                "<strong>" + el + "</strong> = " + opt.join(" + ");
+              card.appendChild(line);
             }
 
-            grid.appendChild(card);
-        }
-        craftBody.appendChild(grid);
+            wrap.appendChild(card);
+          });
+
+        group.appendChild(wrap);
+        almostBody.appendChild(group);
+      });
     }
 
-    // compute forward reach up to maxSteps
-    function computeReach(maxSteps) {
-        const level0 = new Set(inventory);
-        const byNameToStep = {};
-        for (const n of level0) byNameToStep[n] = 0;
-
-        let currentSet = new Set(level0);
-
-        for (let step = 1; step <= maxSteps; step++) {
-            const newly = [];
-            for (const name of allNames) {
-                if (byNameToStep[name] !== undefined) continue;
-                const opts = getRecipeOptions(name);
-                if (!opts.length) continue;
-                let okAny = false;
-                for (const opt of opts) {
-                    let ok = true;
-                    for (const ing of opt) {
-                        if (!currentSet.has(ing)) {
-                            ok = false;
-                            break;
-                        }
-                    }
-                    if (ok) {
-                        okAny = true;
-                        break;
-                    }
-                }
-                if (okAny) {
-                    newly.push(name);
-                }
-            }
-            if (!newly.length) break;
-            for (const n of newly) {
-                byNameToStep[n] = step;
-                currentSet.add(n);
-            }
-        }
-
-        return byNameToStep;
-    }
-
-    function renderAlmost() {
-        almostBody.innerHTML = "";
-        if (inventory.size === 0) {
-            almostBody.innerHTML = '<p class="icv-empty">Pick some elements first.</p>';
-            return;
-        }
-        let maxSteps = parseInt(stepsInput.value, 10);
-        if (isNaN(maxSteps) || maxSteps < 1) maxSteps = 1;
-        if (maxSteps > 100) maxSteps = 100;
-        stepsInput.value = maxSteps;
-
-        const reach = computeReach(maxSteps);
-        const byStep = {};
-        for (const [name, step] of Object.entries(reach)) {
-            if (step >= 2 && step <= maxSteps) {
-                if (!byStep[step]) byStep[step] = [];
-                byStep[step].push(name);
-            }
-        }
-
-        const stepsSorted = Object.keys(byStep).map(Number).sort((a, b) => a - b);
-        if (!stepsSorted.length) {
-            almostBody.innerHTML = '<p class="icv-empty">Nothing extra is reachable within ' + maxSteps + ' steps.</p>';
-            return;
-        }
-
-        stepsSorted.forEach(step => {
-            const group = document.createElement("div");
-            group.style.marginBottom = "0.6rem";
-            const label = document.createElement("div");
-            label.className = "icv-step-tag";
-            label.textContent = "Step " + step;
-            group.appendChild(label);
-
-            const wrap = document.createElement("div");
-            wrap.className = "icv-craftable-grid";
-
-            byStep[step].sort((a, b) => a.localeCompare(b)).forEach(el => {
-                const card = document.createElement("div");
-                card.className = "icv-craftable-item";
-                const title = document.createElement("div");
-                title.className = "icv-craftable-name";
-                title.textContent = el;
-                card.appendChild(title);
-
-                const opts = getRecipeOptions(el);
-                for (const opt of opts) {
-                    const ok = opt.every(x => reach[x] !== undefined && reach[x] <= step - 1);
-                    if (!ok) continue;
-                    const line = document.createElement("div");
-                    line.className = "icv-recipe-line";
-                    line.innerHTML = "<strong>" + el + "</strong> = " + opt.join(" + ");
-                    card.appendChild(line);
-                }
-
-                wrap.appendChild(card);
-            });
-
-            group.appendChild(wrap);
-            almostBody.appendChild(group);
-        });
-    }
-
-    // NEW: render trace from precomputed dijkstra
     function renderTraceFor(target) {
-        traceBody.innerHTML = "";
-        if (!target) {
-            traceBody.innerHTML = '<p class="icv-empty">Right-click an element on the left to trace it.</p>';
-            return;
+      traceBody.innerHTML = "";
+      if (!target) {
+        traceBody.innerHTML =
+          '<p class="icv-empty">Right-click an element on the left to trace it.</p>';
+        return;
+      }
+
+      const plan = icvReconstructPlan(target);
+      const flat = icvFlattenPlan(plan);
+
+      if (
+        !flat.length ||
+        (flat.length === 1 && flat[0].kind === "error")
+      ) {
+        traceBody.innerHTML = '<p class="icv-empty">No path found from bases.</p>';
+        return;
+      }
+
+      const title = document.createElement("div");
+      title.className = "icv-trace-title";
+      title.textContent = "Trace for: " + target;
+      traceBody.appendChild(title);
+
+      const list = document.createElement("div");
+      list.className = "icv-trace-list";
+
+      for (const step of flat) {
+        const row = document.createElement("div");
+        row.className = "icv-trace-step";
+        if (step.kind === "have") {
+          row.classList.add("icv-trace-ok");
+          row.innerHTML = `✅ Have <strong>${step.name}</strong>`;
+        } else if (step.kind === "make") {
+          row.classList.add("icv-trace-ok");
+          row.innerHTML = `🛠️ <strong>${step.name}</strong> = ${step.recipe.join(
+            " + "
+          )}`;
+        } else if (step.kind === "error") {
+          row.classList.add("icv-trace-miss");
+          row.innerHTML = `❌ Cannot build <strong>${step.info.target}</strong> (${step.info.error})`;
         }
+        list.appendChild(row);
+      }
 
-        const plan = icvReconstructPlan(target);
-        const flat = icvFlattenPlan(plan);
+      const note = document.createElement("div");
+      note.className = "icv-trace-small";
+      note.textContent = "Tracing from bases only (precomputed reverse-Dijkstra).";
 
-        if (!flat.length || (flat.length === 1 && flat[0].kind === "error")) {
-            traceBody.innerHTML = '<p class="icv-empty">No path found from bases.</p>';
-            return;
-        }
-
-        const title = document.createElement("div");
-        title.className = "icv-trace-title";
-        title.textContent = "Trace for: " + target;
-        traceBody.appendChild(title);
-
-        const list = document.createElement("div");
-        list.className = "icv-trace-list";
-
-        for (const step of flat) {
-            const row = document.createElement("div");
-            row.className = "icv-trace-step";
-            if (step.kind === "have") {
-                row.classList.add("icv-trace-ok");
-                row.innerHTML = `✅ Have <strong>${step.name}</strong>`;
-            } else if (step.kind === "make") {
-                row.classList.add("icv-trace-ok");
-                row.innerHTML = `🛠️ <strong>${step.name}</strong> = ${step.recipe.join(" + ")}`;
-            } else if (step.kind === "error") {
-                row.classList.add("icv-trace-miss");
-                row.innerHTML = `❌ Cannot build <strong>${step.info.target}</strong> (${step.info.error})`;
-            }
-            list.appendChild(row);
-        }
-
-        const note = document.createElement("div");
-        note.className = "icv-trace-small";
-        note.textContent = "Tracing from bases only (precomputed reverse-Dijkstra).";
-
-        traceBody.appendChild(list);
-        traceBody.appendChild(note);
+      traceBody.appendChild(list);
+      traceBody.appendChild(note);
     }
 
     async function loadRecipes(bust = false) {
-        try {
-            statusEl.textContent = "Loading…";
-            const url = bust ? BASE_URL + "?t=" + Date.now() : BASE_URL;
-            const res = await fetch(url, { cache: "no-store" });
-            const data = await res.json();
+      try {
+        statusEl.textContent = "Loading…";
+        const url = bust ? BASE_URL + "?t=" + Date.now() : BASE_URL;
+        const res = await fetch(url, { cache: "no-store" });
+        const data = await res.json();
 
-            // NEW: normalize + build reverse + run dijkstra
-            recipes = icvNormalizeRecipes(data || {});
-            allNames = Object.keys(recipes).sort((a, b) => a.localeCompare(b));
-            const rev = icvBuildReverseIndex(recipes);
-            icvRunDijkstraFromBases(recipes, rev);
+        recipes = icvNormalizeRecipes(data || {});
+        allNames = Object.keys(recipes).sort((a, b) => a.localeCompare(b));
+        const rev = icvBuildReverseIndex(recipes);
+        icvRunDijkstraFromBases(recipes, rev);
 
-            renderElements(searchInput.value || "");
-            renderCraftables();
-            renderAlmost();
-            statusEl.textContent = "Loaded " + allNames.length + " elements.";
-        } catch (e) {
-            console.error(e);
-            statusEl.textContent = "Failed to load source.";
-            listEl.innerHTML = '<p style="padding:0.7rem; color:#b91c1c;">Could not load docs/infinite_craft_recipes.json</p>';
-        }
+        // always seed bases
+        icvEnsureBaseInInventory();
+
+        renderElements(searchInput.value || "");
+        renderInventory();
+        renderCraftables();
+        renderAlmost();
+        icvAttachInventoryButtons();
+        statusEl.textContent = "Loaded " + allNames.length + " elements.";
+      } catch (e) {
+        console.error(e);
+        statusEl.textContent = "Failed to load source.";
+        listEl.innerHTML =
+          '<p style="padding:0.7rem; color:#b91c1c;">Could not load docs/infinite_craft_recipes.json</p>';
+      }
     }
 
-    searchInput.addEventListener("input", e => {
-        renderElements(e.target.value);
+    searchInput.addEventListener("input", (e) => {
+      renderElements(e.target.value);
     });
 
     reloadBtn.addEventListener("click", () => {
-        loadRecipes(true);
+      loadRecipes(true);
     });
 
     stepsInput.addEventListener("change", () => {
-        renderAlmost();
+      renderAlmost();
     });
 
     // initial
     loadRecipes(false);
-</script>
-
+  </script>
 </body>
 </html>
