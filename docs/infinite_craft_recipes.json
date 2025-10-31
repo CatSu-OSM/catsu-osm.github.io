@@ -863,6 +863,10 @@
             [
                 "Lava Sculpture",
                 "Toxic Tornado"
+            ],
+            [
+                "Pyroclastic Flow",
+                "Vault"
             ]
         ]
     },
@@ -2472,6 +2476,10 @@
             [
                 "Dragon Scale Earth",
                 "Ice Dragon"
+            ],
+            [
+                "Mythical Beast",
+                "Synthetic Gem"
             ]
         ]
     },
@@ -2713,6 +2721,10 @@
             [
                 "Venus Rock",
                 "Volcanic Eruption"
+            ],
+            [
+                "Magma Geode",
+                "Super Ashy"
             ]
         ]
     },
@@ -3455,6 +3467,10 @@
             [
                 "Frankenstein",
                 "Shooting Star"
+            ],
+            [
+                "Comet Dragon",
+                "Volcanic Fire"
             ]
         ]
     },
@@ -3865,6 +3881,10 @@
             [
                 "Earth",
                 "Mud"
+            ],
+            [
+                "Batman",
+                "Soil"
             ]
         ]
     },
@@ -4035,6 +4055,14 @@
             [
                 "Ragnarok Canyon",
                 "Rock Fire"
+            ],
+            [
+                "Golem",
+                "Meteor"
+            ],
+            [
+                "Lizard BBQ",
+                "Meteor Shower"
             ]
         ]
     },
@@ -4168,6 +4196,10 @@
             [
                 "Caldera",
                 "Moon"
+            ],
+            [
+                "Cosmic Impact",
+                "Lunar Planter"
             ]
         ]
     },
@@ -4712,6 +4744,18 @@
             [
                 "Dune Dweller",
                 "Water"
+            ],
+            [
+                "Ancient Ruin",
+                "Desert Fire"
+            ],
+            [
+                "Apocalypse",
+                "Fountain"
+            ],
+            [
+                "Desert Dragon",
+                "Volcanic Rock"
             ]
         ]
     },
@@ -4905,6 +4949,188 @@
             ]
         ]
     },
+    "Light Bulb": {
+        "_base": false,
+        "recipes": [
+            [
+                "Electricity",
+                "Glass"
+            ]
+        ]
+    },
+    "Mirror": {
+        "_base": false,
+        "recipes": [
+            [
+                "Glass",
+                "Gold"
+            ]
+        ]
+    },
+    "Smart Phone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Android",
+                "Glass"
+            ]
+        ]
+    },
+    "Bitcoin": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold",
+                "Smartphone"
+            ]
+        ]
+    },
+    "Gold Phone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold",
+                "Smart Phone"
+            ],
+            [
+                "Gold Plating",
+                "Smart Phone"
+            ]
+        ]
+    },
+    "Smartphone Factory": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Smart Phone"
+            ],
+            [
+                "Electronics Manufacturing",
+                "Smart Phone"
+            ]
+        ]
+    },
+    "Luxury Phone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold Phone",
+                "Smartphone Factory"
+            ]
+        ]
+    },
+    "Gold Plating": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Gold Phone"
+            ]
+        ]
+    },
+    "Luxury Tech": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold",
+                "Smartphone Factory"
+            ]
+        ]
+    },
+    "Smartphone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Luxury Tech",
+                "Smart Phone"
+            ],
+            [
+                "Factory",
+                "Smartphone"
+            ],
+            [
+                "Gold Phone",
+                "Mobile Production"
+            ],
+            [
+                "Smart Phone",
+                "Smartphone Factory"
+            ]
+        ]
+    },
+    "Electronics Manufacturing": {
+        "_base": false,
+        "recipes": [
+            [
+                "Luxury Tech",
+                "Smartphone Factory"
+            ]
+        ]
+    },
+    "Mobile Production": {
+        "_base": false,
+        "recipes": [
+            [
+                "Electronics Manufacturing",
+                "Gold Phone"
+            ]
+        ]
+    },
+    "Assembly Line": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mobile Production",
+                "Smartphone"
+            ]
+        ]
+    },
+    "Smart Factory": {
+        "_base": false,
+        "recipes": [
+            [
+                "Assembly Line",
+                "Smartphone"
+            ]
+        ]
+    },
+    "IPhone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Assembly Line",
+                "Gold Phone"
+            ]
+        ]
+    },
+    "Tech Industry": {
+        "_base": false,
+        "recipes": [
+            [
+                "IPhone",
+                "Smartphone Factory"
+            ]
+        ]
+    },
+    "Android": {
+        "_base": false,
+        "recipes": [
+            [
+                "Glass",
+                "Robot"
+            ]
+        ]
+    },
+    "Idea": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Light Bulb"
+            ]
+        ]
+    },
     "Spa": {
         "_base": false,
         "recipes": [
@@ -5094,6 +5320,10 @@
             [
                 "Fire",
                 "Scorpion Dust Devil"
+            ],
+            [
+                "Infernal Bog",
+                "Volcanic Ash"
             ]
         ]
     },
@@ -5207,6 +5437,14 @@
             [
                 "Scorpion Dust Devil",
                 "Water"
+            ],
+            [
+                "Oasis",
+                "Scorpion Dust Devil"
+            ],
+            [
+                "Desert Storm",
+                "Muddy Breeze"
             ]
         ]
     },
@@ -5752,6 +5990,10 @@
             [
                 "Dragon Siren",
                 "Meteor"
+            ],
+            [
+                "Air Current",
+                "Meteorite"
             ]
         ]
     },
@@ -6079,6 +6321,10 @@
             [
                 "Clay Figure",
                 "Earth"
+            ],
+            [
+                "Clay Pot",
+                "Moon Treasure"
             ]
         ]
     },
@@ -7032,6 +7278,10 @@
             [
                 "Meteor Strike",
                 "Mudslide"
+            ],
+            [
+                "Hydra",
+                "Meteor Storm"
             ]
         ]
     },
@@ -7135,6 +7385,10 @@
             [
                 "Salamander Sand",
                 "Skyrim Moon Gem"
+            ],
+            [
+                "Diamond Mine",
+                "Jewelry Shop"
             ]
         ]
     },
@@ -7487,6 +7741,14 @@
             [
                 "Glassblower",
                 "Smog Obsidian"
+            ],
+            [
+                "Factory",
+                "Glass"
+            ],
+            [
+                "Electronics Manufacturing",
+                "Smartphone"
             ]
         ]
     },
@@ -7754,6 +8016,10 @@
             [
                 "Scorpion Dust Devil",
                 "Wind"
+            ],
+            [
+                "Sandstorm",
+                "Wind Chill"
             ]
         ]
     },
@@ -8206,6 +8472,10 @@
             [
                 "Dragon Mud",
                 "Dust Devil"
+            ],
+            [
+                "Dragon Pot",
+                "Dust Devil"
             ]
         ]
     },
@@ -8326,6 +8596,10 @@
             [
                 "Dragon's Breath",
                 "Swamp Thing"
+            ],
+            [
+                "Dust Dragon",
+                "Haunted Swamp"
             ]
         ]
     },
@@ -9039,6 +9313,10 @@
             [
                 "Doomsday Turtle",
                 "Tropical Glow"
+            ],
+            [
+                "Cosmic Horror",
+                "Ragnarok Canyon"
             ]
         ]
     },
@@ -9256,6 +9534,10 @@
             [
                 "Dragon's Fury",
                 "Magma Beast"
+            ],
+            [
+                "Dragon Newt",
+                "Wind Farm"
             ]
         ]
     },
@@ -10641,6 +10923,22 @@
             [
                 "Jewel",
                 "Poison"
+            ],
+            [
+                "Factory",
+                "Jewel"
+            ],
+            [
+                "Jewel",
+                "Magma Gem"
+            ],
+            [
+                "Diamond Mine",
+                "Jewelry Store"
+            ],
+            [
+                "Jewelry Store",
+                "Rhinestone"
             ]
         ]
     },
@@ -10864,6 +11162,10 @@
             [
                 "Clay Pot",
                 "Godzilla"
+            ],
+            [
+                "Landing",
+                "Terracotta"
             ]
         ]
     },
@@ -12600,6 +12902,10 @@
             [
                 "Sculpture",
                 "Water"
+            ],
+            [
+                "Oasis",
+                "Paving Stone"
             ]
         ]
     },
@@ -12849,6 +13155,10 @@
             [
                 "Hydro Slime",
                 "Storm Surge"
+            ],
+            [
+                "Impact Zone",
+                "Paradise Surf"
             ]
         ]
     },
@@ -13913,6 +14223,10 @@
             [
                 "Desert Wind",
                 "Water"
+            ],
+            [
+                "Paradise Lost",
+                "Sandstorm"
             ]
         ]
     },
@@ -14011,6 +14325,10 @@
             [
                 "Bird",
                 "Earth"
+            ],
+            [
+                "Chicken Nuggets",
+                "Explosion"
             ]
         ]
     },
@@ -14029,6 +14347,28 @@
             [
                 "Bird",
                 "Chicken"
+            ],
+            [
+                "Chicken",
+                "Explosion"
+            ]
+        ]
+    },
+    "Roast": {
+        "_base": false,
+        "recipes": [
+            [
+                "Chicken",
+                "Fire"
+            ]
+        ]
+    },
+    "Chicken Nuggets": {
+        "_base": false,
+        "recipes": [
+            [
+                "Chicken",
+                "Shrapnel"
             ]
         ]
     },
@@ -14501,6 +14841,18 @@
             [
                 "Fire",
                 "Sailboat"
+            ],
+            [
+                "Money",
+                "Treasure"
+            ],
+            [
+                "Rich",
+                "Treasure"
+            ],
+            [
+                "Bank",
+                "Treasure"
             ]
         ]
     },
@@ -14972,6 +15324,10 @@
             [
                 "Celestial Body",
                 "Kraken Arc"
+            ],
+            [
+                "Dark Revelation",
+                "Meteorite"
             ]
         ]
     },
@@ -16349,6 +16705,24 @@
             [
                 "Lava Dragon",
                 "Tombstone"
+            ]
+        ]
+    },
+    "Devil": {
+        "_base": false,
+        "recipes": [
+            [
+                "Angel",
+                "Hell"
+            ]
+        ]
+    },
+    "Satan": {
+        "_base": false,
+        "recipes": [
+            [
+                "God",
+                "Hell"
             ]
         ]
     },
@@ -18044,6 +18418,10 @@
             [
                 "Geiger",
                 "Meteor"
+            ],
+            [
+                "Meteor Crater",
+                "Swamp Dragon"
             ]
         ]
     },
@@ -18228,6 +18606,10 @@
             [
                 "Factory",
                 "Magma Sculpture"
+            ],
+            [
+                "Crystal Statue",
+                "Factory"
             ]
         ]
     },
@@ -18484,6 +18866,10 @@
             [
                 "Mermaid",
                 "Mythical Beast"
+            ],
+            [
+                "Dragon Carving",
+                "Wyvern"
             ]
         ]
     },
@@ -18907,6 +19293,10 @@
             [
                 "Loch Ness Monster",
                 "Toxic Tide"
+            ],
+            [
+                "Khamsin",
+                "Loch Ness Monster"
             ]
         ]
     },
@@ -18934,6 +19324,10 @@
             [
                 "Cthulhu",
                 "Sand"
+            ],
+            [
+                "Oasis",
+                "Statue"
             ]
         ]
     },
@@ -19132,6 +19526,720 @@
             [
                 "Pollutant",
                 "Tornado"
+            ]
+        ]
+    },
+    "Coin": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Gold"
+            ],
+            [
+                "Explosion",
+                "Gold"
+            ]
+        ]
+    },
+    "Shrapnel": {
+        "_base": false,
+        "recipes": [
+            [
+                "Explosion",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Thanksgiving": {
+        "_base": false,
+        "recipes": [
+            [
+                "Explosion",
+                "Turkey"
+            ]
+        ]
+    },
+    "Turkey Shoot": {
+        "_base": false,
+        "recipes": [
+            [
+                "Shrapnel",
+                "Turkey"
+            ]
+        ]
+    },
+    "Turkey": {
+        "_base": false,
+        "recipes": [
+            [
+                "Explosion",
+                "Roast"
+            ],
+            [
+                "Explosion",
+                "Thanksgiving"
+            ]
+        ]
+    },
+    "Explosion Debris": {
+        "_base": false,
+        "recipes": [
+            [
+                "Roast",
+                "Shrapnel"
+            ]
+        ]
+    },
+    "Jewelry": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Gemstone"
+            ],
+            [
+                "Diamond",
+                "Factory"
+            ],
+            [
+                "Diamond Mine",
+                "Metalwork"
+            ],
+            [
+                "Gemstone",
+                "Metalwork"
+            ],
+            [
+                "Jeweler",
+                "Metalwork"
+            ],
+            [
+                "Gemstone Processing",
+                "Metalwork"
+            ],
+            [
+                "Diamond Mine",
+                "Gemstone Processing"
+            ],
+            [
+                "Gemstone Processing",
+                "Industrial Art"
+            ],
+            [
+                "Jewelry Store",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Jewel Sculpture": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jewel",
+                "Sculpture"
+            ]
+        ]
+    },
+    "Crystal Statue": {
+        "_base": false,
+        "recipes": [
+            [
+                "Glass Statue",
+                "Jewel"
+            ]
+        ]
+    },
+    "Metalwork": {
+        "_base": false,
+        "recipes": [
+            [
+                "Industrial Art",
+                "Jewel"
+            ],
+            [
+                "Jewelry",
+                "Steel Mill"
+            ]
+        ]
+    },
+    "Factory Jewelry": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Jewelry"
+            ]
+        ]
+    },
+    "Steel Mill": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Rhinestone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Diamond",
+                "Industrial Art"
+            ]
+        ]
+    },
+    "Diamond Mine": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jewelry",
+                "Power Plant"
+            ],
+            [
+                "Diamond Mine",
+                "Industrial Power"
+            ]
+        ]
+    },
+    "Jewelry Factory": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Jewelry"
+            ]
+        ]
+    },
+    "Jewelry Shop": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Rhinestone"
+            ]
+        ]
+    },
+    "Industrial Power": {
+        "_base": false,
+        "recipes": [
+            [
+                "Industrial Art",
+                "Power Plant"
+            ]
+        ]
+    },
+    "Nuclear Energy": {
+        "_base": false,
+        "recipes": [
+            [
+                "Diamond",
+                "Power Plant"
+            ]
+        ]
+    },
+    "Engagement Ring": {
+        "_base": false,
+        "recipes": [
+            [
+                "Diamond",
+                "Jewelry Shop"
+            ]
+        ]
+    },
+    "Jewelry Store": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jewelry Factory",
+                "Jewelry Shop"
+            ],
+            [
+                "Jewelry Shop",
+                "Nuclear Energy"
+            ],
+            [
+                "Factory",
+                "Jeweler"
+            ]
+        ]
+    },
+    "Neon Sign": {
+        "_base": false,
+        "recipes": [
+            [
+                "Industrial Power",
+                "Jewelry Shop"
+            ]
+        ]
+    },
+    "Jeweler": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jewelry Shop",
+                "Metalwork"
+            ],
+            [
+                "Engagement Ring",
+                "Jewelry Store"
+            ],
+            [
+                "Jewelry Mill",
+                "Metalwork"
+            ],
+            [
+                "Jewelry Factory",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Jewel Heist": {
+        "_base": false,
+        "recipes": [
+            [
+                "Industrial Power",
+                "Jewelry Store"
+            ]
+        ]
+    },
+    "Jeweler's Shop": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jeweler",
+                "Jewelry Store"
+            ]
+        ]
+    },
+    "Bling Sign": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jewelry Store",
+                "Neon Sign"
+            ]
+        ]
+    },
+    "Gemstone Processing": {
+        "_base": false,
+        "recipes": [
+            [
+                "Diamond Mine",
+                "Factory"
+            ]
+        ]
+    },
+    "Diamond Grinding": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gemstone Processing",
+                "Industrial Power"
+            ]
+        ]
+    },
+    "Jewelry Mill": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Gemstone Processing"
+            ]
+        ]
+    },
+    "Energy Gem": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gemstone Processing",
+                "Power Plant"
+            ]
+        ]
+    },
+    "Diamond Polishing": {
+        "_base": false,
+        "recipes": [
+            [
+                "Diamond Grinding",
+                "Jewelry Mill"
+            ]
+        ]
+    },
+    "Jewel Crafting": {
+        "_base": false,
+        "recipes": [
+            [
+                "Energy Gem",
+                "Jewelry Mill"
+            ]
+        ]
+    },
+    "Diamond Saw": {
+        "_base": false,
+        "recipes": [
+            [
+                "Diamond Grinding",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Industrial Mill": {
+        "_base": false,
+        "recipes": [
+            [
+                "Diamond Grinding",
+                "Factory"
+            ]
+        ]
+    },
+    "Enchanted Metal": {
+        "_base": false,
+        "recipes": [
+            [
+                "Energy Gem",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Artisan": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Jewelry Shop"
+            ]
+        ]
+    },
+    "Treasure": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jewelry Factory",
+                "Pirate"
+            ],
+            [
+                "Gold Bank",
+                "Wealth"
+            ]
+        ]
+    },
+    "Chainmail": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dungeon",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Jewelry Plant": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Jewelry Factory"
+            ]
+        ]
+    },
+    "Ornament": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jewelry Plant",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Blacksmith": {
+        "_base": false,
+        "recipes": [
+            [
+                "Artisan",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Gold": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Treasure"
+            ]
+        ]
+    },
+    "Gold Bars": {
+        "_base": false,
+        "recipes": [
+            [
+                "Metalwork",
+                "Treasure"
+            ]
+        ]
+    },
+    "Armor": {
+        "_base": false,
+        "recipes": [
+            [
+                "Chainmail",
+                "Jeweler"
+            ]
+        ]
+    },
+    "Money": {
+        "_base": false,
+        "recipes": [
+            [
+                "Coin",
+                "Gold"
+            ]
+        ]
+    },
+    "Robot": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Money"
+            ],
+            [
+                "Android",
+                "Factory"
+            ],
+            [
+                "Factory",
+                "Idea"
+            ],
+            [
+                "Factory",
+                "Mirror"
+            ]
+        ]
+    },
+    "Cash": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold Bars",
+                "Money"
+            ]
+        ]
+    },
+    "Wealth": {
+        "_base": false,
+        "recipes": [
+            [
+                "Money",
+                "Money"
+            ]
+        ]
+    },
+    "Rich": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cash",
+                "Money"
+            ],
+            [
+                "Money",
+                "Wealth"
+            ],
+            [
+                "Cash",
+                "Wealth"
+            ],
+            [
+                "Treasure",
+                "Wealth"
+            ],
+            [
+                "Bank",
+                "Wealth"
+            ],
+            [
+                "Bank",
+                "Money"
+            ],
+            [
+                "Bank",
+                "Richer"
+            ],
+            [
+                "Gold",
+                "IPhone"
+            ]
+        ]
+    },
+    "Bank": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Rich"
+            ]
+        ]
+    },
+    "Richer": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cash",
+                "Rich"
+            ],
+            [
+                "Richer",
+                "Wealth"
+            ],
+            [
+                "Richer",
+                "Treasure"
+            ]
+        ]
+    },
+    "Gold Reserves": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bank",
+                "Gold Bars"
+            ]
+        ]
+    },
+    "Gold Bank": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bank",
+                "Gold Reserves"
+            ]
+        ]
+    },
+    "Gold Wealth": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold Reserves",
+                "Wealth"
+            ]
+        ]
+    },
+    "Gold Treasure": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold Bank",
+                "Treasure"
+            ]
+        ]
+    },
+    "Wind Farm": {
+        "_base": false,
+        "recipes": [
+            [
+                "Field",
+                "Wind Spa"
+            ]
+        ]
+    },
+    "Dragon Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragonstone",
+                "Rose"
+            ]
+        ]
+    },
+    "Crimson Wind": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragon Rose",
+                "Sanguine Gale"
+            ]
+        ]
+    },
+    "Batman": {
+        "_base": false,
+        "recipes": [
+            [
+                "Apocalypse",
+                "Cave"
+            ]
+        ]
+    },
+    "Moon Treasure": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold Wealth",
+                "Lunar Crater"
+            ]
+        ]
+    },
+    "Ancient Ruin": {
+        "_base": false,
+        "recipes": [
+            [
+                "Terracotta Army",
+                "Volcanic Rock"
+            ]
+        ]
+    },
+    "Khamsin": {
+        "_base": false,
+        "recipes": [
+            [
+                "Sirocco",
+                "Sphinx"
+            ]
+        ]
+    },
+    "Flash Tomb": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lightning Bolt",
+                "Necropolis"
+            ]
+        ]
+    },
+    "Vault": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bank",
+                "Flash Tomb"
+            ]
+        ]
+    },
+    "Smoggy Coast": {
+        "_base": false,
+        "recipes": [
+            [
+                "Inferno",
+                "Misty Shore"
+            ]
+        ]
+    },
+    "Ashy Grotto": {
+        "_base": false,
+        "recipes": [
+            [
+                "Smoggy Coast",
+                "Volcanic Caves"
+            ]
+        ]
+    },
+    "Super Ashy": {
+        "_base": false,
+        "recipes": [
+            [
+                "Ashy Grotto",
+                "Super Saiyan 4"
             ]
         ]
     }
