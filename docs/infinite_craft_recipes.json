@@ -3082,6 +3082,10 @@
             [
                 "Angel",
                 "Crystal"
+            ],
+            [
+                "Prayer",
+                "Rose"
             ]
         ]
     },
@@ -12050,6 +12054,14 @@
             [
                 "Aphrodite",
                 "Earth"
+            ],
+            [
+                "Flower Girl",
+                "Rose"
+            ],
+            [
+                "Emma's Rose",
+                "Harry Potter"
             ]
         ]
     },
@@ -20108,6 +20120,10 @@
             [
                 "Pharaoh",
                 "Plague"
+            ],
+            [
+                "Moses",
+                "Rose"
             ]
         ]
     },
@@ -20460,6 +20476,670 @@
             [
                 "Cult",
                 "Ten Commandments"
+            ]
+        ]
+    },
+    "Thorn": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rose",
+                "War"
+            ],
+            [
+                "Crush",
+                "Rose"
+            ]
+        ]
+    },
+    "Rosary": {
+        "_base": false,
+        "recipes": [
+            [
+                "Religion",
+                "Rose"
+            ],
+            [
+                "Romance",
+                "Rosary"
+            ]
+        ]
+    },
+    "Magic Beads": {
+        "_base": false,
+        "recipes": [
+            [
+                "Harry Potter",
+                "Rosary"
+            ]
+        ]
+    },
+    "Hermione": {
+        "_base": false,
+        "recipes": [
+            [
+                "Harry Potter",
+                "Rose"
+            ],
+            [
+                "Emma Watson",
+                "Prayer"
+            ],
+            [
+                "Emma Watson",
+                "Rose Spell"
+            ],
+            [
+                "Emma Watson",
+                "Rose Sorceress"
+            ]
+        ]
+    },
+    "Prayer Beads": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rosary",
+                "Wizard"
+            ],
+            [
+                "Hermione Granger",
+                "Rosary"
+            ],
+            [
+                "Devotion",
+                "Rosary"
+            ]
+        ]
+    },
+    "Hermione Granger": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione",
+                "Rose"
+            ]
+        ]
+    },
+    "Spell": {
+        "_base": false,
+        "recipes": [
+            [
+                "Magic Beads",
+                "Wizard"
+            ]
+        ]
+    },
+    "Beauty": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rose",
+                "Spell"
+            ],
+            [
+                "Belle",
+                "Rose"
+            ]
+        ]
+    },
+    "Emma Watson": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty",
+                "Hermione Granger"
+            ]
+        ]
+    },
+    "Prayer": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty",
+                "Rosary"
+            ]
+        ]
+    },
+    "Belle": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Rose"
+            ],
+            [
+                "Emma Watson",
+                "Romance"
+            ],
+            [
+                "Emma Watson",
+                "Enchanted Rose"
+            ]
+        ]
+    },
+    "Prayer Bead": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Rosary"
+            ]
+        ]
+    },
+    "Love": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty",
+                "Rose"
+            ],
+            [
+                "Romance",
+                "Rose"
+            ],
+            [
+                "Adoration",
+                "Rose"
+            ],
+            [
+                "Devotion",
+                "Rose"
+            ],
+            [
+                "Emma's Love",
+                "Rose"
+            ],
+            [
+                "Beauty and the Beast",
+                "Rose"
+            ],
+            [
+                "Love Potion",
+                "Rose"
+            ]
+        ]
+    },
+    "Romance": {
+        "_base": false,
+        "recipes": [
+            [
+                "Love",
+                "Rose"
+            ],
+            [
+                "Romantic Belle",
+                "Rose"
+            ],
+            [
+                "Love Letter",
+                "Rose"
+            ]
+        ]
+    },
+    "Emma's Love": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Love"
+            ]
+        ]
+    },
+    "Adoration": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Love",
+                "Rose"
+            ],
+            [
+                "Admiration",
+                "Rose"
+            ],
+            [
+                "Devotion",
+                "Romance"
+            ]
+        ]
+    },
+    "Romione": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione Granger",
+                "Romance"
+            ]
+        ]
+    },
+    "Romantic Pairing": {
+        "_base": false,
+        "recipes": [
+            [
+                "Romione",
+                "Rose"
+            ]
+        ]
+    },
+    "Crush": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Romantic Pairing"
+            ]
+        ]
+    },
+    "Devotion": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Love",
+                "Rosary"
+            ]
+        ]
+    },
+    "Romantic Belle": {
+        "_base": false,
+        "recipes": [
+            [
+                "Belle",
+                "Romance"
+            ]
+        ]
+    },
+    "Affection": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Love",
+                "Romance"
+            ]
+        ]
+    },
+    "Love Letter": {
+        "_base": false,
+        "recipes": [
+            [
+                "Affection",
+                "Rose"
+            ]
+        ]
+    },
+    "Admiration": {
+        "_base": false,
+        "recipes": [
+            [
+                "Crush",
+                "Emma Watson"
+            ],
+            [
+                "Emma's Love",
+                "Rose Bouquet"
+            ],
+            [
+                "Fan Letter",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Flower Bouquet": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione Granger",
+                "Rose"
+            ]
+        ]
+    },
+    "Bouquet": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Flower Bouquet"
+            ],
+            [
+                "Emma's Love",
+                "Rose Garden"
+            ],
+            [
+                "Admirer",
+                "Rose"
+            ],
+            [
+                "Emma Watson Fan",
+                "Rose Petals"
+            ]
+        ]
+    },
+    "Rose Bouquet": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bouquet",
+                "Rose"
+            ]
+        ]
+    },
+    "Flower Girl": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bouquet",
+                "Emma Watson"
+            ]
+        ]
+    },
+    "Beauty and the Beast": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Rose Bouquet"
+            ],
+            [
+                "Enchanted Rose",
+                "Hermione Granger"
+            ],
+            [
+                "Emma's Love",
+                "Enchanted Rose"
+            ],
+            [
+                "Emma Watson Fan",
+                "Rose"
+            ]
+        ]
+    },
+    "Rose Garden": {
+        "_base": false,
+        "recipes": [
+            [
+                "Belle",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Floral Arrangement": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty and the Beast",
+                "Bouquet"
+            ]
+        ]
+    },
+    "Enchanted Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty and the Beast",
+                "Rose Garden"
+            ],
+            [
+                "Magic Bloom",
+                "Rose"
+            ]
+        ]
+    },
+    "Rose Spell": {
+        "_base": false,
+        "recipes": [
+            [
+                "Enchanted Rose",
+                "Harry Potter"
+            ]
+        ]
+    },
+    "Spellbound Blooms": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione Granger",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Enchantment": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty",
+                "Rose Spell"
+            ],
+            [
+                "Emma's Love",
+                "Rose Sorceress"
+            ]
+        ]
+    },
+    "Magical Bloom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Enchanted Rose",
+                "Hermione"
+            ]
+        ]
+    },
+    "Flower": {
+        "_base": false,
+        "recipes": [
+            [
+                "Magical Bloom",
+                "Rose"
+            ]
+        ]
+    },
+    "Hermione's Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Celebrity Crush": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Hermione's Rose"
+            ]
+        ]
+    },
+    "Magic Bloom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Harry Potter",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Fanmail": {
+        "_base": false,
+        "recipes": [
+            [
+                "Celebrity Crush",
+                "Rose"
+            ]
+        ]
+    },
+    "Fan Letter": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Fanmail"
+            ]
+        ]
+    },
+    "Spellcaster": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Magic Bloom"
+            ]
+        ]
+    },
+    "Fan Mail": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fan Letter",
+                "Rose"
+            ]
+        ]
+    },
+    "Enchantress": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rose",
+                "Spellcaster"
+            ]
+        ]
+    },
+    "Fan Club": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Fan Mail"
+            ]
+        ]
+    },
+    "Rose Sorceress": {
+        "_base": false,
+        "recipes": [
+            [
+                "Enchantress",
+                "Rose"
+            ]
+        ]
+    },
+    "Fan Club Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fan Club",
+                "Rose"
+            ]
+        ]
+    },
+    "WatsonsFanbase": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Fan Club Rose"
+            ]
+        ]
+    },
+    "Fanbase Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rose",
+                "WatsonsFanbase"
+            ]
+        ]
+    },
+    "Rose Petals": {
+        "_base": false,
+        "recipes": [
+            [
+                "Enchantment",
+                "Rose"
+            ]
+        ]
+    },
+    "Emma Watson Fan": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Fanbase Rose"
+            ]
+        ]
+    },
+    "Love Potion": {
+        "_base": false,
+        "recipes": [
+            [
+                "Harry Potter",
+                "Rose Petals"
+            ]
+        ]
+    },
+    "Emma's Fan": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson Fan",
+                "Emma's Love"
+            ]
+        ]
+    },
+    "Fan Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Fan",
+                "Rose"
+            ]
+        ]
+    },
+    "Emma's Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Love",
+                "Fanbase Rose"
+            ],
+            [
+                "Emma Watson",
+                "Fan Rose"
+            ]
+        ]
+    },
+    "Admirer": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson Fan",
+                "Emma's Rose"
+            ]
+        ]
+    },
+    "Jinx": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fan Rose",
+                "Harry Potter"
+            ]
+        ]
+    },
+    "Arcane": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jinx",
+                "Rose"
+            ]
+        ]
+    },
+    "Fan": {
+        "_base": false,
+        "recipes": [
+            [
+                "Admirer",
+                "Emma Watson"
             ]
         ]
     }
