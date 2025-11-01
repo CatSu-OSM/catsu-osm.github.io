@@ -1021,340 +1021,8 @@
         "_base": false,
         "recipes": [
             [
-                "Earth",
-                "Lava Flow"
-            ],
-            [
-                "Lava",
-                "Smoke"
-            ],
-            [
-                "Lava",
-                "Thunder"
-            ],
-            [
-                "Cloud",
-                "Lava Flow"
-            ],
-            [
-                "Lava Rock",
-                "Wind"
-            ],
-            [
-                "Caldera",
-                "Fog"
-            ],
-            [
-                "Lava",
-                "Smog"
-            ],
-            [
-                "Fog",
-                "Lava Flow"
-            ],
-            [
-                "Lava",
-                "Lava Flow"
-            ],
-            [
-                "Hurricane",
-                "Magma"
-            ],
-            [
-                "Magma",
-                "Thunderstorm"
-            ],
-            [
-                "Pumice",
-                "Thunderstorm"
-            ],
-            [
-                "Earth",
-                "Thunder"
-            ],
-            [
-                "Volcanic Ash",
-                "Volcanic Eruption"
-            ],
-            [
-                "Earth",
-                "Magma Volcano"
-            ],
-            [
-                "Lava",
-                "Venus"
-            ],
-            [
-                "Ash",
-                "Thunderstorm"
-            ],
-            [
-                "Brick",
-                "Lava"
-            ],
-            [
-                "Lava",
-                "Vase"
-            ],
-            [
-                "Lava",
-                "Volcanic Eruption"
-            ],
-            [
-                "Pumice",
-                "Vase"
-            ],
-            [
-                "Dust",
-                "Eruption"
-            ],
-            [
-                "Dust Storm",
-                "Pumice"
-            ],
-            [
-                "Magma Chamber",
-                "Monument"
-            ],
-            [
-                "Magma",
-                "Venus"
-            ],
-            [
-                "Energy",
-                "Eruption"
-            ],
-            [
-                "Hot Spring",
-                "Thunderstorm"
-            ],
-            [
-                "Dragon",
-                "Geyser"
-            ],
-            [
-                "Geyser",
-                "Sandstorm"
-            ],
-            [
-                "Caldera",
-                "Pollution"
-            ],
-            [
-                "Thundercloud",
-                "Volcano"
-            ],
-            [
-                "Eruption",
-                "Moonstone"
-            ],
-            [
-                "Dragon",
-                "Magma Dragon"
-            ],
-            [
-                "Lightning Strike",
-                "Volcano"
-            ],
-            [
-                "Tornado",
-                "Vulcan"
-            ],
-            [
-                "Ash Cloud",
-                "Poison"
-            ],
-            [
-                "Lava Dragon",
-                "Lightning"
-            ],
-            [
-                "Frankenstein",
-                "Volcanic Mist"
-            ],
-            [
-                "Lava Lake",
-                "Volcanic Storm"
-            ],
-            [
-                "Ash",
-                "Lahar"
-            ],
-            [
-                "Lava Rock",
-                "Statue"
-            ],
-            [
-                "Tsunami",
-                "Vulcan"
-            ],
-            [
-                "Lava Lamp",
-                "Tornado"
-            ],
-            [
-                "Greenhouse",
-                "Lava"
-            ],
-            [
-                "Fire",
-                "Moat"
-            ],
-            [
-                "Earth",
-                "Lava Lamp"
-            ],
-            [
-                "Fire",
-                "Lava Lamp"
-            ],
-            [
-                "Lava Lamp",
-                "Water"
-            ],
-            [
-                "Lava Lamp",
-                "Wind"
-            ],
-            [
-                "Fire",
-                "Hurricane"
-            ],
-            [
-                "Fire",
-                "Venus"
-            ],
-            [
-                "Fire",
-                "Typhoon"
-            ],
-            [
-                "Fire",
-                "Rainstorm"
-            ],
-            [
-                "Dragon Breath",
-                "Earth"
-            ],
-            [
-                "Dragon Breath",
-                "Fire"
-            ],
-            [
-                "Dragon Fire",
-                "Earth"
-            ],
-            [
-                "Earth",
-                "Smoke"
-            ],
-            [
-                "Earth",
-                "Lava Monster"
-            ],
-            [
-                "Fire",
-                "Lava Monster"
-            ],
-            [
-                "Lava Monster",
-                "Wind"
-            ],
-            [
-                "Earth",
-                "Lightning Bolt"
-            ],
-            [
-                "Fire",
-                "Lightning Bolt"
-            ],
-            [
-                "Earth",
-                "Geothermal"
-            ],
-            [
-                "Fire",
-                "Geothermal"
-            ],
-            [
-                "Earth",
-                "Energy"
-            ],
-            [
-                "Fire",
-                "Fire Tornado"
-            ],
-            [
-                "Dragon Volcano",
-                "Water"
-            ],
-            [
-                "Earth",
-                "Smoke Dragon"
-            ],
-            [
-                "Erosion",
-                "Fire"
-            ],
-            [
-                "Fire",
-                "Gale Force Wind"
-            ],
-            [
-                "Earth",
-                "Eruption"
-            ],
-            [
-                "Eruption",
-                "Fire"
-            ],
-            [
-                "Eruption",
-                "Wind"
-            ],
-            [
-                "Earth",
-                "Rainbow Fire"
-            ],
-            [
-                "Blaze",
-                "Earth"
-            ],
-            [
-                "Earth",
-                "Firestorm"
-            ],
-            [
-                "Fire",
-                "Firestorm"
-            ],
-            [
-                "Acid Rain",
-                "Fire"
-            ],
-            [
-                "Fire",
-                "Tsunami"
-            ],
-            [
-                "Fire",
-                "Tidal Wave"
-            ],
-            [
-                "Tidal Wave",
-                "Water"
-            ],
-            [
-                "Ventifact",
-                "Volcanic Crater"
-            ],
-            [
-                "Fire",
-                "Kraken"
-            ],
-            [
-                "Lava",
-                "Storm"
+                "Castle",
+                "Explosion"
             ]
         ]
     },
@@ -1476,6 +1144,10 @@
             [
                 "Dragon Fire",
                 "Wind"
+            ],
+            [
+                "Castle",
+                "Wizard"
             ],
             [
                 "Fire",
@@ -1636,6 +1308,30 @@
             [
                 "Lava Geyser",
                 "Molten Creature"
+            ],
+            [
+                "Castle",
+                "Wizard"
+            ],
+            [
+                "Castle",
+                "Dragon"
+            ],
+            [
+                "Dragon",
+                "Temple"
+            ],
+            [
+                "Castle",
+                "Smaug"
+            ],
+            [
+                "Fortress",
+                "Smaug"
+            ],
+            [
+                "Boom",
+                "Dragon"
             ]
         ]
     },
@@ -2051,6 +1747,10 @@
                 "Water"
             ],
             [
+                "God",
+                "Monument"
+            ],
+            [
                 "Earth",
                 "Sculpture"
             ],
@@ -2061,6 +1761,14 @@
             [
                 "Golem",
                 "Water"
+            ],
+            [
+                "Monument",
+                "Pharaoh"
+            ],
+            [
+                "Idol",
+                "Monument"
             ]
         ]
     },
@@ -4756,6 +4464,10 @@
             [
                 "Desert Dragon",
                 "Volcanic Rock"
+            ],
+            [
+                "Desert",
+                "Ocean"
             ]
         ]
     },
@@ -5890,6 +5602,14 @@
             [
                 "Castle",
                 "Swamp"
+            ],
+            [
+                "Haunted House",
+                "Mage Tower"
+            ],
+            [
+                "Monument",
+                "Ruins"
             ]
         ]
     },
@@ -11063,6 +10783,10 @@
             [
                 "Fire Storm",
                 "Super Impact"
+            ],
+            [
+                "Explosion",
+                "Mount Doom"
             ]
         ]
     },
@@ -16163,6 +15887,10 @@
             [
                 "House",
                 "Pyroclastic Flow"
+            ],
+            [
+                "Temple",
+                "Volcano"
             ]
         ]
     },
@@ -17937,6 +17665,10 @@
             [
                 "Monument",
                 "Scorpion King"
+            ],
+            [
+                "Sphinx",
+                "Temple"
             ]
         ]
     },
@@ -18238,6 +17970,10 @@
             [
                 "Dragonstorm",
                 "Tutankhamun"
+            ],
+            [
+                "God",
+                "Pyramid"
             ]
         ]
     },
@@ -19328,6 +19064,18 @@
             [
                 "Oasis",
                 "Statue"
+            ],
+            [
+                "Pyramid",
+                "Ruins"
+            ],
+            [
+                "Pyramid",
+                "Statue"
+            ],
+            [
+                "Idol",
+                "Pyramid"
             ]
         ]
     },
@@ -20240,6 +19988,478 @@
             [
                 "Ashy Grotto",
                 "Super Saiyan 4"
+            ]
+        ]
+    },
+    "Prison": {
+        "_base": false,
+        "recipes": [
+            [
+                "Brick Wall",
+                "House"
+            ]
+        ]
+    },
+    "Ancient Dungeon": {
+        "_base": false,
+        "recipes": [
+            [
+                "Ancient City",
+                "Dungeon"
+            ]
+        ]
+    },
+    "Jail": {
+        "_base": false,
+        "recipes": [
+            [
+                "Brick Wall",
+                "Prison"
+            ],
+            [
+                "House",
+                "Prison"
+            ]
+        ]
+    },
+    "Potion": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bog Magic",
+                "Cauldron"
+            ]
+        ]
+    },
+    "Witch": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cauldron",
+                "Haunted House"
+            ]
+        ]
+    },
+    "Wizard": {
+        "_base": false,
+        "recipes": [
+            [
+                "Castle",
+                "Witch"
+            ],
+            [
+                "Steam Castle",
+                "Witch"
+            ],
+            [
+                "Idol",
+                "Magic"
+            ]
+        ]
+    },
+    "Mage Tower": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragonstone Castle",
+                "Wizard"
+            ]
+        ]
+    },
+    "Witch Tower": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mage Tower",
+                "Witch"
+            ]
+        ]
+    },
+    "Hogwarts Express": {
+        "_base": false,
+        "recipes": [
+            [
+                "Train",
+                "Wizard"
+            ]
+        ]
+    },
+    "Harry Potter": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hogwarts Express",
+                "Wizard"
+            ]
+        ]
+    },
+    "Magic": {
+        "_base": false,
+        "recipes": [
+            [
+                "Witch",
+                "Wizard"
+            ]
+        ]
+    },
+    "Moses": {
+        "_base": false,
+        "recipes": [
+            [
+                "Pharaoh",
+                "Plague"
+            ]
+        ]
+    },
+    "Idol": {
+        "_base": false,
+        "recipes": [
+            [
+                "God",
+                "Statue"
+            ],
+            [
+                "Idol",
+                "Judaism"
+            ]
+        ]
+    },
+    "Religion": {
+        "_base": false,
+        "recipes": [
+            [
+                "God",
+                "Idol"
+            ],
+            [
+                "Idol",
+                "Ten Commandments"
+            ],
+            [
+                "Idolatry",
+                "Ten Commandments"
+            ],
+            [
+                "Idol",
+                "Ten Commandments"
+            ],
+            [
+                "Faith",
+                "Idolatry"
+            ],
+            [
+                "Cult",
+                "Law"
+            ]
+        ]
+    },
+    "Temple": {
+        "_base": false,
+        "recipes": [
+            [
+                "God",
+                "Ruins"
+            ]
+        ]
+    },
+    "Mordor": {
+        "_base": false,
+        "recipes": [
+            [
+                "Castle",
+                "Volcano"
+            ],
+            [
+                "Explosion",
+                "Sauron"
+            ]
+        ]
+    },
+    "Smaug": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragon",
+                "Mordor"
+            ]
+        ]
+    },
+    "TNT": {
+        "_base": false,
+        "recipes": [
+            [
+                "Explosion",
+                "Temple"
+            ]
+        ]
+    },
+    "Boom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragon",
+                "TNT"
+            ]
+        ]
+    },
+    "Fortress": {
+        "_base": false,
+        "recipes": [
+            [
+                "Castle",
+                "TNT"
+            ]
+        ]
+    },
+    "Mount Doom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mordor",
+                "Temple"
+            ],
+            [
+                "Explosion",
+                "Mordor"
+            ]
+        ]
+    },
+    "Middle Earth": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mordor",
+                "Smaug"
+            ]
+        ]
+    },
+    "Sauron": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fortress",
+                "Mordor"
+            ]
+        ]
+    },
+    "Lord of the Rings": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mount Doom",
+                "Sauron"
+            ],
+            [
+                "Mordor",
+                "Sauron"
+            ]
+        ]
+    },
+    "War": {
+        "_base": false,
+        "recipes": [
+            [
+                "Middle Earth",
+                "Mordor"
+            ]
+        ]
+    },
+    "Commandments": {
+        "_base": false,
+        "recipes": [
+            [
+                "God",
+                "Moses"
+            ]
+        ]
+    },
+    "Ten Commandments": {
+        "_base": false,
+        "recipes": [
+            [
+                "Commandments",
+                "Moses"
+            ],
+            [
+                "Idolatry",
+                "Moses"
+            ]
+        ]
+    },
+    "Kabbalah": {
+        "_base": false,
+        "recipes": [
+            [
+                "Magic",
+                "Ten Commandments"
+            ],
+            [
+                "Judaism",
+                "Magic"
+            ]
+        ]
+    },
+    "Idolatry": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idol",
+                "Kabbalah"
+            ],
+            [
+                "Golden Calf",
+                "Judaism"
+            ],
+            [
+                "Golden Calf",
+                "Religious Faith"
+            ]
+        ]
+    },
+    "Judaism": {
+        "_base": false,
+        "recipes": [
+            [
+                "Kabbalah",
+                "Religion"
+            ]
+        ]
+    },
+    "Syncretism": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idolatry",
+                "Judaism"
+            ]
+        ]
+    },
+    "Golden Calf": {
+        "_base": false,
+        "recipes": [
+            [
+                "Commandments",
+                "Idol"
+            ],
+            [
+                "Idol",
+                "Moses"
+            ]
+        ]
+    },
+    "Christianity": {
+        "_base": false,
+        "recipes": [
+            [
+                "Judaism",
+                "Ten Commandments"
+            ]
+        ]
+    },
+    "Tablets": {
+        "_base": false,
+        "recipes": [
+            [
+                "Golden Calf",
+                "Moses"
+            ]
+        ]
+    },
+    "Law": {
+        "_base": false,
+        "recipes": [
+            [
+                "Golden Calf",
+                "Ten Commandments"
+            ],
+            [
+                "Justice",
+                "Religion"
+            ]
+        ]
+    },
+    "Catholicism": {
+        "_base": false,
+        "recipes": [
+            [
+                "Christianity",
+                "Idolatry"
+            ]
+        ]
+    },
+    "Medicine": {
+        "_base": false,
+        "recipes": [
+            [
+                "Golden Calf",
+                "Tablets"
+            ],
+            [
+                "Faith",
+                "Placebo"
+            ]
+        ]
+    },
+    "Justice": {
+        "_base": false,
+        "recipes": [
+            [
+                "Judaism",
+                "Law"
+            ]
+        ]
+    },
+    "Placebo": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idolatry",
+                "Medicine"
+            ]
+        ]
+    },
+    "Fanaticism": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idolatry",
+                "Justice"
+            ]
+        ]
+    },
+    "Faith": {
+        "_base": false,
+        "recipes": [
+            [
+                "Placebo",
+                "Religion"
+            ]
+        ]
+    },
+    "Religious Faith": {
+        "_base": false,
+        "recipes": [
+            [
+                "Faith",
+                "Ten Commandments"
+            ]
+        ]
+    },
+    "Cult": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idolatry",
+                "Religious Faith"
+            ]
+        ]
+    },
+    "Religious Law": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cult",
+                "Ten Commandments"
             ]
         ]
     }
