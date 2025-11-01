@@ -3469,6 +3469,10 @@
             [
                 "Twister",
                 "Zephyr"
+            ],
+            [
+                "Earth",
+                "Fire Tornado"
             ]
         ]
     },
@@ -4998,10 +5002,6 @@
                 "Sanguine Gale"
             ],
             [
-                "Dust Storm",
-                "Fire"
-            ],
-            [
                 "Fire",
                 "Smoke"
             ],
@@ -5161,6 +5161,10 @@
             [
                 "Desert Storm",
                 "Muddy Breeze"
+            ],
+            [
+                "Dust Storm",
+                "fire"
             ]
         ]
     },
@@ -7664,10 +7668,6 @@
             [
                 "Earth",
                 "Windy Crater"
-            ],
-            [
-                "Earth",
-                "Fire Tornado"
             ],
             [
                 "Volcanic Eruption",
