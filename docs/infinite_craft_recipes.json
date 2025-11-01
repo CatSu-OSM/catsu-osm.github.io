@@ -6655,7 +6655,7 @@
                 "Medusan Horror"
             ],
             [
-                "Geyseer",
+                "Geyser",
                 "Pyroclastic Flow"
             ],
             [
@@ -15516,7 +15516,7 @@
         "recipes": [
             [
                 "Biohazard Behemoth",
-                "Heat Wave"
+                "Heatwave"
             ],
             [
                 "Dragonite",
@@ -19471,5 +19471,1632 @@
                 "Metalwork"
             ]
         ]
+    },
+    "Artisan": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Jewelry Shop"
+            ]
+        ]
+    },
+    "Treasure": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jewelry Factory",
+                "Pirate"
+            ],
+            [
+                "Gold Bank",
+                "Wealth"
+            ]
+        ]
+    },
+    "Chainmail": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dungeon",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Jewelry Plant": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Jewelry Factory"
+            ]
+        ]
+    },
+    "Ornament": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jewelry Plant",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Blacksmith": {
+        "_base": false,
+        "recipes": [
+            [
+                "Artisan",
+                "Metalwork"
+            ]
+        ]
+    },
+    "Gold": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Treasure"
+            ]
+        ]
+    },
+    "Gold Bars": {
+        "_base": false,
+        "recipes": [
+            [
+                "Metalwork",
+                "Treasure"
+            ]
+        ]
+    },
+    "Armor": {
+        "_base": false,
+        "recipes": [
+            [
+                "Chainmail",
+                "Jeweler"
+            ]
+        ]
+    },
+    "Money": {
+        "_base": false,
+        "recipes": [
+            [
+                "Coin",
+                "Gold"
+            ]
+        ]
+    },
+    "Robot": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Money"
+            ],
+            [
+                "Android",
+                "Factory"
+            ],
+            [
+                "Factory",
+                "Idea"
+            ],
+            [
+                "Factory",
+                "Mirror"
+            ]
+        ]
+    },
+    "Cash": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold Bars",
+                "Money"
+            ]
+        ]
+    },
+    "Wealth": {
+        "_base": false,
+        "recipes": [
+            [
+                "Money",
+                "Money"
+            ]
+        ]
+    },
+    "Rich": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cash",
+                "Money"
+            ],
+            [
+                "Money",
+                "Wealth"
+            ],
+            [
+                "Cash",
+                "Wealth"
+            ],
+            [
+                "Treasure",
+                "Wealth"
+            ],
+            [
+                "Bank",
+                "Wealth"
+            ],
+            [
+                "Bank",
+                "Money"
+            ],
+            [
+                "Bank",
+                "Richer"
+            ],
+            [
+                "Gold",
+                "IPhone"
+            ]
+        ]
+    },
+    "Bank": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Rich"
+            ]
+        ]
+    },
+    "Richer": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cash",
+                "Rich"
+            ],
+            [
+                "Richer",
+                "Wealth"
+            ],
+            [
+                "Richer",
+                "Treasure"
+            ]
+        ]
+    },
+    "Gold Reserves": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bank",
+                "Gold Bars"
+            ]
+        ]
+    },
+    "Gold Bank": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bank",
+                "Gold Reserves"
+            ]
+        ]
+    },
+    "Gold Wealth": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold Reserves",
+                "Wealth"
+            ]
+        ]
+    },
+    "Gold Treasure": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold Bank",
+                "Treasure"
+            ]
+        ]
+    },
+    "Wind Farm": {
+        "_base": false,
+        "recipes": [
+            [
+                "Field",
+                "Wind Spa"
+            ]
+        ]
+    },
+    "Dragon Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragonstone",
+                "Rose"
+            ]
+        ]
+    },
+    "Crimson Wind": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragon Rose",
+                "Sanguine Gale"
+            ]
+        ]
+    },
+    "Batman": {
+        "_base": false,
+        "recipes": [
+            [
+                "Apocalypse",
+                "Cave"
+            ]
+        ]
+    },
+    "Moon Treasure": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold Wealth",
+                "Lunar Crater"
+            ]
+        ]
+    },
+    "Ancient Ruin": {
+        "_base": false,
+        "recipes": [
+            [
+                "Terracotta Army",
+                "Volcanic Rock"
+            ]
+        ]
+    },
+    "Khamsin": {
+        "_base": false,
+        "recipes": [
+            [
+                "Sirocco",
+                "Sphinx"
+            ]
+        ]
+    },
+    "Flash Tomb": {
+        "_base": false,
+        "recipes": [
+            [
+                "Lightning Bolt",
+                "Necropolis"
+            ]
+        ]
+    },
+    "Vault": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bank",
+                "Flash Tomb"
+            ]
+        ]
+    },
+    "Smoggy Coast": {
+        "_base": false,
+        "recipes": [
+            [
+                "Inferno",
+                "Misty Shore"
+            ]
+        ]
+    },
+    "Ashy Grotto": {
+        "_base": false,
+        "recipes": [
+            [
+                "Smoggy Coast",
+                "Volcanic Caves"
+            ]
+        ]
+    },
+    "Super Ashy": {
+        "_base": false,
+        "recipes": [
+            [
+                "Ashy Grotto",
+                "Super Saiyan 4"
+            ]
+        ]
+    },
+    "Prison": {
+        "_base": false,
+        "recipes": [
+            [
+                "Brick Wall",
+                "House"
+            ]
+        ]
+    },
+    "Ancient Dungeon": {
+        "_base": false,
+        "recipes": [
+            [
+                "Ancient City",
+                "Dungeon"
+            ]
+        ]
+    },
+    "Jail": {
+        "_base": false,
+        "recipes": [
+            [
+                "Brick Wall",
+                "Prison"
+            ],
+            [
+                "House",
+                "Prison"
+            ]
+        ]
+    },
+    "Potion": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bog Magic",
+                "Cauldron"
+            ]
+        ]
+    },
+    "Witch": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cauldron",
+                "Haunted House"
+            ]
+        ]
+    },
+    "Wizard": {
+        "_base": false,
+        "recipes": [
+            [
+                "Castle",
+                "Witch"
+            ],
+            [
+                "Steam Castle",
+                "Witch"
+            ],
+            [
+                "Idol",
+                "Magic"
+            ]
+        ]
+    },
+    "Mage Tower": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragonstone Castle",
+                "Wizard"
+            ]
+        ]
+    },
+    "Witch Tower": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mage Tower",
+                "Witch"
+            ]
+        ]
+    },
+    "Hogwarts Express": {
+        "_base": false,
+        "recipes": [
+            [
+                "Train",
+                "Wizard"
+            ]
+        ]
+    },
+    "Harry Potter": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hogwarts Express",
+                "Wizard"
+            ]
+        ]
+    },
+    "Magic": {
+        "_base": false,
+        "recipes": [
+            [
+                "Witch",
+                "Wizard"
+            ]
+        ]
+    },
+    "Moses": {
+        "_base": false,
+        "recipes": [
+            [
+                "Pharaoh",
+                "Plague"
+            ],
+            [
+                "Moses",
+                "Rose"
+            ]
+        ]
+    },
+    "Idol": {
+        "_base": false,
+        "recipes": [
+            [
+                "God",
+                "Statue"
+            ],
+            [
+                "Idol",
+                "Judaism"
+            ]
+        ]
+    },
+    "Religion": {
+        "_base": false,
+        "recipes": [
+            [
+                "God",
+                "Idol"
+            ],
+            [
+                "Idol",
+                "Ten Commandments"
+            ],
+            [
+                "Idolatry",
+                "Ten Commandments"
+            ],
+            [
+                "Idol",
+                "Ten Commandments"
+            ],
+            [
+                "Faith",
+                "Idolatry"
+            ],
+            [
+                "Cult",
+                "Law"
+            ]
+        ]
+    },
+    "Temple": {
+        "_base": false,
+        "recipes": [
+            [
+                "God",
+                "Ruins"
+            ]
+        ]
+    },
+    "Mordor": {
+        "_base": false,
+        "recipes": [
+            [
+                "Castle",
+                "Volcano"
+            ],
+            [
+                "Explosion",
+                "Sauron"
+            ]
+        ]
+    },
+    "Smaug": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragon",
+                "Mordor"
+            ]
+        ]
+    },
+    "TNT": {
+        "_base": false,
+        "recipes": [
+            [
+                "Explosion",
+                "Temple"
+            ]
+        ]
+    },
+    "Boom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Dragon",
+                "TNT"
+            ]
+        ]
+    },
+    "Fortress": {
+        "_base": false,
+        "recipes": [
+            [
+                "Castle",
+                "TNT"
+            ]
+        ]
+    },
+    "Mount Doom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mordor",
+                "Temple"
+            ],
+            [
+                "Explosion",
+                "Mordor"
+            ]
+        ]
+    },
+    "Middle Earth": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mordor",
+                "Smaug"
+            ]
+        ]
+    },
+    "Sauron": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fortress",
+                "Mordor"
+            ]
+        ]
+    },
+    "Lord of the Rings": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mount Doom",
+                "Sauron"
+            ],
+            [
+                "Mordor",
+                "Sauron"
+            ]
+        ]
+    },
+    "War": {
+        "_base": false,
+        "recipes": [
+            [
+                "Middle Earth",
+                "Mordor"
+            ]
+        ]
+    },
+    "Commandments": {
+        "_base": false,
+        "recipes": [
+            [
+                "God",
+                "Moses"
+            ]
+        ]
+    },
+    "Ten Commandments": {
+        "_base": false,
+        "recipes": [
+            [
+                "Commandments",
+                "Moses"
+            ],
+            [
+                "Idolatry",
+                "Moses"
+            ]
+        ]
+    },
+    "Kabbalah": {
+        "_base": false,
+        "recipes": [
+            [
+                "Magic",
+                "Ten Commandments"
+            ],
+            [
+                "Judaism",
+                "Magic"
+            ]
+        ]
+    },
+    "Idolatry": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idol",
+                "Kabbalah"
+            ],
+            [
+                "Golden Calf",
+                "Judaism"
+            ],
+            [
+                "Golden Calf",
+                "Religious Faith"
+            ]
+        ]
+    },
+    "Judaism": {
+        "_base": false,
+        "recipes": [
+            [
+                "Kabbalah",
+                "Religion"
+            ]
+        ]
+    },
+    "Syncretism": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idolatry",
+                "Judaism"
+            ]
+        ]
+    },
+    "Golden Calf": {
+        "_base": false,
+        "recipes": [
+            [
+                "Commandments",
+                "Idol"
+            ],
+            [
+                "Idol",
+                "Moses"
+            ]
+        ]
+    },
+    "Christianity": {
+        "_base": false,
+        "recipes": [
+            [
+                "Judaism",
+                "Ten Commandments"
+            ]
+        ]
+    },
+    "Tablets": {
+        "_base": false,
+        "recipes": [
+            [
+                "Golden Calf",
+                "Moses"
+            ]
+        ]
+    },
+    "Law": {
+        "_base": false,
+        "recipes": [
+            [
+                "Golden Calf",
+                "Ten Commandments"
+            ],
+            [
+                "Justice",
+                "Religion"
+            ]
+        ]
+    },
+    "Catholicism": {
+        "_base": false,
+        "recipes": [
+            [
+                "Christianity",
+                "Idolatry"
+            ]
+        ]
+    },
+    "Medicine": {
+        "_base": false,
+        "recipes": [
+            [
+                "Golden Calf",
+                "Tablets"
+            ],
+            [
+                "Faith",
+                "Placebo"
+            ]
+        ]
+    },
+    "Justice": {
+        "_base": false,
+        "recipes": [
+            [
+                "Judaism",
+                "Law"
+            ]
+        ]
+    },
+    "Placebo": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idolatry",
+                "Medicine"
+            ]
+        ]
+    },
+    "Fanaticism": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idolatry",
+                "Justice"
+            ]
+        ]
+    },
+    "Faith": {
+        "_base": false,
+        "recipes": [
+            [
+                "Placebo",
+                "Religion"
+            ]
+        ]
+    },
+    "Religious Faith": {
+        "_base": false,
+        "recipes": [
+            [
+                "Faith",
+                "Ten Commandments"
+            ]
+        ]
+    },
+    "Cult": {
+        "_base": false,
+        "recipes": [
+            [
+                "Idolatry",
+                "Religious Faith"
+            ]
+        ]
+    },
+    "Religious Law": {
+        "_base": false,
+        "recipes": [
+            [
+                "Cult",
+                "Ten Commandments"
+            ]
+        ]
+    },
+    "Thorn": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rose",
+                "War"
+            ],
+            [
+                "Crush",
+                "Rose"
+            ]
+        ]
+    },
+    "Rosary": {
+        "_base": false,
+        "recipes": [
+            [
+                "Religion",
+                "Rose"
+            ],
+            [
+                "Romance",
+                "Rosary"
+            ]
+        ]
+    },
+    "Magic Beads": {
+        "_base": false,
+        "recipes": [
+            [
+                "Harry Potter",
+                "Rosary"
+            ]
+        ]
+    },
+    "Hermione": {
+        "_base": false,
+        "recipes": [
+            [
+                "Harry Potter",
+                "Rose"
+            ],
+            [
+                "Emma Watson",
+                "Prayer"
+            ],
+            [
+                "Emma Watson",
+                "Rose Spell"
+            ],
+            [
+                "Emma Watson",
+                "Rose Sorceress"
+            ]
+        ]
+    },
+    "Prayer Beads": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rosary",
+                "Wizard"
+            ],
+            [
+                "Hermione Granger",
+                "Rosary"
+            ],
+            [
+                "Devotion",
+                "Rosary"
+            ]
+        ]
+    },
+    "Hermione Granger": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione",
+                "Rose"
+            ]
+        ]
+    },
+    "Spell": {
+        "_base": false,
+        "recipes": [
+            [
+                "Magic Beads",
+                "Wizard"
+            ]
+        ]
+    },
+    "Beauty": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rose",
+                "Spell"
+            ],
+            [
+                "Belle",
+                "Rose"
+            ]
+        ]
+    },
+    "Emma Watson": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty",
+                "Hermione Granger"
+            ]
+        ]
+    },
+    "Prayer": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty",
+                "Rosary"
+            ]
+        ]
+    },
+    "Belle": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Rose"
+            ],
+            [
+                "Emma Watson",
+                "Romance"
+            ],
+            [
+                "Emma Watson",
+                "Enchanted Rose"
+            ]
+        ]
+    },
+    "Prayer Bead": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Rosary"
+            ]
+        ]
+    },
+    "Love": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty",
+                "Rose"
+            ],
+            [
+                "Romance",
+                "Rose"
+            ],
+            [
+                "Adoration",
+                "Rose"
+            ],
+            [
+                "Devotion",
+                "Rose"
+            ],
+            [
+                "Emma's Love",
+                "Rose"
+            ],
+            [
+                "Beauty and the Beast",
+                "Rose"
+            ],
+            [
+                "Love Potion",
+                "Rose"
+            ]
+        ]
+    },
+    "Romance": {
+        "_base": false,
+        "recipes": [
+            [
+                "Love",
+                "Rose"
+            ],
+            [
+                "Romantic Belle",
+                "Rose"
+            ],
+            [
+                "Love Letter",
+                "Rose"
+            ]
+        ]
+    },
+    "Emma's Love": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Love"
+            ]
+        ]
+    },
+    "Adoration": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Love",
+                "Rose"
+            ],
+            [
+                "Admiration",
+                "Rose"
+            ],
+            [
+                "Devotion",
+                "Romance"
+            ]
+        ]
+    },
+    "Romione": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione Granger",
+                "Romance"
+            ]
+        ]
+    },
+    "Romantic Pairing": {
+        "_base": false,
+        "recipes": [
+            [
+                "Romione",
+                "Rose"
+            ]
+        ]
+    },
+    "Crush": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Romantic Pairing"
+            ]
+        ]
+    },
+    "Devotion": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Love",
+                "Rosary"
+            ]
+        ]
+    },
+    "Romantic Belle": {
+        "_base": false,
+        "recipes": [
+            [
+                "Belle",
+                "Romance"
+            ]
+        ]
+    },
+    "Affection": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Love",
+                "Romance"
+            ]
+        ]
+    },
+    "Love Letter": {
+        "_base": false,
+        "recipes": [
+            [
+                "Affection",
+                "Rose"
+            ]
+        ]
+    },
+    "Admiration": {
+        "_base": false,
+        "recipes": [
+            [
+                "Crush",
+                "Emma Watson"
+            ],
+            [
+                "Emma's Love",
+                "Rose Bouquet"
+            ],
+            [
+                "Fan Letter",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Flower Bouquet": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione Granger",
+                "Rose"
+            ]
+        ]
+    },
+    "Bouquet": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Flower Bouquet"
+            ],
+            [
+                "Emma's Love",
+                "Rose Garden"
+            ],
+            [
+                "Admirer",
+                "Rose"
+            ],
+            [
+                "Emma Watson Fan",
+                "Rose Petals"
+            ]
+        ]
+    },
+    "Rose Bouquet": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bouquet",
+                "Rose"
+            ]
+        ]
+    },
+    "Flower Girl": {
+        "_base": false,
+        "recipes": [
+            [
+                "Bouquet",
+                "Emma Watson"
+            ]
+        ]
+    },
+    "Beauty and the Beast": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Rose Bouquet"
+            ],
+            [
+                "Enchanted Rose",
+                "Hermione Granger"
+            ],
+            [
+                "Emma's Love",
+                "Enchanted Rose"
+            ],
+            [
+                "Emma Watson Fan",
+                "Rose"
+            ]
+        ]
+    },
+    "Rose Garden": {
+        "_base": false,
+        "recipes": [
+            [
+                "Belle",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Floral Arrangement": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty and the Beast",
+                "Bouquet"
+            ]
+        ]
+    },
+    "Enchanted Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty and the Beast",
+                "Rose Garden"
+            ],
+            [
+                "Magic Bloom",
+                "Rose"
+            ]
+        ]
+    },
+    "Rose Spell": {
+        "_base": false,
+        "recipes": [
+            [
+                "Enchanted Rose",
+                "Harry Potter"
+            ]
+        ]
+    },
+    "Spellbound Blooms": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione Granger",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Enchantment": {
+        "_base": false,
+        "recipes": [
+            [
+                "Beauty",
+                "Rose Spell"
+            ],
+            [
+                "Emma's Love",
+                "Rose Sorceress"
+            ]
+        ]
+    },
+    "Magical Bloom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Enchanted Rose",
+                "Hermione"
+            ]
+        ]
+    },
+    "Flower": {
+        "_base": false,
+        "recipes": [
+            [
+                "Magical Bloom",
+                "Rose"
+            ]
+        ]
+    },
+    "Hermione's Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Hermione",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Celebrity Crush": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Hermione's Rose"
+            ]
+        ]
+    },
+    "Magic Bloom": {
+        "_base": false,
+        "recipes": [
+            [
+                "Harry Potter",
+                "Rose Bouquet"
+            ]
+        ]
+    },
+    "Fanmail": {
+        "_base": false,
+        "recipes": [
+            [
+                "Celebrity Crush",
+                "Rose"
+            ]
+        ]
+    },
+    "Fan Letter": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Fanmail"
+            ]
+        ]
+    },
+    "Spellcaster": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Magic Bloom"
+            ]
+        ]
+    },
+    "Fan Mail": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fan Letter",
+                "Rose"
+            ]
+        ]
+    },
+    "Enchantress": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rose",
+                "Spellcaster"
+            ]
+        ]
+    },
+    "Fan Club": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Fan Mail"
+            ]
+        ]
+    },
+    "Rose Sorceress": {
+        "_base": false,
+        "recipes": [
+            [
+                "Enchantress",
+                "Rose"
+            ]
+        ]
+    },
+    "Fan Club Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fan Club",
+                "Rose"
+            ]
+        ]
+    },
+    "WatsonsFanbase": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Fan Club Rose"
+            ]
+        ]
+    },
+    "Fanbase Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Rose",
+                "WatsonsFanbase"
+            ]
+        ]
+    },
+    "Rose Petals": {
+        "_base": false,
+        "recipes": [
+            [
+                "Enchantment",
+                "Rose"
+            ]
+        ]
+    },
+    "Emma Watson Fan": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson",
+                "Fanbase Rose"
+            ]
+        ]
+    },
+    "Love Potion": {
+        "_base": false,
+        "recipes": [
+            [
+                "Harry Potter",
+                "Rose Petals"
+            ]
+        ]
+    },
+    "Emma's Fan": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson Fan",
+                "Emma's Love"
+            ]
+        ]
+    },
+    "Fan Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Fan",
+                "Rose"
+            ]
+        ]
+    },
+    "Emma's Rose": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma's Love",
+                "Fanbase Rose"
+            ],
+            [
+                "Emma Watson",
+                "Fan Rose"
+            ]
+        ]
+    },
+    "Admirer": {
+        "_base": false,
+        "recipes": [
+            [
+                "Emma Watson Fan",
+                "Emma's Rose"
+            ]
+        ]
+    },
+    "Jinx": {
+        "_base": false,
+        "recipes": [
+            [
+                "Fan Rose",
+                "Harry Potter"
+            ]
+        ]
+    },
+    "Arcane": {
+        "_base": false,
+        "recipes": [
+            [
+                "Jinx",
+                "Rose"
+            ]
+        ]
+    },
+    "Fan": {
+        "_base": false,
+        "recipes": [
+            [
+                "Admirer",
+                "Emma Watson"
+            ]
+        ]
+    },
+    "IPhone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Assembly Line",
+                "Gold Phone"
+            ]
+        ]
+    },
+    "Mirror": {
+        "_base": false,
+        "recipes": [
+            [
+                "Glass",
+                "Gold"
+            ]
+        ]
+    },
+    "Idea": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Light Bulb"
+            ]
+        ]
+    },
+    "Android": {
+        "_base": false,
+        "recipes": [
+            [
+                "Glass",
+                "Robot"
+            ]
+        ]
+    },
+    "Assembly Line": {
+        "_base": false,
+        "recipes": [
+            [
+                "Mobile Production",
+                "Smartphone"
+            ]
+        ]
+    },
+    "Gold Phone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold",
+                "Smart Phone"
+            ],
+            [
+                "Gold Plating",
+                "Smart Phone"
+            ]
+        ]
+    },
+    "Light Bulb": {
+        "_base": false,
+        "recipes": [
+            [
+                "Electricity",
+                "Glass"
+            ]
+        ]
+    },
+    "Gold Plating": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Gold Phone"
+            ]
+        ]
+    },
+    "Mobile Production": {
+        "_base": false,
+        "recipes": [
+            [
+                "Electronics Manufacturing",
+                "Gold Phone"
+            ]
+        ]
+    },
+    "Smart Phone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Android",
+                "Glass"
+            ]
+        ]
+    },
+    "Smartphone": {
+        "_base": false,
+        "recipes": [
+            [
+                "Luxury Tech",
+                "Smart Phone"
+            ],
+            [
+                "Factory",
+                "Smartphone"
+            ],
+            [
+                "Gold Phone",
+                "Mobile Production"
+            ],
+            [
+                "Smart Phone",
+                "Smartphone Factory"
+            ]
+        ]
+    },
+    "Luxury Tech": {
+        "_base": false,
+        "recipes": [
+            [
+                "Gold",
+                "Smartphone Factory"
+            ]
+        ]
+    },
+    "Electronics Manufacturing": {
+        "_base": false,
+        "recipes": [
+            [
+                "Luxury Tech",
+                "Smartphone Factory"
+            ]
+        ]
+    },
+    "Smartphone Factory": {
+        "_base": false,
+        "recipes": [
+            [
+                "Factory",
+                "Smart Phone"
+            ],
+            [
+                "Electronics Manufacturing",
+                "Smart Phone"
+            ]
+        ]
     }
+
 }
