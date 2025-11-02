@@ -4667,6 +4667,10 @@
       [
         "Land",
         "Sirocco"
+      ],
+      [
+        "Earth",
+        "Dust"
       ]
     ]
   },
@@ -11499,7 +11503,7 @@
         "Dust",
         "Earth"
       ]
-    ]  
+    ]
   },
   "Skyrocket": {
     "_base": false,
@@ -21110,8 +21114,8 @@
     "_base": false,
     "recipes": [
       [
-        "Rose",
-        "Burning Man"
+        "Burning Man",
+        "Rose"
       ]
     ]
   },
@@ -21170,8 +21174,8 @@
         "Meme Shock"
       ],
       [
-        "Pop Star",
-        "Meme Shock"
+        "Meme Shock",
+        "Pop Star"
       ],
       [
         "Trend",
@@ -21191,8 +21195,8 @@
         "Viral Video"
       ],
       [
-        "Viral",
-        "Meme"
+        "Meme",
+        "Viral"
       ]
     ]
   },
@@ -21218,8 +21222,8 @@
     "_base": false,
     "recipes": [
       [
-        "Internet",
-        "Celebrity"
+        "Celebrity",
+        "Internet"
       ],
       [
         "Social Media",
@@ -21231,8 +21235,8 @@
     "_base": false,
     "recipes": [
       [
-        "Viral Sensation",
-        "Meme"
+        "Meme",
+        "Viral Sensation"
       ]
     ]
   },
@@ -21240,8 +21244,8 @@
     "_base": false,
     "recipes": [
       [
-        "E-Rose",
-        "Celebrity"
+        "Celebrity",
+        "E-Rose"
       ]
     ]
   },
@@ -21249,8 +21253,8 @@
     "_base": false,
     "recipes": [
       [
-        "Viral Meme",
-        "Celebrity"
+        "Celebrity",
+        "Viral Meme"
       ]
     ]
   },
@@ -21289,8 +21293,8 @@
         "Viral Meme"
       ],
       [
-        "Rose Influencer",
-        "Meme"
+        "Meme",
+        "Rose Influencer"
       ]
     ]
   },
@@ -21298,8 +21302,8 @@
     "_base": false,
     "recipes": [
       [
-        "Roseposting",
-        "Celebrity"
+        "Celebrity",
+        "Roseposting"
       ],
       [
         "Celebrity",
@@ -21320,8 +21324,8 @@
     "_base": false,
     "recipes": [
       [
-        "Roseposting",
-        "Influencer"
+        "Influencer",
+        "Roseposting"
       ]
     ]
   },
@@ -21338,8 +21342,8 @@
     "_base": false,
     "recipes": [
       [
-        "Scandal Sheet",
-        "Meme"
+        "Meme",
+        "Scandal Sheet"
       ]
     ]
   },
@@ -21410,8 +21414,8 @@
     "_base": false,
     "recipes": [
       [
-        "Internet",
-        "Grand Marshal"
+        "Grand Marshal",
+        "Internet"
       ],
       [
         "Viral Trends",
@@ -21423,8 +21427,8 @@
     "_base": false,
     "recipes": [
       [
-        "Social Media",
-        "Rose"
+        "Rose",
+        "Social Media"
       ]
     ]
   },
@@ -21445,8 +21449,8 @@
         "Viral Video"
       ],
       [
-        "Viral Trend",
-        "Internet"
+        "Internet",
+        "Viral Trend"
       ]
     ]
   },
@@ -21454,8 +21458,8 @@
     "_base": false,
     "recipes": [
       [
-        "Social Media",
-        "Meme"
+        "Meme",
+        "Social Media"
       ]
     ]
   },
@@ -21463,8 +21467,8 @@
     "_base": false,
     "recipes": [
       [
-        "Viral Video",
-        "Viral"
+        "Viral",
+        "Viral Video"
       ],
       [
         "Social Network",
@@ -21497,8 +21501,8 @@
         "Viral Video"
       ],
       [
-        "Viral Trends",
-        "Meme Culture"
+        "Meme Culture",
+        "Viral Trends"
       ]
     ]
   },
@@ -21506,8 +21510,8 @@
     "_base": false,
     "recipes": [
       [
-        "Social Media",
-        "Meme Culture"
+        "Meme Culture",
+        "Social Media"
       ]
     ]
   },
@@ -21524,8 +21528,8 @@
     "_base": false,
     "recipes": [
       [
-        "Social Media",
-        "Internet"
+        "Internet",
+        "Social Media"
       ]
     ]
   },
@@ -21578,8 +21582,8 @@
     "_base": false,
     "recipes": [
       [
-        "Monkey",
-        "Fire"
+        "Fire",
+        "Monkey"
       ]
     ]
   },
@@ -21613,8 +21617,8 @@
         "House"
       ],
       [
-        "Neanderthal",
-        "Love"
+        "Love",
+        "Neanderthal"
       ]
     ]
   },
@@ -21658,8 +21662,8 @@
     "_base": false,
     "recipes": [
       [
-        "Caveman",
-        "Baby"
+        "Baby",
+        "Caveman"
       ]
     ]
   },
@@ -21676,9 +21680,18 @@
     "_base": false,
     "recipes": [
       [
-        "Neanderthal",
-        "Fire"
+        "Fire",
+        "Neanderthal"
       ]
     ]
+  },
+  "Adobe": {
+    "_base": false,
+    "recipes": [
+      [
+        "Brick",
+        "Earth"
+      ]
+    ]  
   }
 }
