@@ -511,8 +511,8 @@
         "Fire"
       ],
       [
-        "Dust Devil",
-        "Fire"
+        "Fire",
+        "Dust Devil"
       ]
     ]
   },
@@ -13035,6 +13035,10 @@
       [
         "Fireball",
         "Wind"
+      ],
+      [
+        "Dust Devil",
+        "Fire"
       ]
     ]
   },
