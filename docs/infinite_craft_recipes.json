@@ -4657,10 +4657,6 @@
         "Earth"
       ],
       [
-        "Dust",
-        "Earth"
-      ],
-      [
         "Earth",
         "Sand"
       ],
@@ -11498,8 +11494,11 @@
       [
         "Earth",
         "Kite"
+      ],
+      [
+        "Dust",
+        "Earth"
       ]
-    ]
   },
   "Skyrocket": {
     "_base": false,
