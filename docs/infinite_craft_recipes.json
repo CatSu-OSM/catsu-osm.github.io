@@ -7005,8 +7005,8 @@
         "Storm Gecko"
       ],
       [
-        "Dust Storm",
-        "Water"
+        "Water",
+        "Dust Storm"
       ],
       [
         "Cloud Burst",
@@ -7750,7 +7750,11 @@
       [
         "Scorpion Dust Devil",
         "Wind"
-      ]
+      ],
+      [
+        "Dust Storm",
+        "Water"
+      ]  
     ]
   },
   "Frog Tempest": {
