@@ -11862,8 +11862,8 @@
     "_base": false,
     "recipes": [
       [
-        "Ash",
-        "Water"
+        "Water",
+        "Ash"
       ],
       [
         "Slurry",
@@ -12962,6 +12962,10 @@
         "Snowman",
         "Water"
       ]
+      [
+        "Ash",
+        "Water"
+      ]  
     ]
   },
   "Hydrothermal Vent": {
